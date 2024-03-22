@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "bsx-sdk-py"
+version = "0.0.1beta2"
+description = ""
+authors = ["bsx-engineering <dev@bsx.exchange>"]
+readme = "README.md"
+packages = [
+    { include = "bsx_py" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+eip712-structs-ng = "^2.0.1"
+eth-account = "^0.11.0"
+typing_extensions = "^4.9.0"
+web3 = "^6.15.1"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+sphinx = "^6.2.1"
+sphinx-rtd-theme = "^1.2.1"
+sphinx-autodoc-typehints = "^1.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

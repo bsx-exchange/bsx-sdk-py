@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  py-signing:
+    build: .
+    entrypoint: [ "/bin/bash" ]
+    stdin_open: true
+    tty: true
+    command: [ "-i"]
+    volumes:
+      - .:/app

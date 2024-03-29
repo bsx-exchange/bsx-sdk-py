@@ -5,23 +5,26 @@ import requests
 from eip712_structs import make_domain
 from eth_account.signers.local import LocalAccount
 
-from bsx_py.client.rest.account.client import AccountClient, RegistrationClient
+from bsx_py.client.rest.account.client import AccountClient
 from bsx_py.client.rest.market.client import MarketClient
-from bsx_py.common.exception import UnauthenticatedException
-from bsx_py.common.types.account import RegisterParams, WithdrawParams, Portfolio
+from bsx_py.common.exception import UnauthenticatedException, NotSupportOperationException, \
+    WalletPrivateNotProvidedException
+from bsx_py.common.types.account import WithdrawParams, Portfolio
 from bsx_py.common.types.market import CreateOrderParams, CancelOrderResult, CancelMultipleOrdersParams, \
     CancelMultipleOrdersResult, OrderListingResult, Order, GetOrderHistoryParams
-from bsx_py.common.utils import AccountStorage
+from bsx_py.helper import AccountManager
 
 
 def _refresh_api_key_if_needed(method):
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
+        self._check_and_renew_api_key_if_needed()
         try:
             return method(self, *args, **kwargs)
         except UnauthenticatedException:
             self._refresh_api_key()
             return method(self, *args, **kwargs)
+
     return wrapper
 
 
@@ -38,9 +41,43 @@ class BSXInstance:
     Each BSXInstance works with only one wallet. If you want to use multiple wallets, just create multiple instances.
     """
 
+    @staticmethod
+    def from_api_key(api_key: str, api_secret: str, signer: LocalAccount, env: Environment) -> 'BSXInstance':
+        """
+        Initialize a new BSXInstance object using an active API key.
+
+        The BSXInstance returned by this method will not be able to submit withdrawal requests
+
+        Attributes:
+            api_key (str): BSX API key
+
+            api_secret (str): BSX secret
+
+            signer (LocalAccount): signer wallet used to sign requests
+
+            env (Environment): environment to use (Testnet or mainnet)
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        instance = BSXInstance.__new__(BSXInstance)
+        domain = env.value
+        config = instance._get_chain_config(domain)
+        eip712_domain = instance._build_eip712_domain(config)
+
+        instance._acc_manager = AccountManager.from_api_key(api_key, api_secret, signer.key, domain, eip712_domain)
+        instance._account_client = AccountClient(
+            domain=domain, domain_signature=eip712_domain, config=config, acc_info=instance._acc_manager
+        )
+        instance._market_client = MarketClient(
+            domain=domain, domain_signature=eip712_domain, acc_info=instance._acc_manager
+        )
+
+        return instance
+
     def __init__(self, env: Environment, wallet: LocalAccount, signer: LocalAccount):
         """
-        Initialize a new BSXInstance object
+        Initialize a new BSXInstance object using main wallet's private key
 
         Attributes:
             env (Environment): environment to use (Testnet or mainnet)
@@ -56,19 +93,13 @@ class BSXInstance:
         config = self._get_chain_config(domain)
         eip712_domain = self._build_eip712_domain(config)
 
-        self._registration_client = RegistrationClient(domain, eip712_domain)
-        api_key = self._registration_client.register(
-            RegisterParams(wallet_pkey=wallet.key, signer_pkey=signer.key, message="")
+        self._acc_manager = AccountManager.from_secret(wallet.key, signer.key, domain, eip712_domain)
+        self._account_client = AccountClient(
+            domain=domain, domain_signature=eip712_domain, config=config, acc_info=self._acc_manager
         )
-
-        self._acc_storage = AccountStorage()
-        self._acc_storage.set_signer(signer)
-        self._acc_storage.set_wallet(wallet)
-        self._acc_storage.set_api_key(api_key)
-
-        self._account_client = AccountClient(domain=domain, domain_signature=eip712_domain, config=config,
-                                             acc_storage=self._acc_storage)
-        self._market_client = MarketClient(domain=domain, domain_signature=eip712_domain, acc_storage=self._acc_storage)
+        self._market_client = MarketClient(
+            domain=domain, domain_signature=eip712_domain, acc_info=self._acc_manager
+        )
 
     @_refresh_api_key_if_needed
     def create_order(self, params: CreateOrderParams) -> Order:
@@ -168,10 +199,34 @@ class BSXInstance:
 
     @_refresh_api_key_if_needed
     def submit_withdrawal_request(self, params: WithdrawParams) -> bool:
-        return self._account_client.submit_withdrawal_request(params)
+        """
+        Submit withdrawal request
+
+        Attributes:
+            params (WithdrawParams): parameters to create withdrawal request
+
+        Return:
+            bool: whether the withdrawal request was created successfully or not
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        try:
+            return self._account_client.submit_withdrawal_request(params)
+        except WalletPrivateNotProvidedException:
+            raise NotSupportOperationException("BSXInstance created by API key cannot submit withdrawal request")
 
     @_refresh_api_key_if_needed
     def get_portfolio_detail(self) -> Portfolio:
+        """
+        Get portfolio detail
+
+        Return:
+            Portfolio: portfolio detail of the current user
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
         return self._account_client.get_portfolio_detail()
 
     def _get_chain_config(self, domain: str):
@@ -193,14 +248,7 @@ class BSXInstance:
         )
 
     def _refresh_api_key(self):
-        acquired_write_lock = self._acc_storage.lock_all_read()
+        self._acc_manager.renew_api_key()
 
-        if acquired_write_lock:
-            try:
-                api_key = self._registration_client.register(
-                    RegisterParams(wallet_pkey=self._acc_storage.get_wallet_key(),
-                                   signer_pkey=self._acc_storage.get_signer_key(), message="")
-                )
-                self._acc_storage.set_api_key(api_key)
-            finally:
-                self._acc_storage.release_all_read()
+    def _check_and_renew_api_key_if_needed(self):
+        self._acc_manager.check_and_renew_api_key()

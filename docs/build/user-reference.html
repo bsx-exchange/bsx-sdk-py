@@ -81,7 +81,12 @@
 <h1>User reference<a class="headerlink" href="#user-reference" title="Permalink to this heading"></a></h1>
 <section id="core-client">
 <h2>Core client<a class="headerlink" href="#core-client" title="Permalink to this heading"></a></h2>
-<p>You must initialize a BSXInstance via it’s constructor. BSXInstance will handle all the signing and authentication internally</p>
+<p>BSXInstance provides methods to interact with BSX Exchange and abstract away the complication of message signing,
+authentication, and session management</p>
+<p>BSXInstance can be initialized either with an API key or the main wallet’s private key.</p>
+<ul class="simple">
+<li><p><strong>Create BSXInstance using private key:</strong></p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py</span> <span class="kn">import</span> <span class="n">BSXInstance</span><span class="p">,</span> <span class="n">Environment</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wallet_private_key</span> <span class="o">=</span> <span class="s2">&quot;xxx&quot;</span>
@@ -89,6 +94,16 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wallet</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">wallet_private_key</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">signer</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">signer_private_key</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="p">(</span><span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="o">.</span><span class="n">TESTNET</span><span class="p">,</span> <span class="n">wallet</span><span class="o">=</span><span class="n">account</span><span class="p">,</span> <span class="n">signer</span><span class="o">=</span><span class="n">signer</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Create BSXInstance using API key:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py</span> <span class="kn">import</span> <span class="n">BSXInstance</span><span class="p">,</span> <span class="n">Environment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer_private_key</span> <span class="o">=</span> <span class="s2">&quot;yyy&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">signer_private_key</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span> <span class="n">api_secret</span><span class="o">=</span><span class="s2">&quot;zzz&quot;</span><span class="p">,</span> <span class="n">signer</span><span class="o">=</span><span class="n">signer</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="o">.</span><span class="n">TESTNET</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Below are supported APIs to interact with BSX Exchange</p>

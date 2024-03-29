@@ -1,10 +1,10 @@
 import json
-from http import HTTPStatus
-
 import requests
 
+from http import HTTPStatus
+
+from bsx_py.common.acc_info import AccountInfo
 from bsx_py.common.exception import BSXRequestException, UnknownException, UnauthenticatedException
-from bsx_py.common.utils import AccountStorage
 
 
 class RestClient(object):
@@ -56,15 +56,16 @@ class RestClient(object):
 
 
 class AuthRequiredClient(RestClient):
-    def __init__(self, domain: str, acc_storage: AccountStorage):
+    def __init__(self, domain: str, acc_info: AccountInfo):
         super().__init__(domain)
-        self._acc_storage = acc_storage
+        self._acc_info = acc_info
 
     def post(self, endpoint: str, body: dict, headers: dict = None):
         if headers is None:
             headers = {}
 
-        api_key = self._acc_storage.get_api_key()
+        api_key = self._acc_info.get_api_key()
+        print(api_key.api_key)
         headers['bsx-key'] = api_key.api_key
         headers['bsx-secret'] = api_key.api_secret
 
@@ -74,7 +75,8 @@ class AuthRequiredClient(RestClient):
         if headers is None:
             headers = {}
 
-        api_key = self._acc_storage.get_api_key()
+        api_key = self._acc_info.get_api_key()
+        print(api_key.api_key)
         headers['bsx-key'] = api_key.api_key
         headers['bsx-secret'] = api_key.api_secret
 
@@ -84,7 +86,8 @@ class AuthRequiredClient(RestClient):
         if headers is None:
             headers = {}
 
-        api_key = self._acc_storage.get_api_key()
+        api_key = self._acc_info.get_api_key()
+        print(api_key.api_key)
         headers['bsx-key'] = api_key.api_key
         headers['bsx-secret'] = api_key.api_secret
 

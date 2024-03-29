@@ -1,26 +1,18 @@
 from dataclasses import dataclass
-from datetime import datetime
 from decimal import Decimal
-from typing import Optional
-
-
-@dataclass
-class BSXApiKey:
-    api_key: str
-    api_secret: str
-    expired_at: datetime
-    name: Optional[str] = None
-
-
-@dataclass
-class RegisterParams:
-    wallet_pkey: str
-    signer_pkey: str
-    message: str
 
 
 @dataclass
 class WithdrawParams:
+    """
+    Contains parameters for creating a withdrawal request
+
+    Args:
+        amount (Decimal): Token amount to withdraw. For USDC, the minimum amount is 2 USDC.
+        We currently only allow withdraw up to min(settled_usdc_balance, free_collateral).
+
+        nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)
+    """
     amount: Decimal
     nonce: int
 

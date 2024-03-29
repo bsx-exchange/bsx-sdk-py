@@ -3,7 +3,12 @@ User reference
 
 Core client
 -----------
-You must initialize a BSXInstance via it's constructor. BSXInstance will handle all the signing and authentication internally
+BSXInstance provides methods to interact with BSX Exchange and abstract away the complication of message signing,
+authentication, and session management
+
+BSXInstance can be initialized either with an API key or the main wallet's private key.
+
+- **Create BSXInstance using private key:**
 
 .. code-block:: python
     
@@ -14,6 +19,16 @@ You must initialize a BSXInstance via it's constructor. BSXInstance will handle 
     >>> wallet = Account.from_key(wallet_private_key)
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance(env=Environment.TESTNET, wallet=account, signer=signer)
+
+- **Create BSXInstance using API key:**
+
+.. code-block:: python
+
+    >>> from eth_account import Account
+    >>> from bsx_py import BSXInstance, Environment
+    >>> signer_private_key = "yyy"
+    >>> signer = Account.from_key(signer_private_key)
+    >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
 
 Below are supported APIs to interact with BSX Exchange
 

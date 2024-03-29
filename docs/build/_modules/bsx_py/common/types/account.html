@@ -73,28 +73,20 @@
              
   <h1>Source code for bsx_py.common.types.account</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
-
-
-<div class="viewcode-block" id="BSXApiKey"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.account.BSXApiKey">[docs]</a><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">BSXApiKey</span><span class="p">:</span>
-    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">expired_at</span><span class="p">:</span> <span class="n">datetime</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-
-<div class="viewcode-block" id="RegisterParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.account.RegisterParams">[docs]</a><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">RegisterParams</span><span class="p">:</span>
-    <span class="n">wallet_pkey</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">signer_pkey</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span></div>
 
 
 <div class="viewcode-block" id="WithdrawParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.account.WithdrawParams">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">WithdrawParams</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contains parameters for creating a withdrawal request</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        amount (Decimal): Token amount to withdraw. For USDC, the minimum amount is 2 USDC.</span>
+<span class="sd">        We currently only allow withdraw up to min(settled_usdc_balance, free_collateral).</span>
+
+<span class="sd">        nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span>
     <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span></div>
 

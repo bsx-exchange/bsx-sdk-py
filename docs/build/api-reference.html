@@ -54,6 +54,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.instance.BSXInstance"><code class="docutils literal notranslate"><span class="pre">BSXInstance</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.from_api_key"><code class="docutils literal notranslate"><span class="pre">BSXInstance.from_api_key()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.__init__"><code class="docutils literal notranslate"><span class="pre">BSXInstance.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_order"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_order()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.cancel_order"><code class="docutils literal notranslate"><span class="pre">BSXInstance.cancel_order()</span></code></a></li>
@@ -68,21 +69,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-bsx_py.common.types.account">bsx_py.common.types.account</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.BSXApiKey"><code class="docutils literal notranslate"><span class="pre">BSXApiKey</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.BSXApiKey.api_key"><code class="docutils literal notranslate"><span class="pre">BSXApiKey.api_key</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.BSXApiKey.api_secret"><code class="docutils literal notranslate"><span class="pre">BSXApiKey.api_secret</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.BSXApiKey.expired_at"><code class="docutils literal notranslate"><span class="pre">BSXApiKey.expired_at</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.BSXApiKey.name"><code class="docutils literal notranslate"><span class="pre">BSXApiKey.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.BSXApiKey.__init__"><code class="docutils literal notranslate"><span class="pre">BSXApiKey.__init__()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.RegisterParams"><code class="docutils literal notranslate"><span class="pre">RegisterParams</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.RegisterParams.wallet_pkey"><code class="docutils literal notranslate"><span class="pre">RegisterParams.wallet_pkey</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.RegisterParams.signer_pkey"><code class="docutils literal notranslate"><span class="pre">RegisterParams.signer_pkey</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.RegisterParams.message"><code class="docutils literal notranslate"><span class="pre">RegisterParams.message</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.RegisterParams.__init__"><code class="docutils literal notranslate"><span class="pre">RegisterParams.__init__()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams"><code class="docutils literal notranslate"><span class="pre">WithdrawParams</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams.amount"><code class="docutils literal notranslate"><span class="pre">WithdrawParams.amount</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams.nonce"><code class="docutils literal notranslate"><span class="pre">WithdrawParams.nonce</span></code></a></li>
@@ -301,6 +287,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.exception.UnauthenticatedException.__init__"><code class="docutils literal notranslate"><span class="pre">UnauthenticatedException.__init__()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.exception.NotSupportOperationException"><code class="docutils literal notranslate"><span class="pre">NotSupportOperationException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.exception.WalletPrivateNotProvidedException"><code class="docutils literal notranslate"><span class="pre">WalletPrivateNotProvidedException</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -360,9 +348,30 @@
 <p>BSXInstance will handle signing, authenticating, API key renewal internally.</p>
 <p>Each BSXInstance works with only one wallet. If you want to use multiple wallets, just create multiple instances.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.from_api_key">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.from_api_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.from_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a new BSXInstance object using an active API key.</p>
+<p>The BSXInstance returned by this method will not be able to submit withdrawal requests</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.instance.BSXInstance" title="bsx_py.instance.BSXInstance"><code class="xref py py-class docutils literal notranslate"><span class="pre">BSXInstance</span></code></a></p>
+</dd>
+</dl>
+<dl>
+<dt>Attributes:</dt><dd><p>api_key (str): BSX API key</p>
+<p>api_secret (str): BSX secret</p>
+<p>signer (LocalAccount): signer wallet used to sign requests</p>
+<p>env (Environment): environment to use (Testnet or mainnet)</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wallet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize a new BSXInstance object</p>
+<dd><p>Initialize a new BSXInstance object using main wallet’s private key</p>
 <dl>
 <dt>Attributes:</dt><dd><p>env (Environment): environment to use (Testnet or mainnet)</p>
 <p>wallet (LocalAccount): main wallet</p>
@@ -490,9 +499,18 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.submit_withdrawal_request">
 <span class="sig-name descname"><span class="pre">submit_withdrawal_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.submit_withdrawal_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.submit_withdrawal_request" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Submit withdrawal request</p>
+<dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>params (WithdrawParams): parameters to create withdrawal request</p>
+</dd>
+<dt>Return:</dt><dd><p>bool: whether the withdrawal request was created successfully or not</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -500,9 +518,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.get_portfolio_detail">
 <span class="sig-name descname"><span class="pre">get_portfolio_detail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.get_portfolio_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.get_portfolio_detail" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Get portfolio detail</p>
+<dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.account.Portfolio" title="bsx_py.common.types.account.Portfolio"><code class="xref py py-class docutils literal notranslate"><span class="pre">Portfolio</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Return:</dt><dd><p>Portfolio: portfolio detail of the current user</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -513,66 +538,16 @@
 <section id="module-bsx_py.common.types.account">
 <span id="bsx-py-common-types-account"></span><h2>bsx_py.common.types.account<a class="headerlink" href="#module-bsx_py.common.types.account" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.BSXApiKey">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">BSXApiKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expired_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#BSXApiKey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.BSXApiKey" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.BSXApiKey.api_key">
-<span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.BSXApiKey.api_key" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.BSXApiKey.api_secret">
-<span class="sig-name descname"><span class="pre">api_secret</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.BSXApiKey.api_secret" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.BSXApiKey.expired_at">
-<span class="sig-name descname"><span class="pre">expired_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.BSXApiKey.expired_at" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.BSXApiKey.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.account.BSXApiKey.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.BSXApiKey.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expired_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.BSXApiKey.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.RegisterParams">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">RegisterParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wallet_pkey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer_pkey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#RegisterParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.RegisterParams" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.RegisterParams.wallet_pkey">
-<span class="sig-name descname"><span class="pre">wallet_pkey</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.RegisterParams.wallet_pkey" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.RegisterParams.signer_pkey">
-<span class="sig-name descname"><span class="pre">signer_pkey</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.RegisterParams.signer_pkey" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.RegisterParams.message">
-<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.RegisterParams.message" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.RegisterParams.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wallet_pkey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer_pkey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.RegisterParams.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.WithdrawParams">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">WithdrawParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#WithdrawParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.WithdrawParams" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contains parameters for creating a withdrawal request</p>
+<dl>
+<dt>Args:</dt><dd><p>amount (Decimal): Token amount to withdraw. For USDC, the minimum amount is 2 USDC.
+We currently only allow withdraw up to min(settled_usdc_balance, free_collateral).</p>
+<p>nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)</p>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.WithdrawParams.amount">
 <span class="sig-name descname"><span class="pre">amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.WithdrawParams.amount" title="Permalink to this definition"></a></dt>
@@ -1081,8 +1056,7 @@
 <p>price (Decimal): The max or min price limit to buy or sell at</p>
 <p>size (Decimal): The amount to buy or sell</p>
 <p>time_in_force (str): GTC | IOC | FOK. default is GTC</p>
-<p>nonce (int): A randomly generated positive integer within the range of 0 (exclusive) to 2^63 (exclusive) that used
-for ensuring uniqueness. Clients may opt to utilize a timestamp in nanoseconds as a nonce.</p>
+<p>nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)</p>
 <p>post_only (bool): optional; default is false</p>
 <p>reduce_only (bool): optional; default is false</p>
 </dd>
@@ -1549,6 +1523,18 @@ If any part of the order results in taking liquidity, the order will be rejected
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/exception.html#UnauthenticatedException.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.exception.UnauthenticatedException.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="bsx_py.common.exception.NotSupportOperationException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.exception.</span></span><span class="sig-name descname"><span class="pre">NotSupportOperationException</span></span><a class="reference internal" href="_modules/bsx_py/common/exception.html#NotSupportOperationException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.exception.NotSupportOperationException" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="bsx_py.common.exception.WalletPrivateNotProvidedException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.exception.</span></span><span class="sig-name descname"><span class="pre">WalletPrivateNotProvidedException</span></span><a class="reference internal" href="_modules/bsx_py/common/exception.html#WalletPrivateNotProvidedException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.exception.WalletPrivateNotProvidedException" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 </section>

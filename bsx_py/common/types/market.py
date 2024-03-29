@@ -81,8 +81,7 @@ class CreateOrderParams(metaclass=DataClassMeta):
 
         time_in_force (str): GTC | IOC | FOK. default is GTC
 
-        nonce (int): A randomly generated positive integer within the range of 0 (exclusive) to 2^63 (exclusive) that used
-        for ensuring uniqueness. Clients may opt to utilize a timestamp in nanoseconds as a nonce.
+        nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)
 
         post_only (bool): optional; default is false
 
@@ -212,7 +211,7 @@ class Order(metaclass=DataClassMeta):
             nonce=int(data["nonce"]) if "nonce" in data else None,
             post_only=bool(data["post_only"]) if "post_only" in data else None,
             reduce_only=bool(data["reduce_only"]) if "reduce_only" in data else None,
-            created_at=datetime(data["created_at"]) if "created_at" in data else None,
+            created_at=datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ") if "created_at" in data else None,
             cancel_reason=str(data["cancel_reason"]) if "cancel_reason" in data else None,
             reject_reason=str(data["reject_reason"]) if "reject_reason" in data else None,
             cancel_reject_reason=str(data["cancel_reject_reason"]) if "cancel_reject_reason" in data else None,

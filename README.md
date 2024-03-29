@@ -29,30 +29,49 @@ wallet = Account.from_key(wallet_private_key)
 signer = Account.from_key(signer_private_key)
 ```
 
-### Create the BSXInstance providing BSX Exchange domain, account and signer:
+### Create the BSXInstance using the main wallet's private key:
 
 ```python
+from eth_account import Account
 from bsx_py import BSXInstance, Environment
 
+wallet_private_key = "xxx"
+signer_private_key = "yyy"
+wallet = Account.from_key(wallet_private_key)
+signer = Account.from_key(signer_private_key)
 bsx_instance = BSXInstance(env=Environment.TESTNET, wallet=wallet, signer=signer)
+```
+
+### Create the BSXInstance using an active API key:
+
+```python
+from eth_account import Account
+from bsx_py import BSXInstance, Environment
+
+signer_private_key = "yyy"
+signer = Account.from_key(signer_private_key)
+bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
 ```
 
 ### Perform basic operations:
 
 ```python
 # Placing orders
-from bsx_py.common.types.market import CreateOrderParams
+import time
+from decimal import Decimal
+from bsx_py.common.types.market import CreateOrderParams, Side, OrderType
 
 params = CreateOrderParams(
+    type=OrderType.LIMIT,
     side=Side.BUY,
     product_index=3,
-    price=price,
-    size=size,
+    price=Decimal("100"),
+    size=Decimal("1"),
     time_in_force="GTC",
     nonce=int(time.time())
 )
 order = bsx_instance.create_order(params)
-print("order id:", order.id)
+print(order)
 ```
 
 See [Getting Started](https://bsx-engineering.github.io/getting-started.html) for more.

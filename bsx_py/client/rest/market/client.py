@@ -8,17 +8,17 @@ from web3 import Web3
 from bsx_py.client.rest.base import AuthRequiredClient
 from bsx_py.client.rest.market.types import Order as EIP712Order
 from bsx_py.common import X18_DECIMALS
+from bsx_py.common.acc_info import AccountInfo
 from bsx_py.common.types.market import CreateOrderParams, Side, CancelOrderResult, CancelMultipleOrdersParams, \
     CancelMultipleOrdersResult, OrderListingResult, GetOrderHistoryParams
 from bsx_py.common.types.market import Order
-from bsx_py.common.utils import AccountStorage
 
 
 class MarketClient(AuthRequiredClient):
-    def __init__(self, domain: str, domain_signature: EIP712Struct, acc_storage: AccountStorage):
-        super().__init__(domain, acc_storage)
+    def __init__(self, domain: str, domain_signature: EIP712Struct, acc_info: AccountInfo):
+        super().__init__(domain, acc_info)
         self._domain_signature = domain_signature
-        self._acc_storage = acc_storage
+        self._acc_storage = acc_info
 
     def create_order(self, params: CreateOrderParams) -> Order:
         order_struct = EIP712Order(
@@ -90,8 +90,10 @@ class MarketClient(AuthRequiredClient):
     def get_order_history(self, params: GetOrderHistoryParams) -> OrderListingResult:
         rest_params = {
             "product_id": params.product_id,
-            "start_time": int(time.mktime(params.start_time.timetuple())) * 1000000000 if params.start_time is not None else None,
-            "end_time": int(time.mktime(params.end_time.timetuple())) * 1000000000 if params.end_time is not None else None,
+            "start_time": int(time.mktime(params.start_time.timetuple())) * 1000000000 if params.start_time is not None
+            else None,
+            "end_time": int(time.mktime(params.end_time.timetuple())) * 1000000000 if params.end_time is not None
+            else None,
             "limit": params.limit if params.limit is not None else 100,
             "statuses": [s.value for s in params.statuses] if params.statuses is not None else None
         }

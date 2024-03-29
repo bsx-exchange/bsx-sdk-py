@@ -31,3 +31,11 @@ class UnknownException(BSXRequestException):
 class UnauthenticatedException(BSXRequestException):
     def __init__(self):
         super().__init__(code=16, message="Unauthenticated", detail="")
+
+
+class NotSupportOperationException(Exception):
+    pass
+
+
+class WalletPrivateNotProvidedException(Exception):
+    pass

@@ -79,23 +79,26 @@
 <span class="kn">from</span> <span class="nn">eip712_structs</span> <span class="kn">import</span> <span class="n">make_domain</span>
 <span class="kn">from</span> <span class="nn">eth_account.signers.local</span> <span class="kn">import</span> <span class="n">LocalAccount</span>
 
-<span class="kn">from</span> <span class="nn">bsx_py.client.rest.account.client</span> <span class="kn">import</span> <span class="n">AccountClient</span><span class="p">,</span> <span class="n">RegistrationClient</span>
+<span class="kn">from</span> <span class="nn">bsx_py.client.rest.account.client</span> <span class="kn">import</span> <span class="n">AccountClient</span>
 <span class="kn">from</span> <span class="nn">bsx_py.client.rest.market.client</span> <span class="kn">import</span> <span class="n">MarketClient</span>
-<span class="kn">from</span> <span class="nn">bsx_py.common.exception</span> <span class="kn">import</span> <span class="n">UnauthenticatedException</span>
-<span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="n">RegisterParams</span><span class="p">,</span> <span class="n">WithdrawParams</span><span class="p">,</span> <span class="n">Portfolio</span>
+<span class="kn">from</span> <span class="nn">bsx_py.common.exception</span> <span class="kn">import</span> <span class="n">UnauthenticatedException</span><span class="p">,</span> <span class="n">NotSupportOperationException</span><span class="p">,</span> \
+    <span class="n">WalletPrivateNotProvidedException</span>
+<span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="n">WithdrawParams</span><span class="p">,</span> <span class="n">Portfolio</span>
 <span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="n">CreateOrderParams</span><span class="p">,</span> <span class="n">CancelOrderResult</span><span class="p">,</span> <span class="n">CancelMultipleOrdersParams</span><span class="p">,</span> \
     <span class="n">CancelMultipleOrdersResult</span><span class="p">,</span> <span class="n">OrderListingResult</span><span class="p">,</span> <span class="n">Order</span><span class="p">,</span> <span class="n">GetOrderHistoryParams</span>
-<span class="kn">from</span> <span class="nn">bsx_py.common.utils</span> <span class="kn">import</span> <span class="n">AccountStorage</span>
+<span class="kn">from</span> <span class="nn">bsx_py.helper</span> <span class="kn">import</span> <span class="n">AccountManager</span>
 
 
 <span class="k">def</span> <span class="nf">_refresh_api_key_if_needed</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_and_renew_api_key_if_needed</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">UnauthenticatedException</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_api_key</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">wrapper</span>
 
 
@@ -112,9 +115,43 @@
 <span class="sd">    Each BSXInstance works with only one wallet. If you want to use multiple wallets, just create multiple instances.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="BSXInstance.from_api_key"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.from_api_key">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BSXInstance&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a new BSXInstance object using an active API key.</span>
+
+<span class="sd">        The BSXInstance returned by this method will not be able to submit withdrawal requests</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            api_key (str): BSX API key</span>
+
+<span class="sd">            api_secret (str): BSX secret</span>
+
+<span class="sd">            signer (LocalAccount): signer wallet used to sign requests</span>
+
+<span class="sd">            env (Environment): environment to use (Testnet or mainnet)</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">BSXInstance</span><span class="p">)</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_get_chain_config</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+        <span class="n">eip712_domain</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_build_eip712_domain</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="n">instance</span><span class="o">.</span><span class="n">_acc_manager</span> <span class="o">=</span> <span class="n">AccountManager</span><span class="o">.</span><span class="n">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">,</span> <span class="n">signer</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">eip712_domain</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">_account_client</span> <span class="o">=</span> <span class="n">AccountClient</span><span class="p">(</span>
+            <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain_signature</span><span class="o">=</span><span class="n">eip712_domain</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">acc_info</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">_acc_manager</span>
+        <span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">_market_client</span> <span class="o">=</span> <span class="n">MarketClient</span><span class="p">(</span>
+            <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain_signature</span><span class="o">=</span><span class="n">eip712_domain</span><span class="p">,</span> <span class="n">acc_info</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">_acc_manager</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">instance</span></div>
+
 <div class="viewcode-block" id="BSXInstance.__init__"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">wallet</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize a new BSXInstance object</span>
+<span class="sd">        Initialize a new BSXInstance object using main wallet&#39;s private key</span>
 
 <span class="sd">        Attributes:</span>
 <span class="sd">            env (Environment): environment to use (Testnet or mainnet)</span>
@@ -130,19 +167,13 @@
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_chain_config</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">eip712_domain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_eip712_domain</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_registration_client</span> <span class="o">=</span> <span class="n">RegistrationClient</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">eip712_domain</span><span class="p">)</span>
-        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registration_client</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
-            <span class="n">RegisterParams</span><span class="p">(</span><span class="n">wallet_pkey</span><span class="o">=</span><span class="n">wallet</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">signer_pkey</span><span class="o">=</span><span class="n">signer</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_manager</span> <span class="o">=</span> <span class="n">AccountManager</span><span class="o">.</span><span class="n">from_secret</span><span class="p">(</span><span class="n">wallet</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">signer</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">eip712_domain</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span> <span class="o">=</span> <span class="n">AccountClient</span><span class="p">(</span>
+            <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain_signature</span><span class="o">=</span><span class="n">eip712_domain</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">acc_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_acc_manager</span>
         <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span> <span class="o">=</span> <span class="n">AccountStorage</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">set_signer</span><span class="p">(</span><span class="n">signer</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">set_wallet</span><span class="p">(</span><span class="n">wallet</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">set_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span> <span class="o">=</span> <span class="n">AccountClient</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain_signature</span><span class="o">=</span><span class="n">eip712_domain</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
-                                             <span class="n">acc_storage</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span> <span class="o">=</span> <span class="n">MarketClient</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain_signature</span><span class="o">=</span><span class="n">eip712_domain</span><span class="p">,</span> <span class="n">acc_storage</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span> <span class="o">=</span> <span class="n">MarketClient</span><span class="p">(</span>
+            <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain_signature</span><span class="o">=</span><span class="n">eip712_domain</span><span class="p">,</span> <span class="n">acc_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_acc_manager</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="BSXInstance.create_order"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.create_order">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
     <span class="k">def</span> <span class="nf">create_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CreateOrderParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Order</span><span class="p">:</span>
@@ -242,10 +273,34 @@
 
 <div class="viewcode-block" id="BSXInstance.submit_withdrawal_request"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.submit_withdrawal_request">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
     <span class="k">def</span> <span class="nf">submit_withdrawal_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">WithdrawParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">submit_withdrawal_request</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Submit withdrawal request</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            params (WithdrawParams): parameters to create withdrawal request</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            bool: whether the withdrawal request was created successfully or not</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">submit_withdrawal_request</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">WalletPrivateNotProvidedException</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotSupportOperationException</span><span class="p">(</span><span class="s2">&quot;BSXInstance created by API key cannot submit withdrawal request&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BSXInstance.get_portfolio_detail"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.get_portfolio_detail">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
     <span class="k">def</span> <span class="nf">get_portfolio_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Portfolio</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get portfolio detail</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            Portfolio: portfolio detail of the current user</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">get_portfolio_detail</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_get_chain_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -267,17 +322,10 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_refresh_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">acquired_write_lock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">lock_all_read</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_manager</span><span class="o">.</span><span class="n">renew_api_key</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="n">acquired_write_lock</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registration_client</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
-                    <span class="n">RegisterParams</span><span class="p">(</span><span class="n">wallet_pkey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">get_wallet_key</span><span class="p">(),</span>
-                                   <span class="n">signer_pkey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">get_signer_key</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-                <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">set_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
-            <span class="k">finally</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_acc_storage</span><span class="o">.</span><span class="n">release_all_read</span><span class="p">()</span></div>
+    <span class="k">def</span> <span class="nf">_check_and_renew_api_key_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_acc_manager</span><span class="o">.</span><span class="n">check_and_renew_api_key</span><span class="p">()</span></div>
 </pre></div>
 
            </div>

@@ -14,7 +14,7 @@ Basic usage
 
     Remember to always keep your signer's private key securely stored and never expose it to the public.
 
-Create the BSXInstance providing BSX Exchange domain, account and signer:
+Create the BSXInstance using main wallet's private key:
 
 .. code-block:: python
 
@@ -27,6 +27,17 @@ Create the BSXInstance providing BSX Exchange domain, account and signer:
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance(env=Environment.TESTNET, wallet=account, signer=signer)
 
+Create the BSXInstance using an active API key:
+
+.. code-block:: python
+
+    >>> from eth_account import Account
+    >>> from bsx_py import BSXInstance, Environment
+
+    >>> signer_private_key = "yyy"
+    >>> signer = Account.from_key(signer_private_key)
+    >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
+
 Create an order
 ----------------
 
@@ -34,13 +45,12 @@ Create an order using `Create order API <https://api-docs.bsx.exchange/reference
 
 .. code-block:: python
 
-    >>> import json
-    >>> import dataclasses
     >>> import time
     >>> from decimal import Decimal
-    >>> from bsx_py.common.types.market import CreateOrderParams, Side
+    >>> from bsx_py.common.types.market import CreateOrderParams, Side, OrderType
 
     >>> params = CreateOrderParams(
+        type=OrderType.LIMIT,
         side=Side.BUY,
         product_index=3,
         price=Decimal('100.3'),
@@ -49,7 +59,7 @@ Create an order using `Create order API <https://api-docs.bsx.exchange/reference
         nonce=int(time.time_ns())
     )
     >>> order = bsx_instance.create_order(params=params)
-    >>> print("Order: ", json.dumps(dataclasses.asdict(order)))
+    >>> print("Order: ", order)
 
 Cancel an order
 ----------------
@@ -58,12 +68,9 @@ Cancel an order using `Cancel an order API <https://api-docs.bsx.exchange/refere
 
 .. code-block:: python
 
-    >>> import json
-    >>> import dataclasses
-
     >>> order_id = "xxx"
     >>> res = bsx_instance.cancel_order(order_id=order_id)
-    >>> print("Order canceled.", json.dumps(dataclasses.asdict(res)))
+    >>> print("Order canceled. ", res)
 
 Get open orders
 -------------------
@@ -72,9 +79,6 @@ Get your open orders using `List all open orders API <https://api-docs.bsx.excha
 
 .. code-block:: python
 
-    >>> import json
-    >>> import dataclasses
-
     >>> open_orders = bsx_instance.get_all_open_orders('BTC-PERP')
-    >>> print("open orders: ", json.dumps(dataclasses.asdict(open_orders)))
+    >>> print("open orders: ", open_orders)
 

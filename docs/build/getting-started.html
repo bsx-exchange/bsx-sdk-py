@@ -93,7 +93,7 @@
 <p class="admonition-title">Note</p>
 <p>Remember to always keep your signer’s private key securely stored and never expose it to the public.</p>
 </div>
-<p>Create the BSXInstance providing BSX Exchange domain, account and signer:</p>
+<p>Create the BSXInstance using main wallet’s private key:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py</span> <span class="kn">import</span> <span class="n">BSXInstance</span><span class="p">,</span> <span class="n">Environment</span>
 
@@ -104,17 +104,25 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="p">(</span><span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="o">.</span><span class="n">TESTNET</span><span class="p">,</span> <span class="n">wallet</span><span class="o">=</span><span class="n">account</span><span class="p">,</span> <span class="n">signer</span><span class="o">=</span><span class="n">signer</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Create the BSXInstance using an active API key:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py</span> <span class="kn">import</span> <span class="n">BSXInstance</span><span class="p">,</span> <span class="n">Environment</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer_private_key</span> <span class="o">=</span> <span class="s2">&quot;yyy&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">signer_private_key</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span> <span class="n">api_secret</span><span class="o">=</span><span class="s2">&quot;zzz&quot;</span><span class="p">,</span> <span class="n">signer</span><span class="o">=</span><span class="n">signer</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="o">.</span><span class="n">TESTNET</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="create-an-order">
 <h2>Create an order<a class="headerlink" href="#create-an-order" title="Permalink to this heading"></a></h2>
 <p>Create an order using <a class="reference external" href="https://api-docs.bsx.exchange/reference/orderservice_postorder">Create order API</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="n">CreateOrderParams</span><span class="p">,</span> <span class="n">Side</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="n">CreateOrderParams</span><span class="p">,</span> <span class="n">Side</span><span class="p">,</span> <span class="n">OrderType</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">CreateOrderParams</span><span class="p">(</span>
+<span class="go">    type=OrderType.LIMIT,</span>
 <span class="go">    side=Side.BUY,</span>
 <span class="go">    product_index=3,</span>
 <span class="go">    price=Decimal(&#39;100.3&#39;),</span>
@@ -123,30 +131,24 @@
 <span class="go">    nonce=int(time.time_ns())</span>
 <span class="go">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">create_order</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order: &quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">asdict</span><span class="p">(</span><span class="n">order</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order: &quot;</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="cancel-an-order">
 <h2>Cancel an order<a class="headerlink" href="#cancel-an-order" title="Permalink to this heading"></a></h2>
 <p>Cancel an order using <a class="reference external" href="https://api-docs.bsx.exchange/reference/cancelorder-1">Cancel an order API</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dataclasses</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">order_id</span> <span class="o">=</span> <span class="s2">&quot;xxx&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">order_id</span> <span class="o">=</span> <span class="s2">&quot;xxx&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">order_id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order canceled.&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">asdict</span><span class="p">(</span><span class="n">res</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order canceled. &quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="get-open-orders">
 <h2>Get open orders<a class="headerlink" href="#get-open-orders" title="Permalink to this heading"></a></h2>
 <p>Get your open orders using <a class="reference external" href="https://api-docs.bsx.exchange/reference/getorders">List all open orders API</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dataclasses</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">open_orders</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_all_open_orders</span><span class="p">(</span><span class="s1">&#39;BTC-PERP&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open orders: &quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">asdict</span><span class="p">(</span><span class="n">open_orders</span><span class="p">)))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">open_orders</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_all_open_orders</span><span class="p">(</span><span class="s1">&#39;BTC-PERP&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open orders: &quot;</span><span class="p">,</span> <span class="n">open_orders</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

@@ -24,7 +24,7 @@ class AuthClient(RestClient):
         signable_signer_bytes = Web3.keccak(signable_wallet.signable_bytes(domain=self._domain_signature))
         signer_signature = Account._sign_hash(signable_signer_bytes, signer.key).signature.hex()
 
-        nonce = round(time.time())
+        nonce = round(time.time_ns())
         signable_message = Register(key=signer.address, message=params.message, nonce=nonce)
         signable_message_bytes = Web3.keccak(signable_message.signable_bytes(domain=self._domain_signature))
         account_signature = Account._sign_hash(signable_message_bytes, wallet.key).signature.hex()

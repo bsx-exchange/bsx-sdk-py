@@ -92,10 +92,10 @@ class CreateOrderParams(metaclass=DataClassMeta):
     product_index: int
     price: Decimal
     size: Decimal
-    post_only = False
-    reduce_only = False
     time_in_force: str
     nonce: int
+    post_only: bool = False
+    reduce_only: bool = False
 
 
 @dataclass

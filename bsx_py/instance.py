@@ -42,7 +42,7 @@ class BSXInstance:
     """
 
     @staticmethod
-    def from_api_key(api_key: str, api_secret: str, signer: LocalAccount, env: Environment) -> 'BSXInstance':
+    def from_api_key(api_key: str, api_secret: str, signer: LocalAccount, env: Environment | str) -> 'BSXInstance':
         """
         Initialize a new BSXInstance object using an active API key.
 
@@ -55,13 +55,13 @@ class BSXInstance:
 
             signer (LocalAccount): signer wallet used to sign requests
 
-            env (Environment): environment to use (Testnet or mainnet)
+            env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text
 
         Raises:
             BSXRequestException: If the response status is not "success".
         """
         instance = BSXInstance.__new__(BSXInstance)
-        domain = env.value
+        domain = env.value if isinstance(env, Environment) else env
         config = instance._get_chain_config(domain)
         eip712_domain = instance._build_eip712_domain(config)
 
@@ -75,12 +75,12 @@ class BSXInstance:
 
         return instance
 
-    def __init__(self, env: Environment, wallet: LocalAccount, signer: LocalAccount):
+    def __init__(self, env: Environment | str, wallet: LocalAccount, signer: LocalAccount):
         """
         Initialize a new BSXInstance object using main wallet's private key
 
         Attributes:
-            env (Environment): environment to use (Testnet or mainnet)
+            env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text
 
             wallet (LocalAccount): main wallet
 
@@ -89,7 +89,7 @@ class BSXInstance:
         Raises:
             BSXRequestException: If the response status is not "success".
         """
-        domain = env.value
+        domain = env.value if isinstance(env, Environment) else env
         config = self._get_chain_config(domain)
         eip712_domain = self._build_eip712_domain(config)
 

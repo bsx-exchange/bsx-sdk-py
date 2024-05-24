@@ -189,10 +189,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.product_index"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.product_index</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.price"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.price</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.size"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.size</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.post_only"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.post_only</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.reduce_only"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.reduce_only</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.time_in_force"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.time_in_force</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.nonce"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.nonce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.post_only"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.post_only</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.reduce_only"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.reduce_only</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.__init__"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.__init__()</span></code></a></li>
 </ul>
 </li>
@@ -361,7 +361,7 @@
 <dt>Attributes:</dt><dd><p>api_key (str): BSX API key</p>
 <p>api_secret (str): BSX secret</p>
 <p>signer (LocalAccount): signer wallet used to sign requests</p>
-<p>env (Environment): environment to use (Testnet or mainnet)</p>
+<p>env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</p>
 </dd>
 <dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
 </dd>
@@ -373,7 +373,7 @@
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wallet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize a new BSXInstance object using main wallet’s private key</p>
 <dl>
-<dt>Attributes:</dt><dd><p>env (Environment): environment to use (Testnet or mainnet)</p>
+<dt>Attributes:</dt><dd><p>env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</p>
 <p>wallet (LocalAccount): main wallet</p>
 <p>signer (LocalAccount): signer wallet used to sign requests</p>
 </dd>
@@ -1046,7 +1046,7 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CreateOrderParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CreateOrderParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CreateOrderParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CreateOrderParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Contains parameters required for creating a new order</p>
 <dl>
@@ -1087,16 +1087,6 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.post_only">
-<span class="sig-name descname"><span class="pre">post_only</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.post_only" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.reduce_only">
-<span class="sig-name descname"><span class="pre">reduce_only</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.reduce_only" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.time_in_force">
 <span class="sig-name descname"><span class="pre">time_in_force</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.time_in_force" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1106,9 +1096,19 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <span class="sig-name descname"><span class="pre">nonce</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.nonce" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.post_only">
+<span class="sig-name descname"><span class="pre">post_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.post_only" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.reduce_only">
+<span class="sig-name descname"><span class="pre">reduce_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.reduce_only" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

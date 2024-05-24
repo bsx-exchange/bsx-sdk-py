@@ -14,8 +14,8 @@ BSXInstance can be initialized either with an API key or the main wallet's priva
     
     >>> from eth_account import Account
     >>> from bsx_py import BSXInstance, Environment
-    >>> wallet_private_key = "xxx"
-    >>> signer_private_key = "yyy"
+    >>> wallet_private_key = "0x0000000000000000000000000000000000000000000000000000000000000000"
+    >>> signer_private_key = "0x1111111111111111111111111111111111111111111111111111111111111111"
     >>> wallet = Account.from_key(wallet_private_key)
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance(env=Environment.TESTNET, wallet=account, signer=signer)
@@ -26,7 +26,7 @@ BSXInstance can be initialized either with an API key or the main wallet's priva
 
     >>> from eth_account import Account
     >>> from bsx_py import BSXInstance, Environment
-    >>> signer_private_key = "yyy"
+    >>> signer_private_key = "0x1111111111111111111111111111111111111111111111111111111111111111"
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
 

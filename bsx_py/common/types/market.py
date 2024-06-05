@@ -247,15 +247,35 @@ class CancelOrderResult(metaclass=DataClassMeta):
     order_id: str
     nonce: int
 
+    @staticmethod
+    def from_dict(data: dict) -> 'CancelOrderResult':
+        return CancelOrderResult(
+            order_id=str(data["order_id"]) if "order_id" in data else None,
+            nonce=data["nonce"] if "nonce" in data else None,
+        )
+
 
 @dataclass
 class CancelMultipleOrdersResult(metaclass=DataClassMeta):
     cancelled_orders: list[CancelOrderResult]
 
+    @staticmethod
+    def from_dict(data: dict) -> 'CancelMultipleOrdersResult':
+        return CancelMultipleOrdersResult(
+            cancelled_orders=[CancelOrderResult.from_dict(i) for i in
+                              data["cancelled_orders"]] if "cancelled_orders" in data else []
+        )
+
 
 @dataclass
 class OrderListingResult(metaclass=DataClassMeta):
     orders: list[Order]
+
+    @staticmethod
+    def from_dict(data: dict) -> 'OrderListingResult':
+        return OrderListingResult(
+            orders=[Order.from_dict(i) for i in data["orders"]] if "orders" in data else []
+        )
 
 
 @dataclass

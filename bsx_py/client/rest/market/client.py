@@ -51,7 +51,7 @@ class MarketClient(AuthRequiredClient):
 
     def cancel_order(self, order_id: Optional[str] = None, nonce: Optional[int] = None) -> CancelOrderResult:
         resp = self.delete(endpoint="/order", params={"order_id": order_id, "nonce": nonce})
-        return CancelOrderResult(**resp)
+        return CancelOrderResult.from_dict(resp)
 
     def cancel_orders(self, params: CancelMultipleOrdersParams):
         payload = {

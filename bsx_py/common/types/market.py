@@ -3,6 +3,9 @@ from datetime import datetime
 from decimal import Decimal
 from enum import Enum
 from typing import Optional
+
+import pandas
+
 from .base import DataClassMeta
 
 
@@ -211,7 +214,7 @@ class Order(metaclass=DataClassMeta):
             nonce=int(data["nonce"]) if "nonce" in data else None,
             post_only=bool(data["post_only"]) if "post_only" in data else None,
             reduce_only=bool(data["reduce_only"]) if "reduce_only" in data else None,
-            created_at=datetime.strptime(data["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ") if "created_at" in data else None,
+            created_at=pandas.Timestamp(int(data['created_at_ts'])) if 'created_at_ts' in data else None,
             cancel_reason=str(data["cancel_reason"]) if "cancel_reason" in data else None,
             reject_reason=str(data["reject_reason"]) if "reject_reason" in data else None,
             cancel_reject_reason=str(data["cancel_reject_reason"]) if "cancel_reject_reason" in data else None,

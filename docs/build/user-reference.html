@@ -143,6 +143,29 @@ authentication, and session management</p>
 </pre></div>
 </div>
 <ul class="simple">
+<li><p><strong>Update orders in batch:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">BatchOrderUpdateParams</span><span class="p">(</span><span class="n">operations</span><span class="o">=</span><span class="p">[</span>
+<span class="go">    CreateOrderParams(</span>
+<span class="go">        type=OrderType.LIMIT,</span>
+<span class="go">        side=Side.BUY,</span>
+<span class="go">        product_index=3,</span>
+<span class="go">        price=Decimal(&#39;100.3&#39;),</span>
+<span class="go">        size=Decimal(&#39;0.1&#39;),</span>
+<span class="go">        time_inf_force=&#39;GTC&#39;,</span>
+<span class="go">        nonce=int(time.time_ns()),</span>
+<span class="go">        post_only=false,</span>
+<span class="go">        client_order_id=&#39;522005f7bfdb48c98b931a40296cdf96&#39;</span>
+<span class="go">    ),</span>
+<span class="go">    CancelOrderParams(order_id=&quot;8a325a62-80f0-46ef-8943-3267b381271f&quot;),</span>
+<span class="go">    CancelAllParams(product_id=&quot;SOL-PERP&quot;),</span>
+<span class="go">    CancelOrdersParams(order_ids=[&#39;8a325a62-80f0-46ef-8943-3267b381271f&#39;])</span>
+<span class="go">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">batch_update_orders</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><p><strong>Get all open orders:</strong></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_all_open_orders</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="s2">&quot;BTC-PERP&quot;</span><span class="p">)</span>
@@ -151,30 +174,83 @@ authentication, and session management</p>
 <ul class="simple">
 <li><p><strong>Get order history:</strong></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">GetOrderHistoryParams</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">GetOrderHistoryParams</span><span class="p">(</span>
 <span class="go">    product_id=&quot;SOL-PERP&quot;,</span>
 <span class="go">    start_time=datetime.now() - timedelta(days=30),</span>
 <span class="go">    end_time=datetime.now(),</span>
 <span class="go">    limit=100,</span>
 <span class="go">    statuses=[OrderStatus.DONE, OrderStatus.OPEN, OrderStatus.PENDING],</span>
+<span class="go">    client_order_id=[&quot;abc&quot;, &quot;xyz&quot;]</span>
 <span class="go">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">get_order_history</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_order_history</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p><strong>Submit withdrawal request:</strong></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">WithdrawParams</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">WithdrawParams</span><span class="p">(</span>
 <span class="go">    amount=Decimal(&quot;10&quot;),</span>
 <span class="go">    nonce=int(time.time_ns())</span>
 <span class="go">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">is_success</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">submit_withdrawal_request</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_success</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">submit_withdrawal_request</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p><strong>Get portfolio detail:</strong></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">portfolio</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">get_portfolio_detail</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">portfolio</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_portfolio_detail</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Get trade history:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_user_trade_history</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">GetTradeHistoryParams</span><span class="p">(</span>
+<span class="go">    product_id=&#39;BTC-PERP&#39;,</span>
+<span class="go">    start_time=datetime.now() - timedelta(days=1),</span>
+<span class="go">    end_time=datetime.now(),</span>
+<span class="go">    page=1,</span>
+<span class="go">    limit=50</span>
+<span class="go">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Get funding rate history:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">history</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_funding_history</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">GetFundingHistoryParams</span><span class="p">(</span>
+<span class="go">    product_id=&#39;BTC-PERP&#39;,</span>
+<span class="go">    start_time=datetime.now() - timedelta(days=1),</span>
+<span class="go">    end_time=datetime.now(),</span>
+<span class="go">    page=2,</span>
+<span class="go">    limit=50</span>
+<span class="go">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Get active API keys:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">api_keys</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_api_key_list</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Delete an API key:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span><span class="o">.</span><span class="n">delete_user_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;eac9756c3ac0540d74c4bb897a68846a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Create a new API key:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">api_key</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">create_user_api_key</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test API key&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Get all markets:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">products</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_products</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

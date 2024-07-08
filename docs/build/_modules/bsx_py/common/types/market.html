@@ -77,7 +77,10 @@
 <span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">DataClassMeta</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">DataClassMeta</span><span class="p">,</span> <span class="n">Paging</span>
 
 
 <div class="viewcode-block" id="Side"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.Side">[docs]</a><span class="k">class</span> <span class="nc">Side</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
@@ -137,6 +140,23 @@
         <span class="k">return</span> <span class="kc">None</span></div></div>
 
 
+<div class="viewcode-block" id="TransferType"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.TransferType">[docs]</a><span class="k">class</span> <span class="nc">TransferType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">WITHDRAW</span> <span class="o">=</span> <span class="s2">&quot;WITHDRAW&quot;</span>
+    <span class="n">DEPOSIT</span> <span class="o">=</span> <span class="s2">&quot;DEPOSIT&quot;</span>
+
+<div class="viewcode-block" id="TransferType.from_str"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.TransferType.from_str">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_str</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;TransferType&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;WITHDRAW&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TransferType</span><span class="o">.</span><span class="n">WITHDRAW</span>
+        <span class="k">elif</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;DEPOSIT&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TransferType</span><span class="o">.</span><span class="n">DEPOSIT</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
 <div class="viewcode-block" id="CreateOrderParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CreateOrderParams">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CreateOrderParams</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DataClassMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -160,16 +180,19 @@
 <span class="sd">        post_only (bool): optional; default is false</span>
 
 <span class="sd">        reduce_only (bool): optional; default is false</span>
+
+<span class="sd">        client_order_id (str): optional; default is None. Max 32 alphabet characters. Case-insensitive. Must be unique among all open orders of the current user</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">side</span><span class="p">:</span> <span class="n">Side</span>
     <span class="nb">type</span><span class="p">:</span> <span class="n">OrderType</span>
     <span class="n">product_index</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span>
     <span class="n">size</span><span class="p">:</span> <span class="n">Decimal</span>
-    <span class="n">post_only</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">reduce_only</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">time_in_force</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span></div>
+    <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">post_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">reduce_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">client_order_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="Trade"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.Trade">[docs]</a><span class="nd">@dataclass</span>
@@ -177,9 +200,9 @@
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span>
     <span class="n">size</span><span class="p">:</span> <span class="n">Decimal</span>
-    <span class="n">liquidity_indicator</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">time</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">funding_payment</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">liquidity_indicator</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">funding_payment</span><span class="p">:</span> <span class="n">Decimal</span>
     <span class="n">trading_fee</span><span class="p">:</span> <span class="n">Decimal</span>
     <span class="n">sequencer_fee</span><span class="p">:</span> <span class="n">Decimal</span>
 
@@ -189,9 +212,9 @@
             <span class="nb">id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;price&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;size&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">liquidity_indicator</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;liquidity_indicator&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;liquidity_indicator&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">time</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;time&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">funding_payment</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;funding_payment&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;funding_payment&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">liquidity_indicator</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;liquidity_indicator&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;liquidity_indicator&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">pandas</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]))</span> <span class="k">if</span> <span class="s1">&#39;time&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">funding_payment</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;funding_payment&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;funding_payment&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">trading_fee</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;trading_fee&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;trading_fee&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">sequencer_fee</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;sequencer_fee&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;sequencer_fee&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div></div>
@@ -247,6 +270,8 @@
 <span class="sd">        is_liquidation (bool): Indicates if the order is a liquidation order</span>
 
 <span class="sd">        initial_margin (str): Initial Margin Requirement for the order</span>
+
+<span class="sd">        client_order_id (str): The client order ID specified by user when creating new orders</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span>
@@ -271,6 +296,7 @@
     <span class="n">is_liquidation</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">initial_margin</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">last_trades</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Trade</span><span class="p">]</span>
+    <span class="n">client_order_id</span><span class="p">:</span> <span class="nb">str</span>
 
 <div class="viewcode-block" id="Order.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.Order.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Order&#39;</span><span class="p">:</span>
@@ -285,7 +311,7 @@
             <span class="n">nonce</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nonce&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;nonce&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">post_only</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;post_only&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;post_only&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">reduce_only</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;reduce_only&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;reduce_only&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">created_at</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">],</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;created_at&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">created_at</span><span class="o">=</span><span class="n">pandas</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;created_at_ts&#39;</span><span class="p">]))</span> <span class="k">if</span> <span class="s1">&#39;created_at_ts&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">cancel_reason</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;cancel_reason&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;cancel_reason&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">reject_reason</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;reject_reason&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;reject_reason&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">cancel_reject_reason</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;cancel_reject_reason&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;cancel_reject_reason&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
@@ -298,6 +324,7 @@
             <span class="n">is_liquidation</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;is_liquidation&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;is_liquidation&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">initial_margin</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;initial_margin&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;initial_margin&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">last_trades</span><span class="o">=</span><span class="p">[</span><span class="n">Trade</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;last_trades&quot;</span><span class="p">,</span> <span class="p">[])],</span>
+            <span class="n">client_order_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_order_id&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;client_order_id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 
 
@@ -319,17 +346,39 @@
 <span class="sd">        nonce (int): Nonce of the cancelled order</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span></div>
+    <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">client_order_id</span><span class="p">:</span> <span class="nb">str</span>
+
+<div class="viewcode-block" id="CancelOrderResult.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelOrderResult.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CancelOrderResult&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">CancelOrderResult</span><span class="p">(</span>
+            <span class="n">order_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;order_id&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;order_id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">nonce</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nonce&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;nonce&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">client_order_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_order_id&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;client_order_id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="CancelMultipleOrdersResult"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelMultipleOrdersResult">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CancelMultipleOrdersResult</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DataClassMeta</span><span class="p">):</span>
-    <span class="n">cancelled_orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CancelOrderResult</span><span class="p">]</span></div>
+    <span class="n">cancelled_orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CancelOrderResult</span><span class="p">]</span>
+
+<div class="viewcode-block" id="CancelMultipleOrdersResult.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelMultipleOrdersResult.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CancelMultipleOrdersResult&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">CancelMultipleOrdersResult</span><span class="p">(</span>
+            <span class="n">cancelled_orders</span><span class="o">=</span><span class="p">[</span><span class="n">CancelOrderResult</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+                              <span class="n">data</span><span class="p">[</span><span class="s2">&quot;cancelled_orders&quot;</span><span class="p">]]</span> <span class="k">if</span> <span class="s2">&quot;cancelled_orders&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="OrderListingResult"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.OrderListingResult">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">OrderListingResult</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DataClassMeta</span><span class="p">):</span>
-    <span class="n">orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Order</span><span class="p">]</span></div>
+    <span class="n">orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Order</span><span class="p">]</span>
+
+<div class="viewcode-block" id="OrderListingResult.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.OrderListingResult.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;OrderListingResult&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">OrderListingResult</span><span class="p">(</span>
+            <span class="n">orders</span><span class="o">=</span><span class="p">[</span><span class="n">Order</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;orders&quot;</span><span class="p">]]</span> <span class="k">if</span> <span class="s2">&quot;orders&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="GetOrderHistoryParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetOrderHistoryParams">[docs]</a><span class="nd">@dataclass</span>
@@ -338,7 +387,233 @@
     <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
-    <span class="n">statuses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OrderStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+    <span class="n">statuses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OrderStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">client_order_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="CancelOrderParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelOrderParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CancelOrderParams</span><span class="p">:</span>
+    <span class="n">order_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">nonce</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">client_order_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="CancelOrdersParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelOrdersParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CancelOrdersParams</span><span class="p">:</span>
+    <span class="n">order_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">nonces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">client_order_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="CancelAllParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelAllParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CancelAllParams</span><span class="p">:</span>
+    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+<div class="viewcode-block" id="BatchOrderUpdateParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.BatchOrderUpdateParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">BatchOrderUpdateParams</span><span class="p">:</span>
+    <span class="n">operations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CreateOrderParams</span> <span class="o">|</span> <span class="n">CancelOrderParams</span> <span class="o">|</span> <span class="n">CancelOrdersParams</span> <span class="o">|</span> <span class="n">CancelAllParams</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="BatchOrderUpdateResult"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.BatchOrderUpdateResult">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">BatchOrderUpdateResult</span><span class="p">:</span>
+    <span class="n">code</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">detail</span><span class="p">:</span> <span class="n">Order</span> <span class="o">|</span> <span class="n">CancelOrderResult</span> <span class="o">|</span> <span class="n">CancelMultipleOrdersResult</span>
+
+<div class="viewcode-block" id="BatchOrderUpdateResult.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.BatchOrderUpdateResult.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BatchOrderUpdateResult&#39;</span><span class="p">:</span>
+        <span class="n">detail</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;create_order_response&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">detail</span> <span class="o">=</span> <span class="n">Order</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;create_order_response&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cancel_response&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">detail</span> <span class="o">=</span> <span class="n">CancelOrderResult</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cancel_response&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cancel_orders_response&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">detail</span> <span class="o">=</span> <span class="n">CancelMultipleOrdersResult</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cancel_orders_response&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">BatchOrderUpdateResult</span><span class="p">(</span>
+            <span class="n">code</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;code&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;message&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="n">detail</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="BatchOrderUpdateResponse"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.BatchOrderUpdateResponse">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">BatchOrderUpdateResponse</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BatchOrderUpdateResult</span><span class="p">]</span>
+
+<div class="viewcode-block" id="BatchOrderUpdateResponse.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.BatchOrderUpdateResponse.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BatchOrderUpdateResponse&#39;</span><span class="p">:</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]:</span>
+            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BatchOrderUpdateResult</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">BatchOrderUpdateResponse</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">items</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GetTradeHistoryParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetTradeHistoryParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">GetTradeHistoryParams</span><span class="p">:</span>
+    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span></div>
+
+
+<div class="viewcode-block" id="GetTradeHistoryResponse"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetTradeHistoryResponse">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">GetTradeHistoryResponse</span><span class="p">:</span>
+    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">wallet_address</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">trades</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Trade</span><span class="p">]</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">total</span><span class="p">:</span> <span class="nb">int</span>
+
+<div class="viewcode-block" id="GetTradeHistoryResponse.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetTradeHistoryResponse.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GetTradeHistoryResponse&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GetTradeHistoryResponse</span><span class="p">(</span>
+            <span class="n">product_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;product_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;product_id&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">wallet_address</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;wallet_address&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;wallet_address&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">trades</span><span class="o">=</span><span class="p">[</span><span class="n">Trade</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;trades&#39;</span><span class="p">]]</span> <span class="k">if</span> <span class="s1">&#39;trades&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">page</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;page&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">total</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;total&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="PerpetualProductConfig"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.PerpetualProductConfig">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">PerpetualProductConfig</span><span class="p">:</span>
+    <span class="n">initial_margin</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">maintenance_margin</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">max_leverage</span><span class="p">:</span> <span class="n">Decimal</span>
+
+<div class="viewcode-block" id="PerpetualProductConfig.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.PerpetualProductConfig.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;PerpetualProductConfig&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">PerpetualProductConfig</span><span class="p">(</span>
+            <span class="n">initial_margin</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;initial_margin&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;initial_margin&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">maintenance_margin</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;maintenance_margin&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;maintenance_margin&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">max_leverage</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;max_leverage&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;max_leverage&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Product"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.Product">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Product</span><span class="p">:</span>
+    <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">base_asset_symbol</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">quote_asset_symbol</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">underlying</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">display_base_asset_symbol</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">post_only</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">base_increment</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">quote_increment</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">quote_volume_24h</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">change_24h</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">high_24h</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">low_24h</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">last_price</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">mark_price</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">index_price</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">max_position_size</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">open_interest</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">funding_interval</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">next_funding_rate</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">next_funding_time</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">last_cumulative_funding</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">min_order_size</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">predicted_funding_rate</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">perpetual_product_config</span><span class="p">:</span> <span class="n">PerpetualProductConfig</span>
+
+<div class="viewcode-block" id="Product.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.Product.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Product&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Product</span><span class="p">(</span>
+            <span class="n">index</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;index&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">product_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;product_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;product_id&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">base_asset_symbol</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;base_asset_symbol&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;base_asset_symbol&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">quote_asset_symbol</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;quote_asset_symbol&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;quote_asset_symbol&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">underlying</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;underlying&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;underlying&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">display_name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;display_name&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;display_name&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">display_base_asset_symbol</span><span class="o">=</span><span class="n">data</span><span class="p">[</span>
+                <span class="s1">&#39;display_base_asset_symbol&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;display_base_asset_symbol&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">enabled</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;enabled&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;enabled&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">post_only</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;post_only&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;post_only&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">base_increment</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;base_increment&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;base_increment&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">quote_increment</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;quote_increment&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;quote_increment&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">quote_volume_24h</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;quote_volume_24h&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;quote_volume_24h&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">change_24h</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;change_24h&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;change_24h&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">high_24h</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;high_24h&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;high_24h&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">low_24h</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;low_24h&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;low_24h&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">last_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;last_price&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;last_price&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">mark_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mark_price&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;mark_price&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">index_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;index_price&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;index_price&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">max_position_size</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;max_position_size&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;max_position_size&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">open_interest</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;open_interest&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;open_interest&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">funding_interval</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;funding_interval&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;funding_interval&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">next_funding_rate</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;next_funding_rate&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;next_funding_rate&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">next_funding_time</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;next_funding_time&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;next_funding_time&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">last_cumulative_funding</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;last_cumulative_funding&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;last_cumulative_funding&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">min_order_size</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;min_order_size&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;min_order_size&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">predicted_funding_rate</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;predicted_funding_rate&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;predicted_funding_rate&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">perpetual_product_config</span><span class="o">=</span><span class="n">PerpetualProductConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;perpetual_product_config&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;perpetual_product_config&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GetProductsResponse"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetProductsResponse">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">GetProductsResponse</span><span class="p">:</span>
+    <span class="n">products</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Product</span><span class="p">]</span>
+
+<div class="viewcode-block" id="GetProductsResponse.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetProductsResponse.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GetProductsResponse&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GetProductsResponse</span><span class="p">(</span>
+            <span class="n">products</span><span class="o">=</span><span class="p">[</span><span class="n">Product</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;products&#39;</span><span class="p">]]</span> <span class="k">if</span> <span class="s1">&#39;products&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GetFundingHistoryParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetFundingHistoryParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">GetFundingHistoryParams</span><span class="p">:</span>
+    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="FundingRate"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.FundingRate">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">FundingRate</span><span class="p">:</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">rate</span><span class="p">:</span> <span class="n">Decimal</span>
+
+<div class="viewcode-block" id="FundingRate.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.FundingRate.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;FundingRate&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">FundingRate</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">pandas</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]))</span> <span class="k">if</span> <span class="s1">&#39;time&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">rate</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rate&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;rate&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GetFundingHistoryResponse"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetFundingHistoryResponse">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">GetFundingHistoryResponse</span><span class="p">:</span>
+    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FundingRate</span><span class="p">]</span>
+    <span class="n">paging</span><span class="p">:</span> <span class="n">Paging</span>
+
+<div class="viewcode-block" id="GetFundingHistoryResponse.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetFundingHistoryResponse.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GetFundingHistoryResponse&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GetFundingHistoryResponse</span><span class="p">(</span>
+            <span class="n">product_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;product_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;product_id&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">FundingRate</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]</span> <span class="k">if</span> <span class="s1">&#39;items&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">paging</span><span class="o">=</span><span class="n">Paging</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;paging&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;paging&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="GetTransferHistoryParams"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.GetTransferHistoryParams">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">GetTransferHistoryParams</span><span class="p">:</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">TransferType</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></div>
 </pre></div>
 
            </div>

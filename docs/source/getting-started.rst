@@ -55,8 +55,10 @@ Create an order using `Create order API <https://api-docs.bsx.exchange/reference
         product_index=3,
         price=Decimal('100.3'),
         size=Decimal('0.1'),
-        time_inf_force="GTC",
-        nonce=int(time.time_ns())
+        time_inf_force='GTC',
+        nonce=int(time.time_ns()),
+        post_only=false,
+        client_order_id='522005f7bfdb48c98b931a40296cdf96'
     )
     >>> order = bsx_instance.create_order(params=params)
     >>> print("Order: ", order)

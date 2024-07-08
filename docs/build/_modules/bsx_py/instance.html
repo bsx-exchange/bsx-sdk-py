@@ -83,9 +83,8 @@
 <span class="kn">from</span> <span class="nn">bsx_py.client.rest.market.client</span> <span class="kn">import</span> <span class="n">MarketClient</span>
 <span class="kn">from</span> <span class="nn">bsx_py.common.exception</span> <span class="kn">import</span> <span class="n">UnauthenticatedException</span><span class="p">,</span> <span class="n">NotSupportOperationException</span><span class="p">,</span> \
     <span class="n">WalletPrivateNotProvidedException</span>
-<span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="n">WithdrawParams</span><span class="p">,</span> <span class="n">Portfolio</span>
-<span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="n">CreateOrderParams</span><span class="p">,</span> <span class="n">CancelOrderResult</span><span class="p">,</span> <span class="n">CancelMultipleOrdersParams</span><span class="p">,</span> \
-    <span class="n">CancelMultipleOrdersResult</span><span class="p">,</span> <span class="n">OrderListingResult</span><span class="p">,</span> <span class="n">Order</span><span class="p">,</span> <span class="n">GetOrderHistoryParams</span>
+<span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="n">WithdrawParams</span><span class="p">,</span> <span class="n">Portfolio</span><span class="p">,</span> <span class="n">GetAPIKeysResponse</span><span class="p">,</span> <span class="n">APIKey</span>
+<span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">bsx_py.helper</span> <span class="kn">import</span> <span class="n">AccountManager</span>
 
 
@@ -116,7 +115,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="BSXInstance.from_api_key"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.from_api_key">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BSXInstance&#39;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BSXInstance&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a new BSXInstance object using an active API key.</span>
 
@@ -129,13 +128,13 @@
 
 <span class="sd">            signer (LocalAccount): signer wallet used to sign requests</span>
 
-<span class="sd">            env (Environment): environment to use (Testnet or mainnet)</span>
+<span class="sd">            env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">BSXInstance</span><span class="p">)</span>
-        <span class="n">domain</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">Environment</span><span class="p">)</span> <span class="k">else</span> <span class="n">env</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_get_chain_config</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">eip712_domain</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_build_eip712_domain</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
@@ -149,12 +148,12 @@
 
         <span class="k">return</span> <span class="n">instance</span></div>
 
-<div class="viewcode-block" id="BSXInstance.__init__"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">wallet</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">):</span>
+<div class="viewcode-block" id="BSXInstance.__init__"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wallet</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a new BSXInstance object using main wallet&#39;s private key</span>
 
 <span class="sd">        Attributes:</span>
-<span class="sd">            env (Environment): environment to use (Testnet or mainnet)</span>
+<span class="sd">            env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</span>
 
 <span class="sd">            wallet (LocalAccount): main wallet</span>
 
@@ -163,7 +162,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">domain</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">Environment</span><span class="p">)</span> <span class="k">else</span> <span class="n">env</span>
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_chain_config</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
         <span class="n">eip712_domain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_eip712_domain</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
@@ -302,6 +301,123 @@
 <span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">get_portfolio_detail</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BSXInstance.batch_update_orders"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.batch_update_orders">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">batch_update_orders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">BatchOrderUpdateParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BatchOrderUpdateResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update orders in batch</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            params (BatchOrderUpdateParams): update orders parameters</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            BatchOrderUpdateResponse: update result. The order of items in the result is the same as the order of items in the input params</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span><span class="o">.</span><span class="n">batch_update_orders</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BSXInstance.get_user_trade_history"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.get_user_trade_history">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">get_user_trade_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">GetTradeHistoryParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetTradeHistoryResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get user&#39;s trade history</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            params (GetTradeHistoryParams): filter parameters</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            GetTradeHistoryResponse: trade history</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span><span class="o">.</span><span class="n">get_user_trade_history</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">get_products</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Product</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all markets</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            list[Product]: list of all markets</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span><span class="o">.</span><span class="n">get_products</span><span class="p">()</span><span class="o">.</span><span class="n">products</span>
+
+<div class="viewcode-block" id="BSXInstance.get_funding_history"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.get_funding_history">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">get_funding_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">GetFundingHistoryParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetFundingHistoryResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get funding rate history</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            params (GetFundingHistoryParams): filter parameters</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            GetFundingHistoryResponse: funding rate history</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span><span class="o">.</span><span class="n">get_funding_history</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BSXInstance.get_api_key_list"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.get_api_key_list">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">get_api_key_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetAPIKeysResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all active API keys</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            GetAPIKeysResponse: API keys list</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">get_api_key_list</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BSXInstance.delete_user_api_key"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.delete_user_api_key">[docs]</a>    <span class="k">def</span> <span class="nf">delete_user_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete an API key</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            api_key (str): API key to be deleted</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            str: API key that was deleted</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">delete_user_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BSXInstance.create_user_api_key"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.create_user_api_key">[docs]</a>    <span class="k">def</span> <span class="nf">create_user_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">APIKey</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new API key</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            name (str): name of the new API key</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            APIKey: new API key info</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">create_user_api_key</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BSXInstance.get_products"><a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.get_products">[docs]</a>    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">get_products</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetProductsResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get product configs</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            GetProductsResponse: product configs</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_market_client</span><span class="o">.</span><span class="n">get_products</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_get_chain_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">domain</span> <span class="o">+</span> <span class="s2">&quot;/chain/configs&quot;</span><span class="p">)</span>

@@ -1,3 +1,5 @@
+import json
+
 from eip712_structs import EIP712Struct
 from eth_account import Account
 from web3 import Web3
@@ -6,7 +8,7 @@ from bsx_py.client.rest.account.types import Withdraw
 from bsx_py.client.rest.base import AuthRequiredClient
 from bsx_py.common import X18_DECIMALS
 from bsx_py.common.acc_info import AccountInfo
-from bsx_py.common.types.account import WithdrawParams, Portfolio
+from bsx_py.common.types.account import *
 
 
 class AccountClient(AuthRequiredClient):
@@ -48,3 +50,23 @@ class AccountClient(AuthRequiredClient):
     def get_portfolio_detail(self) -> Portfolio:
         resp = self.get("/portfolio/detail")
         return Portfolio.from_dict(resp)
+
+    def get_api_key_list(self) -> GetAPIKeysResponse:
+        resp = self.get("/users/api-key")
+        return GetAPIKeysResponse.from_dict(resp)
+
+    def delete_user_api_key(self, api_key: str) -> str:
+        resp = self.delete("/users/api-key", params={"api_keys": [api_key]})
+        if 'api_keys' in resp and api_key in resp['api_keys']:
+            return api_key
+        else:
+            raise Exception("API key not found in response. Actual response: " + json.dumps(resp))
+
+    def create_user_api_key(self, name: str = "") -> APIKey:
+        resp = self.post("/users/api-key", body={"name": name})
+        if "api_key" in resp:
+            return APIKey.from_dict(resp["api_key"])
+        else:
+            raise Exception("API key not found in response. Actual response: " + json.dumps(resp))
+
+

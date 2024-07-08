@@ -1,5 +1,8 @@
 from dataclasses import dataclass
+from datetime import datetime
 from decimal import Decimal
+
+import pandas
 
 
 @dataclass
@@ -178,3 +181,36 @@ class Portfolio:
             stats=PortfolioStats.from_dict(data["stats"]) if "stats" in data else None
         )
 
+
+@dataclass
+class APIKey:
+    api_key: str
+    api_secret: str
+    created_at: datetime
+    updated_at: datetime
+    name: str
+    sender: str
+    signer: str
+
+    @staticmethod
+    def from_dict(data: dict) -> "APIKey":
+        return APIKey(
+            api_key=data['api_key'] if 'api_key' in data else None,
+            api_secret=data['api_secret'] if 'api_secret' in data else None,
+            name=data['name'] if 'name' in data else None,
+            sender=data['sender'] if 'sender' in data else None,
+            signer=data['signer'] if 'signer' in data else None,
+            created_at=pandas.Timestamp(int(data['created_at'])) if 'created_at' in data else None,
+            updated_at=pandas.Timestamp(int(data['updated_at'])) if 'updated_at' in data else None,
+        )
+
+
+@dataclass
+class GetAPIKeysResponse:
+    api_keys: list[APIKey]
+
+    @staticmethod
+    def from_dict(data: dict) -> "GetAPIKeysResponse":
+        return GetAPIKeysResponse(
+            api_keys=[APIKey.from_dict(i) for i in data['api_keys']] if 'api_keys' in data else None,
+        )

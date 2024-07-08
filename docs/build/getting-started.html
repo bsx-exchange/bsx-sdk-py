@@ -127,8 +127,10 @@
 <span class="go">    product_index=3,</span>
 <span class="go">    price=Decimal(&#39;100.3&#39;),</span>
 <span class="go">    size=Decimal(&#39;0.1&#39;),</span>
-<span class="go">    time_inf_force=&quot;GTC&quot;,</span>
-<span class="go">    nonce=int(time.time_ns())</span>
+<span class="go">    time_inf_force=&#39;GTC&#39;,</span>
+<span class="go">    nonce=int(time.time_ns()),</span>
+<span class="go">    post_only=false,</span>
+<span class="go">    client_order_id=&#39;522005f7bfdb48c98b931a40296cdf96&#39;</span>
 <span class="go">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">create_order</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order: &quot;</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>

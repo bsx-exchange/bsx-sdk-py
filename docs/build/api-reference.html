@@ -64,6 +64,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.get_order_history"><code class="docutils literal notranslate"><span class="pre">BSXInstance.get_order_history()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.submit_withdrawal_request"><code class="docutils literal notranslate"><span class="pre">BSXInstance.submit_withdrawal_request()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.get_portfolio_detail"><code class="docutils literal notranslate"><span class="pre">BSXInstance.get_portfolio_detail()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.batch_update_orders"><code class="docutils literal notranslate"><span class="pre">BSXInstance.batch_update_orders()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.get_user_trade_history"><code class="docutils literal notranslate"><span class="pre">BSXInstance.get_user_trade_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.get_funding_history"><code class="docutils literal notranslate"><span class="pre">BSXInstance.get_funding_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.get_api_key_list"><code class="docutils literal notranslate"><span class="pre">BSXInstance.get_api_key_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.delete_user_api_key"><code class="docutils literal notranslate"><span class="pre">BSXInstance.delete_user_api_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_user_api_key"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_user_api_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.get_products"><code class="docutils literal notranslate"><span class="pre">BSXInstance.get_products()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -160,6 +167,24 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.__init__"><code class="docutils literal notranslate"><span class="pre">Portfolio.__init__()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.APIKey"><code class="docutils literal notranslate"><span class="pre">APIKey</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.api_key"><code class="docutils literal notranslate"><span class="pre">APIKey.api_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.api_secret"><code class="docutils literal notranslate"><span class="pre">APIKey.api_secret</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.created_at"><code class="docutils literal notranslate"><span class="pre">APIKey.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.updated_at"><code class="docutils literal notranslate"><span class="pre">APIKey.updated_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.name"><code class="docutils literal notranslate"><span class="pre">APIKey.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.sender"><code class="docutils literal notranslate"><span class="pre">APIKey.sender</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.signer"><code class="docutils literal notranslate"><span class="pre">APIKey.signer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.from_dict"><code class="docutils literal notranslate"><span class="pre">APIKey.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.APIKey.__init__"><code class="docutils literal notranslate"><span class="pre">APIKey.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.GetAPIKeysResponse"><code class="docutils literal notranslate"><span class="pre">GetAPIKeysResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.GetAPIKeysResponse.api_keys"><code class="docutils literal notranslate"><span class="pre">GetAPIKeysResponse.api_keys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.GetAPIKeysResponse.from_dict"><code class="docutils literal notranslate"><span class="pre">GetAPIKeysResponse.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.GetAPIKeysResponse.__init__"><code class="docutils literal notranslate"><span class="pre">GetAPIKeysResponse.__init__()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-bsx_py.common.types.market">bsx_py.common.types.market</a><ul>
@@ -183,6 +208,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderStatus.from_str"><code class="docutils literal notranslate"><span class="pre">OrderStatus.from_str()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.TransferType"><code class="docutils literal notranslate"><span class="pre">TransferType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.TransferType.WITHDRAW"><code class="docutils literal notranslate"><span class="pre">TransferType.WITHDRAW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.TransferType.DEPOSIT"><code class="docutils literal notranslate"><span class="pre">TransferType.DEPOSIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.TransferType.from_str"><code class="docutils literal notranslate"><span class="pre">TransferType.from_str()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.side"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.side</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.type"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.type</span></code></a></li>
@@ -193,6 +224,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.nonce"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.nonce</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.post_only"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.post_only</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.reduce_only"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.reduce_only</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.client_order_id"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.client_order_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams.__init__"><code class="docutils literal notranslate"><span class="pre">CreateOrderParams.__init__()</span></code></a></li>
 </ul>
 </li>
@@ -233,6 +265,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Order.is_liquidation"><code class="docutils literal notranslate"><span class="pre">Order.is_liquidation</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Order.initial_margin"><code class="docutils literal notranslate"><span class="pre">Order.initial_margin</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Order.last_trades"><code class="docutils literal notranslate"><span class="pre">Order.last_trades</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Order.client_order_id"><code class="docutils literal notranslate"><span class="pre">Order.client_order_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Order.from_dict"><code class="docutils literal notranslate"><span class="pre">Order.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Order.__init__"><code class="docutils literal notranslate"><span class="pre">Order.__init__()</span></code></a></li>
 </ul>
@@ -247,16 +280,20 @@
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.order_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.nonce"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.nonce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.client_order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.client_order_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.from_dict"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.__init__"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.__init__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult"><code class="docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.cancelled_orders"><code class="docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult.cancelled_orders</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.from_dict"><code class="docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.__init__"><code class="docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult.__init__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.OrderListingResult"><code class="docutils literal notranslate"><span class="pre">OrderListingResult</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderListingResult.orders"><code class="docutils literal notranslate"><span class="pre">OrderListingResult.orders</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderListingResult.from_dict"><code class="docutils literal notranslate"><span class="pre">OrderListingResult.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderListingResult.__init__"><code class="docutils literal notranslate"><span class="pre">OrderListingResult.__init__()</span></code></a></li>
 </ul>
 </li>
@@ -266,7 +303,143 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetOrderHistoryParams.end_time"><code class="docutils literal notranslate"><span class="pre">GetOrderHistoryParams.end_time</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetOrderHistoryParams.limit"><code class="docutils literal notranslate"><span class="pre">GetOrderHistoryParams.limit</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetOrderHistoryParams.statuses"><code class="docutils literal notranslate"><span class="pre">GetOrderHistoryParams.statuses</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetOrderHistoryParams.client_order_ids"><code class="docutils literal notranslate"><span class="pre">GetOrderHistoryParams.client_order_ids</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetOrderHistoryParams.__init__"><code class="docutils literal notranslate"><span class="pre">GetOrderHistoryParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderParams"><code class="docutils literal notranslate"><span class="pre">CancelOrderParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderParams.order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrderParams.order_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderParams.nonce"><code class="docutils literal notranslate"><span class="pre">CancelOrderParams.nonce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderParams.client_order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrderParams.client_order_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderParams.__init__"><code class="docutils literal notranslate"><span class="pre">CancelOrderParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersParams"><code class="docutils literal notranslate"><span class="pre">CancelOrdersParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersParams.order_ids"><code class="docutils literal notranslate"><span class="pre">CancelOrdersParams.order_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersParams.nonces"><code class="docutils literal notranslate"><span class="pre">CancelOrdersParams.nonces</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersParams.client_order_ids"><code class="docutils literal notranslate"><span class="pre">CancelOrdersParams.client_order_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersParams.__init__"><code class="docutils literal notranslate"><span class="pre">CancelOrdersParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelAllParams"><code class="docutils literal notranslate"><span class="pre">CancelAllParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelAllParams.product_id"><code class="docutils literal notranslate"><span class="pre">CancelAllParams.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelAllParams.__init__"><code class="docutils literal notranslate"><span class="pre">CancelAllParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateParams"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateParams.operations"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateParams.operations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateParams.__init__"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult.code"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResult.code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult.message"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResult.message</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult.detail"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResult.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult.from_dict"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResult.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult.__init__"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResult.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResponse"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResponse.data"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResponse.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResponse.from_dict"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResponse.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResponse.__init__"><code class="docutils literal notranslate"><span class="pre">BatchOrderUpdateResponse.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams.product_id"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams.start_time"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams.end_time"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams.page"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams.page</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams.limit"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams.limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryParams.__init__"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.product_id"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.wallet_address"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.wallet_address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.trades"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.trades</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.page"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.page</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.total"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.total</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.from_dict"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse.__init__"><code class="docutils literal notranslate"><span class="pre">GetTradeHistoryResponse.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig"><code class="docutils literal notranslate"><span class="pre">PerpetualProductConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig.initial_margin"><code class="docutils literal notranslate"><span class="pre">PerpetualProductConfig.initial_margin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig.maintenance_margin"><code class="docutils literal notranslate"><span class="pre">PerpetualProductConfig.maintenance_margin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig.max_leverage"><code class="docutils literal notranslate"><span class="pre">PerpetualProductConfig.max_leverage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">PerpetualProductConfig.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig.__init__"><code class="docutils literal notranslate"><span class="pre">PerpetualProductConfig.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.Product"><code class="docutils literal notranslate"><span class="pre">Product</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.index"><code class="docutils literal notranslate"><span class="pre">Product.index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.product_id"><code class="docutils literal notranslate"><span class="pre">Product.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.base_asset_symbol"><code class="docutils literal notranslate"><span class="pre">Product.base_asset_symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.quote_asset_symbol"><code class="docutils literal notranslate"><span class="pre">Product.quote_asset_symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.underlying"><code class="docutils literal notranslate"><span class="pre">Product.underlying</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.display_name"><code class="docutils literal notranslate"><span class="pre">Product.display_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.display_base_asset_symbol"><code class="docutils literal notranslate"><span class="pre">Product.display_base_asset_symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.enabled"><code class="docutils literal notranslate"><span class="pre">Product.enabled</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.post_only"><code class="docutils literal notranslate"><span class="pre">Product.post_only</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.base_increment"><code class="docutils literal notranslate"><span class="pre">Product.base_increment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.quote_increment"><code class="docutils literal notranslate"><span class="pre">Product.quote_increment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.quote_volume_24h"><code class="docutils literal notranslate"><span class="pre">Product.quote_volume_24h</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.change_24h"><code class="docutils literal notranslate"><span class="pre">Product.change_24h</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.high_24h"><code class="docutils literal notranslate"><span class="pre">Product.high_24h</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.low_24h"><code class="docutils literal notranslate"><span class="pre">Product.low_24h</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.last_price"><code class="docutils literal notranslate"><span class="pre">Product.last_price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.mark_price"><code class="docutils literal notranslate"><span class="pre">Product.mark_price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.index_price"><code class="docutils literal notranslate"><span class="pre">Product.index_price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.max_position_size"><code class="docutils literal notranslate"><span class="pre">Product.max_position_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.open_interest"><code class="docutils literal notranslate"><span class="pre">Product.open_interest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.funding_interval"><code class="docutils literal notranslate"><span class="pre">Product.funding_interval</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.next_funding_rate"><code class="docutils literal notranslate"><span class="pre">Product.next_funding_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.next_funding_time"><code class="docutils literal notranslate"><span class="pre">Product.next_funding_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.last_cumulative_funding"><code class="docutils literal notranslate"><span class="pre">Product.last_cumulative_funding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.min_order_size"><code class="docutils literal notranslate"><span class="pre">Product.min_order_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.predicted_funding_rate"><code class="docutils literal notranslate"><span class="pre">Product.predicted_funding_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.perpetual_product_config"><code class="docutils literal notranslate"><span class="pre">Product.perpetual_product_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.from_dict"><code class="docutils literal notranslate"><span class="pre">Product.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.Product.__init__"><code class="docutils literal notranslate"><span class="pre">Product.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.GetProductsResponse"><code class="docutils literal notranslate"><span class="pre">GetProductsResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetProductsResponse.products"><code class="docutils literal notranslate"><span class="pre">GetProductsResponse.products</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetProductsResponse.from_dict"><code class="docutils literal notranslate"><span class="pre">GetProductsResponse.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetProductsResponse.__init__"><code class="docutils literal notranslate"><span class="pre">GetProductsResponse.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams.product_id"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams.start_time"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams.end_time"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams.limit"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams.limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams.page"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams.page</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryParams.__init__"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryParams.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.FundingRate"><code class="docutils literal notranslate"><span class="pre">FundingRate</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.FundingRate.time"><code class="docutils literal notranslate"><span class="pre">FundingRate.time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.FundingRate.rate"><code class="docutils literal notranslate"><span class="pre">FundingRate.rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.FundingRate.from_dict"><code class="docutils literal notranslate"><span class="pre">FundingRate.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.FundingRate.__init__"><code class="docutils literal notranslate"><span class="pre">FundingRate.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse.product_id"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryResponse.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse.items"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryResponse.items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse.paging"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryResponse.paging</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse.from_dict"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryResponse.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse.__init__"><code class="docutils literal notranslate"><span class="pre">GetFundingHistoryResponse.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.GetTransferHistoryParams"><code class="docutils literal notranslate"><span class="pre">GetTransferHistoryParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTransferHistoryParams.type"><code class="docutils literal notranslate"><span class="pre">GetTransferHistoryParams.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTransferHistoryParams.start_time"><code class="docutils literal notranslate"><span class="pre">GetTransferHistoryParams.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTransferHistoryParams.end_time"><code class="docutils literal notranslate"><span class="pre">GetTransferHistoryParams.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTransferHistoryParams.page"><code class="docutils literal notranslate"><span class="pre">GetTransferHistoryParams.page</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.GetTransferHistoryParams.__init__"><code class="docutils literal notranslate"><span class="pre">GetTransferHistoryParams.__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -526,6 +699,135 @@
 </dl>
 <dl class="simple">
 <dt>Return:</dt><dd><p>Portfolio: portfolio detail of the current user</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.batch_update_orders">
+<span class="sig-name descname"><span class="pre">batch_update_orders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.batch_update_orders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.batch_update_orders" title="Permalink to this definition"></a></dt>
+<dd><p>Update orders in batch</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResponse" title="bsx_py.common.types.market.BatchOrderUpdateResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatchOrderUpdateResponse</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>params (BatchOrderUpdateParams): update orders parameters</p>
+</dd>
+<dt>Return:</dt><dd><p>BatchOrderUpdateResponse: update result. The order of items in the result is the same as the order of items in the input params</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.get_user_trade_history">
+<span class="sig-name descname"><span class="pre">get_user_trade_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.get_user_trade_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.get_user_trade_history" title="Permalink to this definition"></a></dt>
+<dd><p>Get user’s trade history</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse" title="bsx_py.common.types.market.GetTradeHistoryResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetTradeHistoryResponse</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>params (GetTradeHistoryParams): filter parameters</p>
+</dd>
+<dt>Return:</dt><dd><p>GetTradeHistoryResponse: trade history</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.get_funding_history">
+<span class="sig-name descname"><span class="pre">get_funding_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.get_funding_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.get_funding_history" title="Permalink to this definition"></a></dt>
+<dd><p>Get funding rate history</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse" title="bsx_py.common.types.market.GetFundingHistoryResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetFundingHistoryResponse</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>params (GetFundingHistoryParams): filter parameters</p>
+</dd>
+<dt>Return:</dt><dd><p>GetFundingHistoryResponse: funding rate history</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.get_api_key_list">
+<span class="sig-name descname"><span class="pre">get_api_key_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.get_api_key_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.get_api_key_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get all active API keys</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.account.GetAPIKeysResponse" title="bsx_py.common.types.account.GetAPIKeysResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetAPIKeysResponse</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Return:</dt><dd><p>GetAPIKeysResponse: API keys list</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.delete_user_api_key">
+<span class="sig-name descname"><span class="pre">delete_user_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.delete_user_api_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.delete_user_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Delete an API key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>api_key (str): API key to be deleted</p>
+</dd>
+<dt>Return:</dt><dd><p>str: API key that was deleted</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.create_user_api_key">
+<span class="sig-name descname"><span class="pre">create_user_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.create_user_api_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.create_user_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Create a new API key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.account.APIKey" title="bsx_py.common.types.account.APIKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIKey</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>name (str): name of the new API key</p>
+</dd>
+<dt>Return:</dt><dd><p>APIKey: new API key info</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.get_products">
+<span class="sig-name descname"><span class="pre">get_products</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.get_products"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.get_products" title="Permalink to this definition"></a></dt>
+<dd><p>Get product configs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.GetProductsResponse" title="bsx_py.common.types.market.GetProductsResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetProductsResponse</span></code></a></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Return:</dt><dd><p>GetProductsResponse: product configs</p>
 </dd>
 <dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
 </dd>
@@ -953,6 +1255,88 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">APIKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#APIKey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.APIKey" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.api_key">
+<span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.api_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.api_secret">
+<span class="sig-name descname"><span class="pre">api_secret</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.api_secret" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.created_at" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.updated_at">
+<span class="sig-name descname"><span class="pre">updated_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.updated_at" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.sender">
+<span class="sig-name descname"><span class="pre">sender</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.sender" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.signer">
+<span class="sig-name descname"><span class="pre">signer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.APIKey.signer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#APIKey.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.APIKey.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.account.APIKey" title="bsx_py.common.types.account.APIKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIKey</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.APIKey.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.APIKey.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.GetAPIKeysResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">GetAPIKeysResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#GetAPIKeysResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.GetAPIKeysResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.GetAPIKeysResponse.api_keys">
+<span class="sig-name descname"><span class="pre">api_keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.account.APIKey" title="bsx_py.common.types.account.APIKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIKey</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.account.GetAPIKeysResponse.api_keys" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.GetAPIKeysResponse.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#GetAPIKeysResponse.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.GetAPIKeysResponse.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.account.GetAPIKeysResponse" title="bsx_py.common.types.account.GetAPIKeysResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetAPIKeysResponse</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.GetAPIKeysResponse.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_keys</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.GetAPIKeysResponse.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-bsx_py.common.types.market">
 <span id="bsx-py-common-types-market"></span><h2>bsx_py.common.types.market<a class="headerlink" href="#module-bsx_py.common.types.market" title="Permalink to this heading"></a></h2>
@@ -1045,8 +1429,34 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.TransferType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">TransferType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#TransferType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.TransferType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.TransferType.WITHDRAW">
+<span class="sig-name descname"><span class="pre">WITHDRAW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'WITHDRAW'</span></em><a class="headerlink" href="#bsx_py.common.types.market.TransferType.WITHDRAW" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.TransferType.DEPOSIT">
+<span class="sig-name descname"><span class="pre">DEPOSIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DEPOSIT'</span></em><a class="headerlink" href="#bsx_py.common.types.market.TransferType.DEPOSIT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.TransferType.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#TransferType.from_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.TransferType.from_str" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.TransferType" title="bsx_py.common.types.market.TransferType"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransferType</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CreateOrderParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CreateOrderParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CreateOrderParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CreateOrderParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Contains parameters required for creating a new order</p>
 <dl>
@@ -1059,6 +1469,7 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <p>nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)</p>
 <p>post_only (bool): optional; default is false</p>
 <p>reduce_only (bool): optional; default is false</p>
+<p>client_order_id (str): optional; default is None. Max 32 alphabet characters. Case-insensitive. Must be unique among all open orders of the current user</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -1106,9 +1517,14 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <span class="sig-name descname"><span class="pre">reduce_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.reduce_only" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.client_order_id">
+<span class="sig-name descname"><span class="pre">client_order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.client_order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CreateOrderParams.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CreateOrderParams.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1134,17 +1550,17 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.Trade.liquidity_indicator">
-<span class="sig-name descname"><span class="pre">liquidity_indicator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Trade.liquidity_indicator" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">liquidity_indicator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Trade.liquidity_indicator" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.Trade.time">
-<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Trade.time" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Trade.time" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.Trade.funding_payment">
-<span class="sig-name descname"><span class="pre">funding_payment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Trade.funding_payment" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">funding_payment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Trade.funding_payment" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1176,7 +1592,7 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.Order">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_fees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_trades</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#Order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.Order" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_fees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_trades</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#Order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.Order" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Contains information about an order</p>
 <dl>
@@ -1203,6 +1619,7 @@ If any part of the order results in taking liquidity, the order will be rejected
 <p>cancel_requested (bool): Indicates if the order is cancel requested</p>
 <p>is_liquidation (bool): Indicates if the order is a liquidation order</p>
 <p>initial_margin (str): Initial Margin Requirement for the order</p>
+<p>client_order_id (str): The client order ID specified by user when creating new orders</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -1320,6 +1737,11 @@ If any part of the order results in taking liquidity, the order will be rejected
 <span class="sig-name descname"><span class="pre">last_trades</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.Trade" title="bsx_py.common.types.market.Trade"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trade</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.Order.last_trades" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Order.client_order_id">
+<span class="sig-name descname"><span class="pre">client_order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Order.client_order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.Order.from_dict">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#Order.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.Order.from_dict" title="Permalink to this definition"></a></dt>
@@ -1332,7 +1754,7 @@ If any part of the order results in taking liquidity, the order will be rejected
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.Order.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_fees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_trades</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.Order.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_in_force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_reject_reason</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_fees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filled_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_trades</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.Order.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1365,7 +1787,7 @@ If any part of the order results in taking liquidity, the order will be rejected
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderResult">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelOrderResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrderResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelOrderResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrderResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Returned if an order is cancelled successfully</p>
 <dl>
@@ -1383,9 +1805,24 @@ If any part of the order results in taking liquidity, the order will be rejected
 <span class="sig-name descname"><span class="pre">nonce</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult.nonce" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderResult.client_order_id">
+<span class="sig-name descname"><span class="pre">client_order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult.client_order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderResult.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrderResult.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult" title="bsx_py.common.types.market.CancelOrderResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrderResult</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderResult.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderResult.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1398,6 +1835,16 @@ If any part of the order results in taking liquidity, the order will be rejected
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CancelMultipleOrdersResult.cancelled_orders">
 <span class="sig-name descname"><span class="pre">cancelled_orders</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult" title="bsx_py.common.types.market.CancelOrderResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrderResult</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.cancelled_orders" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelMultipleOrdersResult.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelMultipleOrdersResult.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult" title="bsx_py.common.types.market.CancelMultipleOrdersResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CancelMultipleOrdersResult.__init__">
@@ -1416,6 +1863,16 @@ If any part of the order results in taking liquidity, the order will be rejected
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.OrderListingResult.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#OrderListingResult.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.OrderListingResult.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.OrderListingResult" title="bsx_py.common.types.market.OrderListingResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderListingResult</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.OrderListingResult.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orders</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.OrderListingResult.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1424,7 +1881,7 @@ If any part of the order results in taking liquidity, the order will be rejected
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.GetOrderHistoryParams">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetOrderHistoryParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statuses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetOrderHistoryParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetOrderHistoryParams" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetOrderHistoryParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statuses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetOrderHistoryParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetOrderHistoryParams" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.GetOrderHistoryParams.product_id">
@@ -1451,9 +1908,594 @@ If any part of the order results in taking liquidity, the order will be rejected
 <span class="sig-name descname"><span class="pre">statuses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.OrderStatus" title="bsx_py.common.types.market.OrderStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderStatus</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetOrderHistoryParams.statuses" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetOrderHistoryParams.client_order_ids">
+<span class="sig-name descname"><span class="pre">client_order_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetOrderHistoryParams.client_order_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.GetOrderHistoryParams.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statuses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetOrderHistoryParams.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statuses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetOrderHistoryParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelOrderParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrderParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderParams.order_id">
+<span class="sig-name descname"><span class="pre">order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderParams.order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderParams.nonce">
+<span class="sig-name descname"><span class="pre">nonce</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderParams.nonce" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderParams.client_order_id">
+<span class="sig-name descname"><span class="pre">client_order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderParams.client_order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrderParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CancelOrderParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelOrdersParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrdersParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersParams.order_ids">
+<span class="sig-name descname"><span class="pre">order_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersParams.order_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersParams.nonces">
+<span class="sig-name descname"><span class="pre">nonces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersParams.nonces" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersParams.client_order_ids">
+<span class="sig-name descname"><span class="pre">client_order_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersParams.client_order_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelAllParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelAllParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelAllParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelAllParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelAllParams.product_id">
+<span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CancelAllParams.product_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelAllParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CancelAllParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">BatchOrderUpdateParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#BatchOrderUpdateParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateParams.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.CreateOrderParams" title="bsx_py.common.types.market.CreateOrderParams"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreateOrderParams</span></code></a> <span class="pre">|</span> <a class="reference internal" href="#bsx_py.common.types.market.CancelOrderParams" title="bsx_py.common.types.market.CancelOrderParams"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrderParams</span></code></a> <span class="pre">|</span> <a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersParams" title="bsx_py.common.types.market.CancelOrdersParams"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrdersParams</span></code></a> <span class="pre">|</span> <a class="reference internal" href="#bsx_py.common.types.market.CancelAllParams" title="bsx_py.common.types.market.CancelAllParams"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelAllParams</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateParams.operations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">BatchOrderUpdateResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#BatchOrderUpdateResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResult" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResult.code">
+<span class="sig-name descname"><span class="pre">code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResult.code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResult.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResult.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResult.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.market.Order" title="bsx_py.common.types.market.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> <span class="pre">|</span> <a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult" title="bsx_py.common.types.market.CancelOrderResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrderResult</span></code></a> <span class="pre">|</span> <a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult" title="bsx_py.common.types.market.CancelMultipleOrdersResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResult.detail" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResult.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#BatchOrderUpdateResult.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResult.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult" title="bsx_py.common.types.market.BatchOrderUpdateResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatchOrderUpdateResult</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResult.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResult.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">BatchOrderUpdateResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#BatchOrderUpdateResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResponse.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResult" title="bsx_py.common.types.market.BatchOrderUpdateResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatchOrderUpdateResult</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResponse.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResponse.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#BatchOrderUpdateResponse.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResponse.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.BatchOrderUpdateResponse" title="bsx_py.common.types.market.BatchOrderUpdateResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatchOrderUpdateResponse</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.BatchOrderUpdateResponse.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.BatchOrderUpdateResponse.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetTradeHistoryParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetTradeHistoryParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams.product_id">
+<span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams.product_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams.start_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams.end_time">
+<span class="sig-name descname"><span class="pre">end_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams.end_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams.page">
+<span class="sig-name descname"><span class="pre">page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams.page" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams.limit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetTradeHistoryResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wallet_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trades</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetTradeHistoryResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.product_id">
+<span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.product_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.wallet_address">
+<span class="sig-name descname"><span class="pre">wallet_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.wallet_address" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.trades">
+<span class="sig-name descname"><span class="pre">trades</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.Trade" title="bsx_py.common.types.market.Trade"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trade</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.trades" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.page">
+<span class="sig-name descname"><span class="pre">page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.page" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.total">
+<span class="sig-name descname"><span class="pre">total</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.total" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetTradeHistoryResponse.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.GetTradeHistoryResponse" title="bsx_py.common.types.market.GetTradeHistoryResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetTradeHistoryResponse</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTradeHistoryResponse.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wallet_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trades</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetTradeHistoryResponse.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.PerpetualProductConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">PerpetualProductConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintenance_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_leverage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#PerpetualProductConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.PerpetualProductConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.PerpetualProductConfig.initial_margin">
+<span class="sig-name descname"><span class="pre">initial_margin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.PerpetualProductConfig.initial_margin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.PerpetualProductConfig.maintenance_margin">
+<span class="sig-name descname"><span class="pre">maintenance_margin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.PerpetualProductConfig.maintenance_margin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.PerpetualProductConfig.max_leverage">
+<span class="sig-name descname"><span class="pre">max_leverage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.PerpetualProductConfig.max_leverage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.PerpetualProductConfig.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#PerpetualProductConfig.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.PerpetualProductConfig.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig" title="bsx_py.common.types.market.PerpetualProductConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerpetualProductConfig</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.PerpetualProductConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintenance_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_leverage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.PerpetualProductConfig.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">Product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_asset_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_asset_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">underlying</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_base_asset_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_increment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_increment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_volume_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_position_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_interest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funding_interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_funding_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_funding_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_cumulative_funding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_order_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicted_funding_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perpetual_product_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#Product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.Product" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.index">
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.product_id">
+<span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.product_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.base_asset_symbol">
+<span class="sig-name descname"><span class="pre">base_asset_symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.base_asset_symbol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.quote_asset_symbol">
+<span class="sig-name descname"><span class="pre">quote_asset_symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.quote_asset_symbol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.underlying">
+<span class="sig-name descname"><span class="pre">underlying</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.underlying" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.display_name">
+<span class="sig-name descname"><span class="pre">display_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.display_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.display_base_asset_symbol">
+<span class="sig-name descname"><span class="pre">display_base_asset_symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.display_base_asset_symbol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.enabled" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.post_only">
+<span class="sig-name descname"><span class="pre">post_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.post_only" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.base_increment">
+<span class="sig-name descname"><span class="pre">base_increment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.base_increment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.quote_increment">
+<span class="sig-name descname"><span class="pre">quote_increment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.quote_increment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.quote_volume_24h">
+<span class="sig-name descname"><span class="pre">quote_volume_24h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.quote_volume_24h" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.change_24h">
+<span class="sig-name descname"><span class="pre">change_24h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.change_24h" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.high_24h">
+<span class="sig-name descname"><span class="pre">high_24h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.high_24h" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.low_24h">
+<span class="sig-name descname"><span class="pre">low_24h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.low_24h" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.last_price">
+<span class="sig-name descname"><span class="pre">last_price</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.last_price" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.mark_price">
+<span class="sig-name descname"><span class="pre">mark_price</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.mark_price" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.index_price">
+<span class="sig-name descname"><span class="pre">index_price</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.index_price" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.max_position_size">
+<span class="sig-name descname"><span class="pre">max_position_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.max_position_size" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.open_interest">
+<span class="sig-name descname"><span class="pre">open_interest</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.open_interest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.funding_interval">
+<span class="sig-name descname"><span class="pre">funding_interval</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.funding_interval" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.next_funding_rate">
+<span class="sig-name descname"><span class="pre">next_funding_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.next_funding_rate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.next_funding_time">
+<span class="sig-name descname"><span class="pre">next_funding_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.next_funding_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.last_cumulative_funding">
+<span class="sig-name descname"><span class="pre">last_cumulative_funding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.last_cumulative_funding" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.min_order_size">
+<span class="sig-name descname"><span class="pre">min_order_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.min_order_size" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.predicted_funding_rate">
+<span class="sig-name descname"><span class="pre">predicted_funding_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.Product.predicted_funding_rate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.perpetual_product_config">
+<span class="sig-name descname"><span class="pre">perpetual_product_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.market.PerpetualProductConfig" title="bsx_py.common.types.market.PerpetualProductConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerpetualProductConfig</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.market.Product.perpetual_product_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#Product.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.Product.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.Product" title="bsx_py.common.types.market.Product"><code class="xref py py-class docutils literal notranslate"><span class="pre">Product</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.Product.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_asset_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_asset_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">underlying</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_base_asset_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_increment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_increment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_volume_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_24h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_position_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_interest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funding_interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_funding_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_funding_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_cumulative_funding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_order_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicted_funding_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perpetual_product_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.Product.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetProductsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetProductsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">products</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetProductsResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetProductsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetProductsResponse.products">
+<span class="sig-name descname"><span class="pre">products</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.Product" title="bsx_py.common.types.market.Product"><code class="xref py py-class docutils literal notranslate"><span class="pre">Product</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetProductsResponse.products" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetProductsResponse.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetProductsResponse.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetProductsResponse.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.GetProductsResponse" title="bsx_py.common.types.market.GetProductsResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetProductsResponse</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetProductsResponse.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">products</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetProductsResponse.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetFundingHistoryParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetFundingHistoryParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams.product_id">
+<span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams.product_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams.start_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams.end_time">
+<span class="sig-name descname"><span class="pre">end_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams.end_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams.limit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams.page">
+<span class="sig-name descname"><span class="pre">page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams.page" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryParams.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.FundingRate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">FundingRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#FundingRate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.FundingRate" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.FundingRate.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.FundingRate.time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.FundingRate.rate">
+<span class="sig-name descname"><span class="pre">rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.FundingRate.rate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.FundingRate.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#FundingRate.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.FundingRate.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.FundingRate" title="bsx_py.common.types.market.FundingRate"><code class="xref py py-class docutils literal notranslate"><span class="pre">FundingRate</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.FundingRate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.FundingRate.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetFundingHistoryResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetFundingHistoryResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryResponse.product_id">
+<span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryResponse.product_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryResponse.items">
+<span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.FundingRate" title="bsx_py.common.types.market.FundingRate"><code class="xref py py-class docutils literal notranslate"><span class="pre">FundingRate</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryResponse.items" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryResponse.paging">
+<span class="sig-name descname"><span class="pre">paging</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Paging</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryResponse.paging" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryResponse.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetFundingHistoryResponse.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryResponse.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.GetFundingHistoryResponse" title="bsx_py.common.types.market.GetFundingHistoryResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetFundingHistoryResponse</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetFundingHistoryResponse.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paging</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetFundingHistoryResponse.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTransferHistoryParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">GetTransferHistoryParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#GetTransferHistoryParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.GetTransferHistoryParams" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTransferHistoryParams.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.market.TransferType" title="bsx_py.common.types.market.TransferType"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransferType</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.market.GetTransferHistoryParams.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTransferHistoryParams.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTransferHistoryParams.start_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTransferHistoryParams.end_time">
+<span class="sig-name descname"><span class="pre">end_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.GetTransferHistoryParams.end_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTransferHistoryParams.page">
+<span class="sig-name descname"><span class="pre">page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#bsx_py.common.types.market.GetTransferHistoryParams.page" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.GetTransferHistoryParams.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.GetTransferHistoryParams.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

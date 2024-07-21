@@ -48,6 +48,8 @@ If you are using a multisig wallet, you can create a BSXInstance using this code
             env=Environment.TESTNET
         )
 
+APIs
+------------
 Below are supported APIs to interact with BSX Exchange
 
 - **Create an order:**
@@ -195,4 +197,154 @@ Below are supported APIs to interact with BSX Exchange
 .. code-block:: python
 
     >>> products = bsx_instance.get_products()
+
+Async APIs
+------------
+Below are async APIs to interact with BSX Exchange
+
+- **Create an order:**
+
+.. code-block:: python
+
+    >>> import time
+    >>> from decimal import Decimal
+    >>> from bsx_py.common.types.market import CreateOrderParams, Side
+    >>> params = CreateOrderParams(
+        side=Side.BUY,
+        product_index=3,
+        price=Decimal('100.3'),
+        size=Decimal('0.1'),
+        time_inf_force="GTC",
+        nonce=int(time.time_ns())
+    )
+    >>> order = await bsx_instance.create_order_async(params=params)
+
+- **Cancel an order:**
+
+.. code-block:: python
+
+    >>> res = await bsx_instance.cancel_order_async(order_id="xxx")
+
+- **Cancel multiple orders:**
+
+.. code-block:: python
+
+    >>> res = await bsx_instance.cancel_bulk_orders_async(order_ids=["xxx", "yyy"])
+
+- **Cancel all open orders:**
+
+.. code-block:: python
+
+    >>> res = await bsx_instance.cancel_all_orders_async(product_id="BTC-PERP")
+
+- **Update orders in batch:**
+
+.. code-block:: python
+
+    >>> from bsx_py.common.types.market import *
+    >>> params = BatchOrderUpdateParams(operations=[
+        CreateOrderParams(
+            type=OrderType.LIMIT,
+            side=Side.BUY,
+            product_index=3,
+            price=Decimal('100.3'),
+            size=Decimal('0.1'),
+            time_inf_force='GTC',
+            nonce=int(time.time_ns()),
+            post_only=false,
+            client_order_id='522005f7bfdb48c98b931a40296cdf96'
+        ),
+        CancelOrderParams(order_id="8a325a62-80f0-46ef-8943-3267b381271f"),
+        CancelAllParams(product_id="SOL-PERP"),
+        CancelOrdersParams(order_ids=['8a325a62-80f0-46ef-8943-3267b381271f'])
+    ])
+    >>> res = await bsx_instance.batch_update_orders_async(params)
+
+- **Get all open orders:**
+
+.. code-block:: python
+
+    >>> res = await bsx_instance.get_all_open_orders_async(product_id="BTC-PERP")
+
+- **Get order history:**
+
+.. code-block:: python
+
+    >>> from bsx_py.common.types.market import *
+    >>> params = GetOrderHistoryParams(
+        product_id="SOL-PERP",
+        start_time=datetime.now() - timedelta(days=30),
+        end_time=datetime.now(),
+        limit=100,
+        statuses=[OrderStatus.DONE, OrderStatus.OPEN, OrderStatus.PENDING],
+        client_order_id=["abc", "xyz"]
+    )
+    >>> history = await bsx_instance.get_order_history_async(params)
+
+- **Submit withdrawal request:**
+
+.. code-block:: python
+
+    >>> from bsx_py.common.types.account import *
+    >>> params = WithdrawParams(
+        amount=Decimal("10"),
+        nonce=int(time.time_ns())
+    )
+    >>> is_success = await bsx_instance.submit_withdrawal_request_async(params)
+
+- **Get portfolio detail:**
+
+.. code-block:: python
+
+    >>> portfolio = await bsx_instance.get_portfolio_detail_async()
+
+- **Get trade history:**
+
+.. code-block:: python
+
+    >>> from bsx_py.common.types.market import *
+    >>> history = await bsx_instance.get_user_trade_history_async(params=GetTradeHistoryParams(
+        product_id='BTC-PERP',
+        start_time=datetime.now() - timedelta(days=1),
+        end_time=datetime.now(),
+        page=1,
+        limit=50
+    ))
+
+- **Get funding rate history:**
+
+.. code-block:: python
+
+    >>> from bsx_py.common.types.market import *
+    >>> history = await bsx_instance.get_funding_history_async(params=GetFundingHistoryParams(
+        product_id='BTC-PERP',
+        start_time=datetime.now() - timedelta(days=1),
+        end_time=datetime.now(),
+        page=2,
+        limit=50
+    ))
+
+- **Get active API keys:**
+
+.. code-block:: python
+
+    >>> api_keys = await bsx_instance.get_api_key_list_async()
+
+- **Delete an API key:**
+
+.. code-block:: python
+
+    >>> await bsx_instance.delete_user_api_key_async(api_key="eac9756c3ac0540d74c4bb897a68846a")
+
+- **Create a new API key:**
+
+.. code-block:: python
+
+    >>> api_key = await bsx_instance.create_user_api_key_async(name='test API key')
+
+- **Get all markets:**
+
+.. code-block:: python
+
+    >>> products = await bsx_instance.get_products_async()
 

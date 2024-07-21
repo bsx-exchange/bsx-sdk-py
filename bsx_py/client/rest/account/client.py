@@ -47,16 +47,58 @@ class AccountClient(AuthRequiredClient):
         resp = self.post("/transfers/withdraw", payload)
         return resp["success"]
 
+    async def submit_withdrawal_request_async(self, params: WithdrawParams) -> bool:
+        usdc_address = self._config["addresses"]["usdc_contract"]
+        withdraw_struct = Withdraw(
+            sender=self._acc_info.get_wallet_address(),
+            token=usdc_address,
+            amount=int(params.amount * X18_DECIMALS),
+            nonce=params.nonce,
+        )
+
+        withdraw_struct_bytes = Web3.keccak(
+            withdraw_struct.signable_bytes(domain=self._domain_signature)
+        )
+        withdraw_signature = Account._sign_hash(
+            withdraw_struct_bytes, self._acc_info.get_wallet_key()
+        ).signature.hex()
+
+        payload = {
+            "sender": self._acc_info.get_wallet_address(),
+            "token": usdc_address,
+            "amount": str(params.amount),
+            "nonce": params.nonce,
+            "signature": withdraw_signature,
+        }
+
+        resp = await self.post_async("/transfers/withdraw", payload)
+        return resp["success"]
+
     def get_portfolio_detail(self) -> Portfolio:
         resp = self.get("/portfolio/detail")
+        return Portfolio.from_dict(resp)
+
+    async def get_portfolio_detail_async(self) -> Portfolio:
+        resp = await self.get_async("/portfolio/detail")
         return Portfolio.from_dict(resp)
 
     def get_api_key_list(self) -> GetAPIKeysResponse:
         resp = self.get("/users/api-key")
         return GetAPIKeysResponse.from_dict(resp)
 
+    async def get_api_key_list_async(self) -> GetAPIKeysResponse:
+        resp = await self.get_async("/users/api-key")
+        return GetAPIKeysResponse.from_dict(resp)
+
     def delete_user_api_key(self, api_key: str) -> str:
         resp = self.delete("/users/api-key", params={"api_keys": [api_key]})
+        if 'api_keys' in resp and api_key in resp['api_keys']:
+            return api_key
+        else:
+            raise Exception("API key not found in response. Actual response: " + json.dumps(resp))
+
+    async def delete_user_api_key_async(self, api_key: str) -> str:
+        resp = await self.delete_async("/users/api-key", params={"api_keys": [api_key]})
         if 'api_keys' in resp and api_key in resp['api_keys']:
             return api_key
         else:
@@ -69,4 +111,9 @@ class AccountClient(AuthRequiredClient):
         else:
             raise Exception("API key not found in response. Actual response: " + json.dumps(resp))
 
-
+    async def create_user_api_key_async(self, name: str = "") -> APIKey:
+        resp = await self.post_async("/users/api-key", body={"name": name})
+        if "api_key" in resp:
+            return APIKey.from_dict(resp["api_key"])
+        else:
+            raise Exception("API key not found in response. Actual response: " + json.dumps(resp))

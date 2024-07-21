@@ -152,6 +152,22 @@ class BSXInstance:
         return self._market_client.create_order(params)
 
     @_refresh_api_key_if_needed
+    async def create_order_async(self, params: CreateOrderParams) -> Order:
+        """
+        Create a new order
+
+        Attributes:
+            params (CreateOrderParams): object that contains data required to create an order
+
+        Return:
+            Order: created order
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.create_order_async(params)
+
+    @_refresh_api_key_if_needed
     def cancel_order(self, order_id: str) -> CancelOrderResult:
         """
         Cancel an order by id
@@ -166,6 +182,22 @@ class BSXInstance:
             BSXRequestException: If the response status is not "success".
         """
         return self._market_client.cancel_order(order_id=order_id)
+
+    @_refresh_api_key_if_needed
+    async def cancel_order_async(self, order_id: str) -> CancelOrderResult:
+        """
+        Cancel an order by id
+
+        Attributes:
+            order_id (str): order_id that need to be cancelled
+
+        Return:
+            CancelOrderResult: cancel result
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.cancel_order_async(order_id=order_id)
 
     @_refresh_api_key_if_needed
     def cancel_bulk_orders(self, order_ids: list[str]) -> CancelMultipleOrdersResult:
@@ -184,6 +216,22 @@ class BSXInstance:
         return self._market_client.cancel_orders(CancelMultipleOrdersParams(order_ids=order_ids))
 
     @_refresh_api_key_if_needed
+    async def cancel_bulk_orders_async(self, order_ids: list[str]) -> CancelMultipleOrdersResult:
+        """
+        Cancel multiple orders by ids
+
+        Attributes:
+            order_ids (list[str]): order_ids that need to be cancelled
+
+        Return:
+            CancelMultipleOrdersResult: cancel result
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.cancel_orders_async(CancelMultipleOrdersParams(order_ids=order_ids))
+
+    @_refresh_api_key_if_needed
     def cancel_all_orders(self, product_id: str) -> CancelMultipleOrdersResult:
         """
         Cancel all open orders of a given product
@@ -198,6 +246,22 @@ class BSXInstance:
             BSXRequestException: If the response status is not "success".
         """
         return self._market_client.cancel_all_orders(product_id)
+
+    @_refresh_api_key_if_needed
+    async def cancel_all_orders_async(self, product_id: str) -> CancelMultipleOrdersResult:
+        """
+        Cancel all open orders of a given product
+
+        Attributes:
+            product_id (str): the product that it's orders need to be cancelled
+
+        Return:
+            CancelMultipleOrdersResult: cancel result
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.cancel_all_orders_async(product_id)
 
     @_refresh_api_key_if_needed
     def get_all_open_orders(self, product_id: str) -> OrderListingResult:
@@ -216,6 +280,22 @@ class BSXInstance:
         return self._market_client.get_all_open_orders(product_id)
 
     @_refresh_api_key_if_needed
+    async def get_all_open_orders_async(self, product_id: str) -> OrderListingResult:
+        """
+        Get all open orders of a given product
+
+        Attributes:
+            product_id (str): the product id
+
+        Return:
+            CancelMultipleOrdersResult: contains a list of open orders
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.get_all_open_orders_async(product_id)
+
+    @_refresh_api_key_if_needed
     def get_order_history(self, params: GetOrderHistoryParams) -> OrderListingResult:
         """
         Get order history
@@ -230,6 +310,22 @@ class BSXInstance:
             BSXRequestException: If the response status is not "success".
         """
         return self._market_client.get_order_history(params)
+
+    @_refresh_api_key_if_needed
+    async def get_order_history_async(self, params: GetOrderHistoryParams) -> OrderListingResult:
+        """
+        Get order history
+
+        Attributes:
+            params (GetOrderHistoryParams): parameters to get order history
+
+        Return:
+            OrderListingResult: contains a list of orders
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.get_order_history_async(params)
 
     @_refresh_api_key_if_needed
     def submit_withdrawal_request(self, params: WithdrawParams) -> bool:
@@ -251,6 +347,25 @@ class BSXInstance:
             raise NotSupportOperationException("BSXInstance created by API key cannot submit withdrawal request")
 
     @_refresh_api_key_if_needed
+    async def submit_withdrawal_request_async(self, params: WithdrawParams) -> bool:
+        """
+        Submit withdrawal request
+
+        Attributes:
+            params (WithdrawParams): parameters to create withdrawal request
+
+        Return:
+            bool: whether the withdrawal request was created successfully or not
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        try:
+            return await self._account_client.submit_withdrawal_request_async(params)
+        except WalletPrivateNotProvidedException:
+            raise NotSupportOperationException("BSXInstance created by API key cannot submit withdrawal request")
+
+    @_refresh_api_key_if_needed
     def get_portfolio_detail(self) -> Portfolio:
         """
         Get portfolio detail
@@ -262,6 +377,19 @@ class BSXInstance:
             BSXRequestException: If the response status is not "success".
         """
         return self._account_client.get_portfolio_detail()
+
+    @_refresh_api_key_if_needed
+    async def get_portfolio_detail_async(self) -> Portfolio:
+        """
+        Get portfolio detail
+
+        Return:
+            Portfolio: portfolio detail of the current user
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._account_client.get_portfolio_detail_async()
 
     @_refresh_api_key_if_needed
     def batch_update_orders(self, params: BatchOrderUpdateParams) -> BatchOrderUpdateResponse:
@@ -280,6 +408,22 @@ class BSXInstance:
         return self._market_client.batch_update_orders(params=params)
 
     @_refresh_api_key_if_needed
+    async def batch_update_orders_async(self, params: BatchOrderUpdateParams) -> BatchOrderUpdateResponse:
+        """
+        Update orders in batch
+
+        Attributes:
+            params (BatchOrderUpdateParams): update orders parameters
+
+        Return:
+            BatchOrderUpdateResponse: update result. The order of items in the result is the same as the order of items in the input params
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.batch_update_orders_async(params=params)
+
+    @_refresh_api_key_if_needed
     def get_user_trade_history(self, params: GetTradeHistoryParams) -> GetTradeHistoryResponse:
         """
         Get user's trade history
@@ -296,6 +440,22 @@ class BSXInstance:
         return self._market_client.get_user_trade_history(params=params)
 
     @_refresh_api_key_if_needed
+    async def get_user_trade_history_async(self, params: GetTradeHistoryParams) -> GetTradeHistoryResponse:
+        """
+        Get user's trade history
+
+        Attributes:
+            params (GetTradeHistoryParams): filter parameters
+
+        Return:
+            GetTradeHistoryResponse: trade history
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.get_user_trade_history_async(params=params)
+
+    @_refresh_api_key_if_needed
     def get_products(self) -> list[Product]:
         """
         Get all markets
@@ -307,6 +467,19 @@ class BSXInstance:
             BSXRequestException: If the response status is not "success".
         """
         return self._market_client.get_products().products
+
+    @_refresh_api_key_if_needed
+    async def get_products_async(self) -> list[Product]:
+        """
+        Get all markets
+
+        Return:
+            list[Product]: list of all markets
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return (await self._market_client.get_products_async()).products
 
     @_refresh_api_key_if_needed
     def get_funding_history(self, params: GetFundingHistoryParams) -> GetFundingHistoryResponse:
@@ -325,6 +498,22 @@ class BSXInstance:
         return self._market_client.get_funding_history(params=params)
 
     @_refresh_api_key_if_needed
+    async def get_funding_history_async(self, params: GetFundingHistoryParams) -> GetFundingHistoryResponse:
+        """
+        Get funding rate history
+
+        Attributes:
+            params (GetFundingHistoryParams): filter parameters
+
+        Return:
+            GetFundingHistoryResponse: funding rate history
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._market_client.get_funding_history_async(params=params)
+
+    @_refresh_api_key_if_needed
     def get_api_key_list(self) -> GetAPIKeysResponse:
         """
         Get all active API keys
@@ -337,6 +526,20 @@ class BSXInstance:
         """
         return self._account_client.get_api_key_list()
 
+    @_refresh_api_key_if_needed
+    async def get_api_key_list_async(self) -> GetAPIKeysResponse:
+        """
+        Get all active API keys
+
+        Return:
+            GetAPIKeysResponse: API keys list
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._account_client.get_api_key_list_async()
+
+    @_refresh_api_key_if_needed
     def delete_user_api_key(self, api_key: str) -> str:
         """
         Delete an API key
@@ -352,6 +555,23 @@ class BSXInstance:
         """
         return self._account_client.delete_user_api_key(api_key)
 
+    @_refresh_api_key_if_needed
+    async def delete_user_api_key_async(self, api_key: str) -> str:
+        """
+        Delete an API key
+
+        Attributes:
+            api_key (str): API key to be deleted
+
+        Return:
+            str: API key that was deleted
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        return await self._account_client.delete_user_api_key_async(api_key)
+
+    @_refresh_api_key_if_needed
     def create_user_api_key(self, name: str = "") -> APIKey:
         """
         Create a new API key
@@ -368,17 +588,20 @@ class BSXInstance:
         return self._account_client.create_user_api_key(name)
 
     @_refresh_api_key_if_needed
-    def get_products(self) -> GetProductsResponse:
+    async def create_user_api_key_async(self, name: str = "") -> APIKey:
         """
-        Get product configs
+        Create a new API key
+
+        Attributes:
+            name (str): name of the new API key
 
         Return:
-            GetProductsResponse: product configs
+            APIKey: new API key info
 
         Raises:
             BSXRequestException: If the response status is not "success".
         """
-        return self._market_client.get_products()
+        return await self._account_client.create_user_api_key_async(name)
 
     def _get_chain_config(self, domain: str):
         response = requests.get(domain + "/chain/configs")

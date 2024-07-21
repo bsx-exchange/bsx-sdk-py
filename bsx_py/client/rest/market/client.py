@@ -44,6 +44,7 @@ class MarketClient(AuthRequiredClient):
             "time_in_force": params.time_in_force,
             "nonce": params.nonce,
             "signature": signature,
+            "client_order_id": params.client_order_id
         }
 
         resp = self.post(endpoint="/orders", body=payload)

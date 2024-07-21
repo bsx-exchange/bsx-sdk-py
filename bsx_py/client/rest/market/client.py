@@ -61,12 +61,7 @@ class MarketClient(AuthRequiredClient):
         }
 
         resp = self.delete(endpoint="/orders", body=payload)
-        return CancelMultipleOrdersResult(
-            cancelled_orders=[
-                CancelOrderResult(order_id=i.get("id"), nonce=i.get("nonce"))
-                for i in resp.get("cancel_requested_orders")
-            ]
-        )
+        return CancelMultipleOrdersResult.from_dict(resp)
 
     def cancel_all_orders(self, product_id: str) -> CancelMultipleOrdersResult:
         payload = {
@@ -74,12 +69,7 @@ class MarketClient(AuthRequiredClient):
         }
 
         resp = self.delete(endpoint="/orders/all", params=payload)
-        return CancelMultipleOrdersResult(
-            cancelled_orders=[
-                CancelOrderResult(order_id=i.get("order_id"), nonce=i.get("nonce"))
-                for i in resp.get("cancel_requested_orders")
-            ]
-        )
+        return CancelMultipleOrdersResult.from_dict(resp)
 
     def get_all_open_orders(self, product_id: str) -> OrderListingResult:
         resp = self.get("/orders", params={"product_id": product_id})

@@ -305,7 +305,7 @@ class CancelOrdersResultItem(metaclass=DataClassMeta):
     @staticmethod
     def from_dict(data: dict) -> 'CancelOrdersResultItem':
         return CancelOrdersResultItem(
-            order_id=str(data["id"]) if "id" in data else None,
+            order_id=str(data["id"]) if "id" in data else data.get("order_id"),
             nonce=data["nonce"] if "nonce" in data else None,
             client_order_id=data["client_order_id"] if "client_order_id" in data else None,
         )

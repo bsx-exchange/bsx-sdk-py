@@ -65,7 +65,6 @@ class AuthRequiredClient(RestClient):
             headers = {}
 
         api_key = self._acc_info.get_api_key()
-        print(api_key.api_key)
         headers['bsx-key'] = api_key.api_key
         headers['bsx-secret'] = api_key.api_secret
 
@@ -76,7 +75,6 @@ class AuthRequiredClient(RestClient):
             headers = {}
 
         api_key = self._acc_info.get_api_key()
-        print(api_key.api_key)
         headers['bsx-key'] = api_key.api_key
         headers['bsx-secret'] = api_key.api_secret
 
@@ -87,7 +85,6 @@ class AuthRequiredClient(RestClient):
             headers = {}
 
         api_key = self._acc_info.get_api_key()
-        print(api_key.api_key)
         headers['bsx-key'] = api_key.api_key
         headers['bsx-secret'] = api_key.api_secret
 

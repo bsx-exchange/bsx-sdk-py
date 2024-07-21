@@ -6,7 +6,7 @@ Core client
 BSXInstance provides methods to interact with BSX Exchange and abstract away the complication of message signing,
 authentication, and session management
 
-BSXInstance can be initialized either with an API key or the main wallet's private key.
+For normal wallets, BSXInstance can be initialized either with an API key or the main wallet's private key.
 
 - **Create BSXInstance using private key:**
 
@@ -29,6 +29,24 @@ BSXInstance can be initialized either with an API key or the main wallet's priva
     >>> signer_private_key = "0x1111111111111111111111111111111111111111111111111111111111111111"
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
+
+If you are using a multisig wallet, you can create a BSXInstance using this code below
+
+.. code-block:: python
+
+    >>> from eth_account import Account
+    >>> from bsx_py import BSXInstance, Environment
+    >>> owner_address = "0x2222222222222222222222222222222222222222"
+    >>> contract_private_key = "0x0000000000000000000000000000000000000000000000000000000000000000"
+    >>> signer_private_key = "0x1111111111111111111111111111111111111111111111111111111111111111"
+    >>> contract = Account.from_key(contract_private_key)
+    >>> signer = Account.from_key(signer_private_key)
+    >>> bsx_instance = BSXInstance.from_multi_sig_wallet(
+            contract=contract,
+            signer=signer,
+            owner_address=owner_address,
+            env=Environment.TESTNET
+        )
 
 Below are supported APIs to interact with BSX Exchange
 

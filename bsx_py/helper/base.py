@@ -23,6 +23,11 @@ class AccountManager(AccountInfo):
         from .api_key_base_manager import ApiKeyBaseManager
         return ApiKeyBaseManager(api_key, api_secret, signer_secret, domain, domain_signature)
 
+    @staticmethod
+    def from_multi_sig(owner_addr: str, wallet_secret: str, signer_secret: str, domain: str, domain_signature: EIP712Struct):
+        from .multi_sign_base_manager import MultiSigBaseManager
+        return MultiSigBaseManager(owner_addr, wallet_secret, signer_secret, domain, domain_signature)
+
     def get_api_key(self) -> BSXApiKey:
         return self._acc_storage.get_api_key()
 
@@ -39,6 +44,13 @@ class AccountManager(AccountInfo):
     def check_and_renew_api_key(self):
         raise NotImplementedError
 
-    @abstractmethod
     def renew_api_key(self):
+        self._acc_storage.lock_all_read()
+        try:
+            self._renew_api_key()
+        finally:
+            self._acc_storage.release_all_read()
+
+    @abstractmethod
+    def _renew_api_key(self):
         raise NotImplementedError

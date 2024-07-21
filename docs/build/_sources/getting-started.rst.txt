@@ -38,6 +38,25 @@ Create the BSXInstance using an active API key:
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
 
+Create the BSXInstance for a multisig wallet:
+
+.. code-block:: python
+
+    >>> from eth_account import Account
+    >>> from bsx_py import BSXInstance, Environment
+
+    >>> owner_address = "0x2222222222222222222222222222222222222222"
+    >>> contract_private_key = "0x0000000000000000000000000000000000000000000000000000000000000000"
+    >>> signer_private_key = "0x1111111111111111111111111111111111111111111111111111111111111111"
+    >>> contract = Account.from_key(contract_private_key)
+    >>> signer = Account.from_key(signer_private_key)
+    >>> bsx_instance = BSXInstance.from_multi_sig_wallet(
+            contract=contract,
+            signer=signer,
+            owner_address=owner_address,
+            env=Environment.TESTNET
+        )
+
 Create an order
 ----------------
 

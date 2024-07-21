@@ -113,6 +113,23 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span> <span class="n">api_secret</span><span class="o">=</span><span class="s2">&quot;zzz&quot;</span><span class="p">,</span> <span class="n">signer</span><span class="o">=</span><span class="n">signer</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="o">.</span><span class="n">TESTNET</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Create the BSXInstance for a multisig wallet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py</span> <span class="kn">import</span> <span class="n">BSXInstance</span><span class="p">,</span> <span class="n">Environment</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">owner_address</span> <span class="o">=</span> <span class="s2">&quot;0x2222222222222222222222222222222222222222&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">contract_private_key</span> <span class="o">=</span> <span class="s2">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer_private_key</span> <span class="o">=</span> <span class="s2">&quot;0x1111111111111111111111111111111111111111111111111111111111111111&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">contract</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">contract_private_key</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">signer_private_key</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_multi_sig_wallet</span><span class="p">(</span>
+<span class="go">        contract=contract,</span>
+<span class="go">        signer=signer,</span>
+<span class="go">        owner_address=owner_address,</span>
+<span class="go">        env=Environment.TESTNET</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
 </section>
 <section id="create-an-order">
 <h2>Create an order<a class="headerlink" href="#create-an-order" title="Permalink to this heading"></a></h2>

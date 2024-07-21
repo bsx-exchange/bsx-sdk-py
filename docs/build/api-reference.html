@@ -55,6 +55,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.instance.BSXInstance"><code class="docutils literal notranslate"><span class="pre">BSXInstance</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.from_api_key"><code class="docutils literal notranslate"><span class="pre">BSXInstance.from_api_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.from_multi_sig_wallet"><code class="docutils literal notranslate"><span class="pre">BSXInstance.from_multi_sig_wallet()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.__init__"><code class="docutils literal notranslate"><span class="pre">BSXInstance.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_order"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_order()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.cancel_order"><code class="docutils literal notranslate"><span class="pre">BSXInstance.cancel_order()</span></code></a></li>
@@ -283,6 +284,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.client_order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.client_order_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.from_dict"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult.__init__"><code class="docutils literal notranslate"><span class="pre">CancelOrderResult.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem"><code class="docutils literal notranslate"><span class="pre">CancelOrdersResultItem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem.order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrdersResultItem.order_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem.nonce"><code class="docutils literal notranslate"><span class="pre">CancelOrdersResultItem.nonce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem.client_order_id"><code class="docutils literal notranslate"><span class="pre">CancelOrdersResultItem.client_order_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem.from_dict"><code class="docutils literal notranslate"><span class="pre">CancelOrdersResultItem.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem.__init__"><code class="docutils literal notranslate"><span class="pre">CancelOrdersResultItem.__init__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.CancelMultipleOrdersResult"><code class="docutils literal notranslate"><span class="pre">CancelMultipleOrdersResult</span></code></a><ul>
@@ -535,6 +544,26 @@
 <p>api_secret (str): BSX secret</p>
 <p>signer (LocalAccount): signer wallet used to sign requests</p>
 <p>env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.from_multi_sig_wallet">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_multi_sig_wallet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contract</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.from_multi_sig_wallet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.from_multi_sig_wallet" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a new BSXInstance object using main wallet’s private key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.instance.BSXInstance" title="bsx_py.instance.BSXInstance"><code class="xref py py-class docutils literal notranslate"><span class="pre">BSXInstance</span></code></a></p>
+</dd>
+</dl>
+<dl>
+<dt>Attributes:</dt><dd><p>env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</p>
+<p>contract (LocalAccount): multi sig wallet</p>
+<p>owner_address (str): main wallet address</p>
+<p>signer (LocalAccount): signer wallet used to sign requests</p>
 </dd>
 <dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
 </dd>
@@ -1793,6 +1822,7 @@ If any part of the order results in taking liquidity, the order will be rejected
 <dl>
 <dt>Args:</dt><dd><p>order_id (str): Order id of the cancelled order</p>
 <p>nonce (int): Nonce of the cancelled order</p>
+<p>client_order_id (str): Client order ID of the cancelled order</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -1828,12 +1858,55 @@ If any part of the order results in taking liquidity, the order will be rejected
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersResultItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelOrdersResultItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrdersResultItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersResultItem" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Returned if an order is cancelled successfully</p>
+<dl>
+<dt>Args:</dt><dd><p>order_id (str): Order id of the cancelled order</p>
+<p>nonce (int): Nonce of the cancelled order</p>
+<p>client_order_id (str): Client order ID of the cancelled order</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersResultItem.order_id">
+<span class="sig-name descname"><span class="pre">order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersResultItem.order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersResultItem.nonce">
+<span class="sig-name descname"><span class="pre">nonce</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersResultItem.nonce" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersResultItem.client_order_id">
+<span class="sig-name descname"><span class="pre">client_order_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersResultItem.client_order_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersResultItem.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelOrdersResultItem.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersResultItem.from_dict" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem" title="bsx_py.common.types.market.CancelOrdersResultItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrdersResultItem</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.CancelOrdersResultItem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_order_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.market.CancelOrdersResultItem.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CancelMultipleOrdersResult">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">CancelMultipleOrdersResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cancelled_orders</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#CancelMultipleOrdersResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.CancelMultipleOrdersResult" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.market.CancelMultipleOrdersResult.cancelled_orders">
-<span class="sig-name descname"><span class="pre">cancelled_orders</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.CancelOrderResult" title="bsx_py.common.types.market.CancelOrderResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrderResult</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.cancelled_orders" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cancelled_orders</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.market.CancelOrdersResultItem" title="bsx_py.common.types.market.CancelOrdersResultItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancelOrdersResultItem</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.market.CancelMultipleOrdersResult.cancelled_orders" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

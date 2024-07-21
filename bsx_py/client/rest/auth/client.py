@@ -20,7 +20,7 @@ class AuthClient(RestClient):
         wallet = Account.from_key(params.wallet_pkey)
         signer = Account.from_key(params.signer_pkey)
 
-        signable_wallet = SignKey(account=wallet.address)
+        signable_wallet = SignKey(account=params.wallet_addr)
         signable_signer_bytes = Web3.keccak(signable_wallet.signable_bytes(domain=self._domain_signature))
         signer_signature = Account._sign_hash(signable_signer_bytes, signer.key).signature.hex()
 
@@ -30,7 +30,7 @@ class AuthClient(RestClient):
         account_signature = Account._sign_hash(signable_message_bytes, wallet.key).signature.hex()
 
         payload = {
-            "user_wallet": wallet.address,
+            "user_wallet": params.wallet_addr,
             "signer": signer.address,
             "nonce": nonce,
             "wallet_signature": account_signature,

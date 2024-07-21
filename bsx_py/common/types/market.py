@@ -270,6 +270,8 @@ class CancelOrderResult(metaclass=DataClassMeta):
         order_id (str): Order id of the cancelled order
 
         nonce (int): Nonce of the cancelled order
+
+        client_order_id (str): Client order ID of the cancelled order
     """
     order_id: str
     nonce: int
@@ -285,14 +287,39 @@ class CancelOrderResult(metaclass=DataClassMeta):
 
 
 @dataclass
+class CancelOrdersResultItem(metaclass=DataClassMeta):
+    """
+    Returned if an order is cancelled successfully
+
+    Args:
+        order_id (str): Order id of the cancelled order
+
+        nonce (int): Nonce of the cancelled order
+
+        client_order_id (str): Client order ID of the cancelled order
+    """
+    order_id: str
+    nonce: int
+    client_order_id: str
+
+    @staticmethod
+    def from_dict(data: dict) -> 'CancelOrdersResultItem':
+        return CancelOrdersResultItem(
+            order_id=str(data["id"]) if "id" in data else None,
+            nonce=data["nonce"] if "nonce" in data else None,
+            client_order_id=data["client_order_id"] if "client_order_id" in data else None,
+        )
+
+
+@dataclass
 class CancelMultipleOrdersResult(metaclass=DataClassMeta):
-    cancelled_orders: list[CancelOrderResult]
+    cancelled_orders: list[CancelOrdersResultItem]
 
     @staticmethod
     def from_dict(data: dict) -> 'CancelMultipleOrdersResult':
         return CancelMultipleOrdersResult(
-            cancelled_orders=[CancelOrderResult.from_dict(i) for i in
-                              data["cancelled_orders"]] if "cancelled_orders" in data else []
+            cancelled_orders=[CancelOrdersResultItem.from_dict(i) for i in
+                              data["cancel_requested_orders"]] if "cancel_requested_orders" in data else []
         )
 
 

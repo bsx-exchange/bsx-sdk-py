@@ -74,6 +74,41 @@ class BSXInstance:
 
         return instance
 
+    @staticmethod
+    def from_multi_sig_wallet(env: Environment | str, contract: LocalAccount, owner_address: str, signer: LocalAccount) -> 'BSXInstance':
+        """
+        Initialize a new BSXInstance object using main wallet's private key
+
+        Attributes:
+            env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text
+
+            contract (LocalAccount): multi sig wallet
+
+            owner_address (str): main wallet address
+
+            signer (LocalAccount): signer wallet used to sign requests
+
+        Raises:
+            BSXRequestException: If the response status is not "success".
+        """
+        instance = BSXInstance.__new__(BSXInstance)
+        domain = env.value if isinstance(env, Environment) else env
+        config = instance._get_chain_config(domain)
+        eip712_domain = instance._build_eip712_domain(config)
+
+        instance._acc_manager = AccountManager.from_multi_sig(
+            owner_addr=owner_address, wallet_secret=contract.key, signer_secret=signer.key, domain=domain,
+            domain_signature=eip712_domain
+        )
+        instance._account_client = AccountClient(
+            domain=domain, domain_signature=eip712_domain, config=config, acc_info=instance._acc_manager
+        )
+        instance._market_client = MarketClient(
+            domain=domain, domain_signature=eip712_domain, acc_info=instance._acc_manager
+        )
+
+        return instance
+
     def __init__(self, env: Environment | str, wallet: LocalAccount, signer: LocalAccount):
         """
         Initialize a new BSXInstance object using main wallet's private key

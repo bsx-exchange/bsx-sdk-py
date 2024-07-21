@@ -44,6 +44,7 @@ class BSXApiKeyDetail:
 
 @dataclass
 class RegisterParams:
+    wallet_addr: str
     wallet_pkey: str
     signer_pkey: str
     message: str

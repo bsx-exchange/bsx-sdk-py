@@ -344,6 +344,8 @@
 <span class="sd">        order_id (str): Order id of the cancelled order</span>
 
 <span class="sd">        nonce (int): Nonce of the cancelled order</span>
+
+<span class="sd">        client_order_id (str): Client order ID of the cancelled order</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span>
@@ -358,15 +360,40 @@
         <span class="p">)</span></div></div>
 
 
+<div class="viewcode-block" id="CancelOrdersResultItem"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelOrdersResultItem">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CancelOrdersResultItem</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DataClassMeta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returned if an order is cancelled successfully</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        order_id (str): Order id of the cancelled order</span>
+
+<span class="sd">        nonce (int): Nonce of the cancelled order</span>
+
+<span class="sd">        client_order_id (str): Client order ID of the cancelled order</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">client_order_id</span><span class="p">:</span> <span class="nb">str</span>
+
+<div class="viewcode-block" id="CancelOrdersResultItem.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelOrdersResultItem.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CancelOrdersResultItem&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">CancelOrdersResultItem</span><span class="p">(</span>
+            <span class="n">order_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">nonce</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nonce&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;nonce&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">client_order_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_order_id&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;client_order_id&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
 <div class="viewcode-block" id="CancelMultipleOrdersResult"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelMultipleOrdersResult">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CancelMultipleOrdersResult</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DataClassMeta</span><span class="p">):</span>
-    <span class="n">cancelled_orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CancelOrderResult</span><span class="p">]</span>
+    <span class="n">cancelled_orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CancelOrdersResultItem</span><span class="p">]</span>
 
 <div class="viewcode-block" id="CancelMultipleOrdersResult.from_dict"><a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.CancelMultipleOrdersResult.from_dict">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CancelMultipleOrdersResult&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">CancelMultipleOrdersResult</span><span class="p">(</span>
-            <span class="n">cancelled_orders</span><span class="o">=</span><span class="p">[</span><span class="n">CancelOrderResult</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-                              <span class="n">data</span><span class="p">[</span><span class="s2">&quot;cancelled_orders&quot;</span><span class="p">]]</span> <span class="k">if</span> <span class="s2">&quot;cancelled_orders&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="n">cancelled_orders</span><span class="o">=</span><span class="p">[</span><span class="n">CancelOrdersResultItem</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+                              <span class="n">data</span><span class="p">[</span><span class="s2">&quot;cancel_requested_orders&quot;</span><span class="p">]]</span> <span class="k">if</span> <span class="s2">&quot;cancel_requested_orders&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
         <span class="p">)</span></div></div>
 
 

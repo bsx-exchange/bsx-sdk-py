@@ -33,16 +33,12 @@ class ApiKeyBaseManager(AccountManager):
         if current_api_key.expired_at < datetime.now() + timedelta(minutes=5):
             self.renew_api_key()
 
-    def renew_api_key(self):
-        self._acc_storage.lock_all_read()
-        try:
-            current_api_key = self._acc_storage.get_api_key()
-            new_api_key = self._auth_client.create_new_api_key(current_api_key.api_key, current_api_key.api_secret)
-            self._acc_storage.set_api_key(BSXApiKey(
-                api_key=new_api_key.api_key,
-                api_secret=new_api_key.api_secret,
-                expired_at=new_api_key.expired_at,
-                name=new_api_key.name
-            ))
-        finally:
-            self._acc_storage.release_all_read()
+    def _renew_api_key(self):
+        current_api_key = self._acc_storage.get_api_key()
+        new_api_key = self._auth_client.create_new_api_key(current_api_key.api_key, current_api_key.api_secret)
+        self._acc_storage.set_api_key(BSXApiKey(
+            api_key=new_api_key.api_key,
+            api_secret=new_api_key.api_secret,
+            expired_at=new_api_key.expired_at,
+            name=new_api_key.name
+        ))

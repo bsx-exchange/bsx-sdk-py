@@ -30,7 +30,7 @@ For normal wallets, BSXInstance can be initialized either with an API key or the
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
 
-If you are using a smart contract, you can create a BSXInstance using this code below
+- **Create BSXInstance using a smart contract wallet:**
 
 .. code-block:: python
 

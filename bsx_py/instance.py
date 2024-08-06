@@ -1,7 +1,5 @@
 import functools
-from enum import Enum
 
-import requests
 from eip712_structs import make_domain
 from eth_account.signers.local import LocalAccount
 
@@ -12,6 +10,7 @@ from bsx_py.common.exception import UnauthenticatedException, NotSupportOperatio
 from bsx_py.common.types.account import WithdrawParams, Portfolio, GetAPIKeysResponse, APIKey
 from bsx_py.common.types.market import *
 from bsx_py.helper import AccountManager
+from bsx_py.helper.chain_info import get_chain_config
 
 
 def _refresh_api_key_if_needed(method):
@@ -61,7 +60,7 @@ class BSXInstance:
         """
         instance = BSXInstance.__new__(BSXInstance)
         domain = env.value if isinstance(env, Environment) else env
-        config = instance._get_chain_config(domain)
+        config = get_chain_config(domain)
         eip712_domain = instance._build_eip712_domain(config)
 
         instance._acc_manager = AccountManager.from_api_key(api_key, api_secret, signer.key, domain, eip712_domain)
@@ -75,16 +74,16 @@ class BSXInstance:
         return instance
 
     @staticmethod
-    def from_multi_sig_wallet(env: Environment | str, contract: LocalAccount, owner_address: str, signer: LocalAccount) -> 'BSXInstance':
+    def from_smart_contract(env: Environment | str, contract_address: str, signature: str, nonce: int, signer: LocalAccount) -> 'BSXInstance':
         """
         Initialize a new BSXInstance object using main wallet's private key
 
         Attributes:
             env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text
 
-            contract (LocalAccount): multi sig wallet
+            contract_address (str): multi sig wallet address
 
-            owner_address (str): main wallet address
+            signature (str): signature to use. Please read https://api-docs.bsx.exchange/reference/sign-messages for how to generate the signature
 
             signer (LocalAccount): signer wallet used to sign requests
 
@@ -93,11 +92,11 @@ class BSXInstance:
         """
         instance = BSXInstance.__new__(BSXInstance)
         domain = env.value if isinstance(env, Environment) else env
-        config = instance._get_chain_config(domain)
+        config = get_chain_config(domain)
         eip712_domain = instance._build_eip712_domain(config)
 
-        instance._acc_manager = AccountManager.from_multi_sig(
-            owner_addr=owner_address, wallet_secret=contract.key, signer_secret=signer.key, domain=domain,
+        instance._acc_manager = AccountManager.from_smart_contract(
+            contract_address=contract_address, signature=signature, nonce=nonce, signer_secret=signer.key, domain=domain,
             domain_signature=eip712_domain
         )
         instance._account_client = AccountClient(
@@ -124,7 +123,7 @@ class BSXInstance:
             BSXRequestException: If the response status is not "success".
         """
         domain = env.value if isinstance(env, Environment) else env
-        config = self._get_chain_config(domain)
+        config = get_chain_config(domain)
         eip712_domain = self._build_eip712_domain(config)
 
         self._acc_manager = AccountManager.from_secret(wallet.key, signer.key, domain, eip712_domain)
@@ -603,15 +602,6 @@ class BSXInstance:
         """
         return await self._account_client.create_user_api_key_async(name)
 
-    def _get_chain_config(self, domain: str):
-        response = requests.get(domain + "/chain/configs")
-        if response.status_code != 200:
-            raise Exception(
-                f"Failed to get chain config. Response code: {response.status_code}. "
-                f"Response: {response.text}"
-            )
-
-        return response.json()
 
     def _build_eip712_domain(self, config):
         return make_domain(

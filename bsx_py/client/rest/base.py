@@ -1,9 +1,8 @@
 import json
+from http import HTTPStatus
 
 import aiohttp
 import requests
-
-from http import HTTPStatus
 
 from bsx_py.common.acc_info import AccountInfo
 from bsx_py.common.exception import BSXRequestException, UnknownException, UnauthenticatedException

@@ -1,7 +1,8 @@
+from eth_account import Account
+
 from .api_key_base_manager import EIP712Struct
 from .base import AccountManager
-from ..common.types.auth import BSXApiKey, RegisterParams
-from eth_account import Account
+from ..common.types.auth import RegisterParams
 
 
 class SecretBaseManager(AccountManager):

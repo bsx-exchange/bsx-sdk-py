@@ -30,23 +30,27 @@ For normal wallets, BSXInstance can be initialized either with an API key or the
     >>> signer = Account.from_key(signer_private_key)
     >>> bsx_instance = BSXInstance.from_api_key(api_key="xxx", api_secret="zzz", signer=signer, env=Environment.TESTNET)
 
-If you are using a multisig wallet, you can create a BSXInstance using this code below
+If you are using a smart contract, you can create a BSXInstance using this code below
 
 .. code-block:: python
 
     >>> from eth_account import Account
     >>> from bsx_py import BSXInstance, Environment
-    >>> owner_address = "0x2222222222222222222222222222222222222222"
-    >>> contract_private_key = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
+    >>> contract_address = "0x2222222222222222222222222222222222222222"
     >>> signer_private_key = "0x1111111111111111111111111111111111111111111111111111111111111111"
-    >>> contract = Account.from_key(contract_private_key)
     >>> signer = Account.from_key(signer_private_key)
-    >>> bsx_instance = BSXInstance.from_multi_sig_wallet(
-            contract=contract,
-            signer=signer,
-            owner_address=owner_address,
-            env=Environment.TESTNET
+    >>> signature = "0xd0704e0f838435aca87ed544bffcff596878275f22cbb7e6b26d782a72db3085562f2817068f71128a7278510de29763279cd71f6b08684e8fb420acc410ef6820d243daa5fbb2dfef1c3bc8a7e00e749cf8ff228f6d7ace881c9bf78bac9026b3126bd44e3c5086939031c45fb6d72639877bfec1ed8223195ef0426b3da51a4f20000000000000000000000000F6CDA5B4432D66267941bA9eb1Bd3E285B3aE13e00000000000000000000000000000000000000000000000000000000000000c3000000000000000000000000000000000000000000000000000000000000000082d0704e0f838435aca87ed544bffcff596878275f22cbb7e6b26d782a72db3085562f2817068f71128a7278510de29763279cd71f6b08684e8fb420acc410ef6820d243daa5fbb2dfef1c3bc8a7e00e749cf8ff228f6d7ace881c9bf78bac9026b3126bd44e3c5086939031c45fb6d72639877bfec1ed8223195ef0426b3da51a4f20"
+    >>> nonce = 1722488593775000001
+    >>> bsx_instance = BSXInstance.from_smart_contract(
+            env=Environment.TESTNET, contract_address=contract_address,
+            signature=signature, nonce=nonce, signer=signer
         )
+
+.. note::
+
+    Please read this `doc <https://api-docs.bsx.exchange/reference/sign-messages>`_ for how to generate the signature.
+    You can use `gen_register_typed_message_for_smart_contract <api-reference.html#bsx_py.typed_message.gen_register_typed_message_for_smart_contract>`_ function to get the typed message for signing.
 
 APIs
 ------------

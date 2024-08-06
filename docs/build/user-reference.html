@@ -108,21 +108,25 @@ authentication, and session management</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span> <span class="n">api_secret</span><span class="o">=</span><span class="s2">&quot;zzz&quot;</span><span class="p">,</span> <span class="n">signer</span><span class="o">=</span><span class="n">signer</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="o">.</span><span class="n">TESTNET</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you are using a multisig wallet, you can create a BSXInstance using this code below</p>
+<p>If you are using a smart contract, you can create a BSXInstance using this code below</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bsx_py</span> <span class="kn">import</span> <span class="n">BSXInstance</span><span class="p">,</span> <span class="n">Environment</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">owner_address</span> <span class="o">=</span> <span class="s2">&quot;0x2222222222222222222222222222222222222222&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">contract_private_key</span> <span class="o">=</span> <span class="s2">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">contract_address</span> <span class="o">=</span> <span class="s2">&quot;0x2222222222222222222222222222222222222222&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">signer_private_key</span> <span class="o">=</span> <span class="s2">&quot;0x1111111111111111111111111111111111111111111111111111111111111111&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">contract</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">contract_private_key</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">signer</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">signer_private_key</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_multi_sig_wallet</span><span class="p">(</span>
-<span class="go">        contract=contract,</span>
-<span class="go">        signer=signer,</span>
-<span class="go">        owner_address=owner_address,</span>
-<span class="go">        env=Environment.TESTNET</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signature</span> <span class="o">=</span> <span class="s2">&quot;0xd0704e0f838435aca87ed544bffcff596878275f22cbb7e6b26d782a72db3085562f2817068f71128a7278510de29763279cd71f6b08684e8fb420acc410ef6820d243daa5fbb2dfef1c3bc8a7e00e749cf8ff228f6d7ace881c9bf78bac9026b3126bd44e3c5086939031c45fb6d72639877bfec1ed8223195ef0426b3da51a4f20000000000000000000000000F6CDA5B4432D66267941bA9eb1Bd3E285B3aE13e00000000000000000000000000000000000000000000000000000000000000c3000000000000000000000000000000000000000000000000000000000000000082d0704e0f838435aca87ed544bffcff596878275f22cbb7e6b26d782a72db3085562f2817068f71128a7278510de29763279cd71f6b08684e8fb420acc410ef6820d243daa5fbb2dfef1c3bc8a7e00e749cf8ff228f6d7ace881c9bf78bac9026b3126bd44e3c5086939031c45fb6d72639877bfec1ed8223195ef0426b3da51a4f20&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nonce</span> <span class="o">=</span> <span class="mi">1722488593775000001</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bsx_instance</span> <span class="o">=</span> <span class="n">BSXInstance</span><span class="o">.</span><span class="n">from_smart_contract</span><span class="p">(</span>
+<span class="go">        env=Environment.TESTNET, contract_address=contract_address,</span>
+<span class="go">        signature=signature, nonce=nonce, signer=signer</span>
 <span class="go">    )</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please read this <a class="reference external" href="https://api-docs.bsx.exchange/reference/sign-messages">doc</a> for how to generate the signature.
+You can use <a class="reference external" href="api-reference.html#bsx_py.typed_message.gen_register_typed_message_for_smart_contract">gen_register_typed_message_for_smart_contract</a> function to get the typed message for signing.</p>
 </div>
 </section>
 <section id="apis">

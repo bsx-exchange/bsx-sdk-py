@@ -1,6 +1,4 @@
-import json
 import time
-from typing import Optional
 
 from eip712_structs import EIP712Struct
 from eth_account import Account

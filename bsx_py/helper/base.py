@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABCMeta
+from abc import abstractmethod
 
 from eip712_structs import EIP712Struct
 
@@ -24,9 +24,9 @@ class AccountManager(AccountInfo):
         return ApiKeyBaseManager(api_key, api_secret, signer_secret, domain, domain_signature)
 
     @staticmethod
-    def from_multi_sig(owner_addr: str, wallet_secret: str, signer_secret: str, domain: str, domain_signature: EIP712Struct):
-        from .multi_sign_base_manager import MultiSigBaseManager
-        return MultiSigBaseManager(owner_addr, wallet_secret, signer_secret, domain, domain_signature)
+    def from_smart_contract(contract_address: str, signature: str, nonce: int, signer_secret: str, domain: str, domain_signature: EIP712Struct):
+        from .signature_base_manager import SignatureBaseManager
+        return SignatureBaseManager(contract_address, signature, nonce, signer_secret, domain, domain_signature)
 
     def get_api_key(self) -> BSXApiKey:
         return self._acc_storage.get_api_key()

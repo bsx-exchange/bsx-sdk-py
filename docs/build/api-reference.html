@@ -55,7 +55,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.instance.BSXInstance"><code class="docutils literal notranslate"><span class="pre">BSXInstance</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.from_api_key"><code class="docutils literal notranslate"><span class="pre">BSXInstance.from_api_key()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.from_multi_sig_wallet"><code class="docutils literal notranslate"><span class="pre">BSXInstance.from_multi_sig_wallet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.from_smart_contract"><code class="docutils literal notranslate"><span class="pre">BSXInstance.from_smart_contract()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.__init__"><code class="docutils literal notranslate"><span class="pre">BSXInstance.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_order"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_order()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_order_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_order_async()</span></code></a></li>
@@ -488,6 +488,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.exception.WalletPrivateNotProvidedException"><code class="docutils literal notranslate"><span class="pre">WalletPrivateNotProvidedException</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-bsx_py.typed_message">bsx_py.typed_message</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.typed_message.gen_register_typed_message_for_smart_contract"><code class="docutils literal notranslate"><span class="pre">gen_register_typed_message_for_smart_contract()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -566,8 +570,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.from_multi_sig_wallet">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_multi_sig_wallet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contract</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.from_multi_sig_wallet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.from_multi_sig_wallet" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.from_smart_contract">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_smart_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contract_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.from_smart_contract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.from_smart_contract" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize a new BSXInstance object using main wallet’s private key</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -576,8 +580,8 @@
 </dl>
 <dl>
 <dt>Attributes:</dt><dd><p>env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</p>
-<p>contract (LocalAccount): multi sig wallet</p>
-<p>owner_address (str): main wallet address</p>
+<p>contract_address (str): multi sig wallet address</p>
+<p>signature (str): signature to use. Please read <a class="reference external" href="https://api-docs.bsx.exchange/reference/sign-messages">https://api-docs.bsx.exchange/reference/sign-messages</a> for how to generate the signature</p>
 <p>signer (LocalAccount): signer wallet used to sign requests</p>
 </dd>
 <dt>Raises:</dt><dd><p>BSXRequestException: If the response status is not “success”.</p>
@@ -2944,6 +2948,31 @@ If any part of the order results in taking liquidity, the order will be rejected
 <dt class="sig sig-object py" id="bsx_py.common.exception.WalletPrivateNotProvidedException">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.exception.</span></span><span class="sig-name descname"><span class="pre">WalletPrivateNotProvidedException</span></span><a class="reference internal" href="_modules/bsx_py/common/exception.html#WalletPrivateNotProvidedException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.exception.WalletPrivateNotProvidedException" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-bsx_py.typed_message">
+<span id="bsx-py-typed-message"></span><h2>bsx_py.typed_message<a class="headerlink" href="#module-bsx_py.typed_message" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bsx_py.typed_message.gen_register_typed_message_for_smart_contract">
+<span class="sig-prename descclassname"><span class="pre">bsx_py.typed_message.</span></span><span class="sig-name descname"><span class="pre">gen_register_typed_message_for_smart_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/typed_message.html#gen_register_typed_message_for_smart_contract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.typed_message.gen_register_typed_message_for_smart_contract" title="Permalink to this definition"></a></dt>
+<dd><p>Helper function to generate the typed message that used to generate the signature for register a smart contract.</p>
+<p>Note that this function should only be used to get the data of the typed message.
+The way to construct the message depends on the language that is used to generate the signature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+<dl>
+<dt>Attributes:</dt><dd><p>env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</p>
+<p>signer (LocalAccount): signer wallet used to sign requests</p>
+<p>nonce (int): nonce that will be used to call the register API. We recommend using current timestamp in nanoseconds.
+Nonce should be unique across all requests of a user</p>
+</dd>
+<dt>Return:</dt><dd><p>dict: typed message in dict format.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

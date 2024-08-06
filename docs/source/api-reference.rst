@@ -37,3 +37,12 @@ bsx_py.common.exception
     :undoc-members:
     :special-members: __init__
     :show-inheritance:
+
+
+bsx_py.typed_message
+-----------------------
+.. automodule:: bsx_py.typed_message
+    :members:
+    :undoc-members:
+    :special-members:
+    :show-inheritance:

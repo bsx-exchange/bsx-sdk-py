@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from datetime import datetime
-from decimal import Decimal
 from typing import Optional
 
 
@@ -48,3 +47,11 @@ class RegisterParams:
     wallet_pkey: str
     signer_pkey: str
     message: str
+
+
+@dataclass
+class RegisterWithExistSignatureParams:
+    wallet_addr: str
+    signature: str
+    nonce: int
+    signer_pkey: str

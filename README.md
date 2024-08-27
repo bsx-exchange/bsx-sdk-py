@@ -68,7 +68,7 @@ params = CreateOrderParams(
     price=Decimal("100"),
     size=Decimal("1"),
     time_in_force="GTC",
-    nonce=int(time.time())
+    nonce=int(time.time_ns()),
 )
 order = bsx_instance.create_order(params)
 print(order)

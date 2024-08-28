@@ -40,6 +40,7 @@ class MarketClient(AuthRequiredClient):
             "post_only": params.post_only,
             "reduce_only": params.reduce_only,
             "time_in_force": params.time_in_force,
+            "expired_at": params.expired_at,
             "nonce": params.nonce,
             "signature": signature,
             "client_order_id": params.client_order_id
@@ -119,6 +120,7 @@ class MarketClient(AuthRequiredClient):
                     "post_only": p.post_only,
                     "reduce_only": p.reduce_only,
                     "time_in_force": p.time_in_force,
+                    "expired_at": p.expired_at,
                     "nonce": p.nonce,
                     "signature": signature,
                     "client_order_id": p.client_order_id
@@ -193,6 +195,7 @@ class MarketClient(AuthRequiredClient):
             "post_only": params.post_only,
             "reduce_only": params.reduce_only,
             "time_in_force": params.time_in_force,
+            "expired_at": params.expired_at,
             "nonce": params.nonce,
             "signature": signature,
             "client_order_id": params.client_order_id
@@ -272,6 +275,7 @@ class MarketClient(AuthRequiredClient):
                     "post_only": p.post_only,
                     "reduce_only": p.reduce_only,
                     "time_in_force": p.time_in_force,
+                    "expired_at": p.expired_at,
                     "nonce": p.nonce,
                     "signature": signature,
                     "client_order_id": p.client_order_id

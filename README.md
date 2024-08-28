@@ -6,7 +6,7 @@ See [SDK docs](https://bsx-engineering.github.io) to get started.
 
 ## Requirements
 
-- Python 3.9 or above
+- Python 3.10 or above
 
 ## Installation
 

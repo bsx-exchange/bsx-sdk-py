@@ -99,9 +99,11 @@ class CreateOrderParams(metaclass=DataClassMeta):
 
         size (Decimal): The amount to buy or sell
 
-        time_in_force (str): GTC | IOC | FOK. default is GTC
+        time_in_force (str): GTC | IOC | FOK | GTT. default is GTC
 
         nonce (int): timestamp in nanosecond that is larger than (request received time  - 10 minutes)
+
+        expired_at (int): The order expiry time in nanosecond for time in force GTT; optional; default is 0
 
         post_only (bool): optional; default is false
 
@@ -116,6 +118,7 @@ class CreateOrderParams(metaclass=DataClassMeta):
     size: Decimal
     time_in_force: str
     nonce: int
+    expired_at: int = 0
     post_only: bool = False
     reduce_only: bool = False
     client_order_id: Optional[str] = None

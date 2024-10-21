@@ -23,7 +23,8 @@ def gen_register_typed_message_for_smart_contract(env: Environment | str, signer
         dict: typed message in dict format.
     """
     domain = env.value if isinstance(env, Environment) else env
-    config = get_chain_config(domain)
+    chain_config = get_chain_config(domain)
+    eip712_domain_config = chain_config["main"]
     return {
         "types": {
             "EIP712Domain": [
@@ -61,10 +62,10 @@ def gen_register_typed_message_for_smart_contract(env: Environment | str, signer
         },
         "primaryType": 'Register',
         "domain": {
-            "name": config["name"],
-            "version": config["version"],
-            "chainId": config["chain_id"],
-            "verifyingContract": config["verifying_contract"]
+            "name": eip712_domain_config["name"],
+            "version": eip712_domain_config["version"],
+            "chainId": eip712_domain_config["chain_id"],
+            "verifyingContract": eip712_domain_config["verifying_contract"]
         },
         "message": {
             "key": signer.address,

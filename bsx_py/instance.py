@@ -61,7 +61,7 @@ class BSXInstance:
         instance = BSXInstance.__new__(BSXInstance)
         domain = env.value if isinstance(env, Environment) else env
         config = get_chain_config(domain)
-        eip712_domain = instance._build_eip712_domain(config)
+        eip712_domain = instance._build_eip712_domain(config["main"])
 
         instance._acc_manager = AccountManager.from_api_key(api_key, api_secret, signer.key, domain, eip712_domain)
         instance._account_client = AccountClient(
@@ -93,7 +93,7 @@ class BSXInstance:
         instance = BSXInstance.__new__(BSXInstance)
         domain = env.value if isinstance(env, Environment) else env
         config = get_chain_config(domain)
-        eip712_domain = instance._build_eip712_domain(config)
+        eip712_domain = instance._build_eip712_domain(config["main"])
 
         instance._acc_manager = AccountManager.from_smart_contract(
             contract_address=contract_address, signature=signature, nonce=nonce, signer_secret=signer.key, domain=domain,
@@ -124,7 +124,7 @@ class BSXInstance:
         """
         domain = env.value if isinstance(env, Environment) else env
         config = get_chain_config(domain)
-        eip712_domain = self._build_eip712_domain(config)
+        eip712_domain = self._build_eip712_domain(config["main"])
 
         self._acc_manager = AccountManager.from_secret(wallet.key, signer.key, domain, eip712_domain)
         self._account_client = AccountClient(

@@ -204,7 +204,7 @@ class MarketClient(AuthRequiredClient):
         resp = await self.post_async(endpoint="/orders", body=payload)
         return Order.from_dict(resp)
 
-    async def cancel_order_async(self, order_id: Optional[str] = None, nonce: Optional[int] = None) -> CancelOrderResult:
+    async def cancel_order_async(self, order_id: Optional[str] = None, nonce: Optional[int] = 0) -> CancelOrderResult:
         resp = await self.delete_async(endpoint="/order", params={"order_id": order_id, "nonce": nonce})
         return CancelOrderResult.from_dict(resp)
 

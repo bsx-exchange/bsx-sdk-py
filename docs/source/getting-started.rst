@@ -6,7 +6,7 @@ Getting started
 Introduction
 ------------
 
-This SDK provide methods to perform basic trading operations on BSX Exchange
+This SDK provides methods to perform basic trading operations on BSX Exchange
 
 Basic usage
 -----------

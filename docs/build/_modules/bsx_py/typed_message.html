@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bsx_py.typed_message &mdash; BSX Exchange SDK 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="../../_static/bsx.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BSX Exchange SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-reference.html">User reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api-reference.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BSX Exchange SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bsx_py.typed_message</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bsx_py.typed_message</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">eth_account.signers.local</span> <span class="kn">import</span> <span class="n">LocalAccount</span>
+
+<span class="kn">from</span> <span class="nn">.helper.chain_info</span> <span class="kn">import</span> <span class="n">get_chain_config</span>
+<span class="kn">from</span> <span class="nn">.instance</span> <span class="kn">import</span> <span class="n">Environment</span>
+
+
+<div class="viewcode-block" id="gen_register_typed_message_for_smart_contract">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.typed_message.gen_register_typed_message_for_smart_contract">[docs]</a>
+<span class="k">def</span> <span class="nf">gen_register_typed_message_for_smart_contract</span><span class="p">(</span><span class="n">env</span><span class="p">:</span> <span class="n">Environment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">signer</span><span class="p">:</span> <span class="n">LocalAccount</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function to generate the typed message that used to generate the signature for register a smart contract.</span>
+
+<span class="sd">    Note that this function should only be used to get the data of the typed message.</span>
+<span class="sd">    The way to construct the message depends on the language that is used to generate the signature.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        env (Environment|str): environment to use (Testnet or mainnet) or the domain in plain text</span>
+
+<span class="sd">        signer (LocalAccount): signer wallet used to sign requests</span>
+
+<span class="sd">        nonce (int): nonce that will be used to call the register API. We recommend using current timestamp in nanoseconds.</span>
+<span class="sd">        Nonce should be unique across all requests of a user</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        dict: typed message in dict format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">Environment</span><span class="p">)</span> <span class="k">else</span> <span class="n">env</span>
+    <span class="n">chain_config</span> <span class="o">=</span> <span class="n">get_chain_config</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+    <span class="n">eip712_domain_config</span> <span class="o">=</span> <span class="n">chain_config</span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;types&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;EIP712Domain&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;version&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;chainId&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;uint256&#39;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;verifyingContract&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;address&#39;</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;Register&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;address&#39;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s1">&#39;nonce&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s1">&#39;uint64&#39;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;primaryType&quot;</span><span class="p">:</span> <span class="s1">&#39;Register&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;domain&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">eip712_domain_config</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">eip712_domain_config</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;chainId&quot;</span><span class="p">:</span> <span class="n">eip712_domain_config</span><span class="p">[</span><span class="s2">&quot;chain_id&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;verifyingContract&quot;</span><span class="p">:</span> <span class="n">eip712_domain_config</span><span class="p">[</span><span class="s2">&quot;verifying_contract&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="n">signer</span><span class="o">.</span><span class="n">address</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s1">&#39;Please sign in with your wallet to access bsx.exchange. You are signing in on </span><span class="si">%d</span><span class="s1">. &#39;</span>
+                       <span class="s1">&#39;This message is exclusively signed with bsx.exchange for security.&#39;</span> <span class="o">%</span> <span class="n">nonce</span><span class="p">,</span>
+            <span class="s2">&quot;nonce&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">nonce</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BSX Engineering Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -17,7 +17,7 @@ The latest version of the SDK can be found on `PyPI <https://pypi.org/project/bs
 Requirements
 ------------
 
-- Python 3.9 or above
+- Python 3.10 or above
 
 Installation
 ------------

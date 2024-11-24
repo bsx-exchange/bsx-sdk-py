@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting started &mdash; BSX Exchange SDK 0.0.1 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/bsx.png"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+    <link rel="shortcut icon" href="_static/bsx.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -82,13 +82,13 @@
            <div itemprop="articleBody">
              
   <section id="getting-started">
-<span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
-<p>This SDK provide methods to perform basic trading operations on BSX Exchange</p>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This SDK provides methods to perform basic trading operations on BSX Exchange</p>
 </section>
 <section id="basic-usage">
-<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading"></a></h2>
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Remember to always keep your signer’s private key securely stored and never expose it to the public.</p>
@@ -135,7 +135,7 @@ You can use <a class="reference external" href="api-reference.html#bsx_py.typed_
 </div>
 </section>
 <section id="create-an-order">
-<h2>Create an order<a class="headerlink" href="#create-an-order" title="Permalink to this heading"></a></h2>
+<h2>Create an order<a class="headerlink" href="#create-an-order" title="Link to this heading"></a></h2>
 <p>Create an order using <a class="reference external" href="https://api-docs.bsx.exchange/reference/orderservice_postorder">Create order API</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
@@ -158,7 +158,7 @@ You can use <a class="reference external" href="api-reference.html#bsx_py.typed_
 </div>
 </section>
 <section id="cancel-an-order">
-<h2>Cancel an order<a class="headerlink" href="#cancel-an-order" title="Permalink to this heading"></a></h2>
+<h2>Cancel an order<a class="headerlink" href="#cancel-an-order" title="Link to this heading"></a></h2>
 <p>Cancel an order using <a class="reference external" href="https://api-docs.bsx.exchange/reference/cancelorder-1">Cancel an order API</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">order_id</span> <span class="o">=</span> <span class="s2">&quot;xxx&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">order_id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
@@ -167,7 +167,7 @@ You can use <a class="reference external" href="api-reference.html#bsx_py.typed_
 </div>
 </section>
 <section id="get-open-orders">
-<h2>Get open orders<a class="headerlink" href="#get-open-orders" title="Permalink to this heading"></a></h2>
+<h2>Get open orders<a class="headerlink" href="#get-open-orders" title="Link to this heading"></a></h2>
 <p>Get your open orders using <a class="reference external" href="https://api-docs.bsx.exchange/reference/getorders">List all open orders API</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">open_orders</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_all_open_orders</span><span class="p">(</span><span class="s1">&#39;BTC-PERP&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;open orders: &quot;</span><span class="p">,</span> <span class="n">open_orders</span><span class="p">)</span>

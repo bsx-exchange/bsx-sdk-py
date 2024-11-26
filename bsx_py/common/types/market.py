@@ -46,6 +46,22 @@ class OrderType(Enum):
         return None
 
 
+class StopPriceOption(Enum):
+    LAST_TRADED_PRICE = "LAST_TRADED_PRICE"
+    MARK_PRICE = "MARK_PRICE"
+
+    @staticmethod
+    def from_str(value: str) -> "StopPriceOption":
+        if value is None:
+            return None
+        value = value.upper()
+        if value == "LAST_TRADED_PRICE":
+            return StopPriceOption.LAST_TRADED_PRICE
+        elif value == "MARK_PRICE":
+            return StopPriceOption.MARK_PRICE
+        return None
+
+
 class OrderStatus(Enum):
     PENDING = "PENDING"
     OPEN = "OPEN"

@@ -3,6 +3,7 @@ import json
 from eip712_structs import EIP712Struct
 from eth_account import Account
 from web3 import Web3
+from decimal import Decimal
 
 from bsx_py.client.rest.account.types import Withdraw
 from bsx_py.client.rest.base import AuthRequiredClient
@@ -155,6 +156,20 @@ class AccountClient(AuthRequiredClient):
 
     async def update_leverage_async(self, product_id: str, leverage: float) -> bool:
         resp = await self.post_async("/leverage", body={"product_id": product_id, "leverage": leverage})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))
+
+    def modify_isolated_position_margin(self, product_id: str, amount: Decimal) -> bool:
+        resp = self.post("/isolated-margin", body={"product_id": product_id, "amount": str(amount)})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))
+
+    async def modify_isolated_position_margin_async(self, product_id: str, amount: Decimal) -> bool:
+        resp = await self.post_async("/isolated-margin", body={"product_id": product_id, "amount": str(amount)})
         if "success" in resp:
             return resp["success"]
         else:

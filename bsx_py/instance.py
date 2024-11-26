@@ -2,6 +2,7 @@ import functools
 
 from eip712_structs import make_domain
 from eth_account.signers.local import LocalAccount
+from decimal import Decimal
 
 from bsx_py.client.rest.account.client import AccountClient
 from bsx_py.client.rest.market.client import MarketClient
@@ -701,6 +702,40 @@ class BSXInstance:
             BSXRequestException: Raised if the operation fails and the response status is not "success".
         """
         return await self._account_client.update_leverage_async(product_id=product_id, leverage=leverage)
+
+    @_refresh_api_key_if_needed
+    def modify_isolated_position_margin(self, product_id: str, amount: Decimal) -> bool:
+        """
+        Modifies the margin of a specific isolated position.
+
+        Args:
+            product_id (str): The identifier of the product to update.
+            amount (Decimal): The amount to adjust the margin, positive to increase, negative to decrease.
+
+        Returns:
+            bool: True if the margin was modified successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: Raised if the operation fails and the response status is not "success".
+        """
+        return self._account_client.modify_isolated_position_margin(product_id=product_id, amount=amount)
+
+    @_refresh_api_key_if_needed
+    async def modify_isolated_position_margin_async(self, product_id: str, amount: Decimal) -> bool:
+        """
+        Modifies the margin of a specific isolated position.
+
+        Args:
+            product_id (str): The identifier of the product to update.
+            amount (Decimal): The amount to adjust the margin, positive to increase, negative to decrease.
+
+        Returns:
+            bool: True if the margin was modified successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: Raised if the operation fails and the response status is not "success".
+        """
+        return await self._account_client.modify_isolated_position_margin_async(product_id=product_id, amount=amount)
 
     def _build_eip712_domain(self, config):
         return make_domain(

@@ -132,6 +132,28 @@
 
 
 
+<div class="viewcode-block" id="StopPriceOption">
+<a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.StopPriceOption">[docs]</a>
+<span class="k">class</span> <span class="nc">StopPriceOption</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">LAST_TRADED_PRICE</span> <span class="o">=</span> <span class="s2">&quot;LAST_TRADED_PRICE&quot;</span>
+    <span class="n">MARK_PRICE</span> <span class="o">=</span> <span class="s2">&quot;MARK_PRICE&quot;</span>
+
+<div class="viewcode-block" id="StopPriceOption.from_str">
+<a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.StopPriceOption.from_str">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_str</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;StopPriceOption&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;LAST_TRADED_PRICE&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">StopPriceOption</span><span class="o">.</span><span class="n">LAST_TRADED_PRICE</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;MARK_PRICE&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">StopPriceOption</span><span class="o">.</span><span class="n">MARK_PRICE</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+</div>
+
+
+
 <div class="viewcode-block" id="OrderStatus">
 <a class="viewcode-back" href="../../../../api-reference.html#bsx_py.common.types.market.OrderStatus">[docs]</a>
 <span class="k">class</span> <span class="nc">OrderStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>

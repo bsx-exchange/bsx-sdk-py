@@ -76,12 +76,13 @@
 
 <span class="kn">from</span> <span class="nn">eip712_structs</span> <span class="kn">import</span> <span class="n">make_domain</span>
 <span class="kn">from</span> <span class="nn">eth_account.signers.local</span> <span class="kn">import</span> <span class="n">LocalAccount</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
 
 <span class="kn">from</span> <span class="nn">bsx_py.client.rest.account.client</span> <span class="kn">import</span> <span class="n">AccountClient</span>
 <span class="kn">from</span> <span class="nn">bsx_py.client.rest.market.client</span> <span class="kn">import</span> <span class="n">MarketClient</span>
 <span class="kn">from</span> <span class="nn">bsx_py.common.exception</span> <span class="kn">import</span> <span class="n">UnauthenticatedException</span><span class="p">,</span> <span class="n">NotSupportOperationException</span><span class="p">,</span> \
     <span class="n">WalletPrivateNotProvidedException</span>
-<span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="n">WithdrawParams</span><span class="p">,</span> <span class="n">Portfolio</span><span class="p">,</span> <span class="n">GetAPIKeysResponse</span><span class="p">,</span> <span class="n">APIKey</span>
+<span class="kn">from</span> <span class="nn">bsx_py.common.types.account</span> <span class="kn">import</span> <span class="n">CollateralMode</span><span class="p">,</span> <span class="n">MarginMode</span><span class="p">,</span> <span class="n">WithdrawParams</span><span class="p">,</span> <span class="n">Portfolio</span><span class="p">,</span> <span class="n">GetAPIKeysResponse</span><span class="p">,</span> <span class="n">APIKey</span>
 <span class="kn">from</span> <span class="nn">bsx_py.common.types.market</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">bsx_py.helper</span> <span class="kn">import</span> <span class="n">AccountManager</span>
 <span class="kn">from</span> <span class="nn">bsx_py.helper.chain_info</span> <span class="kn">import</span> <span class="n">get_chain_config</span>
@@ -779,6 +780,163 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">create_user_api_key_async</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="BSXInstance.update_collateral_mode">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.update_collateral_mode">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">update_collateral_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collateral_mode</span><span class="p">:</span> <span class="n">CollateralMode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the portfolio collateral mode.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            collateral_mode (CollateralMode): The new collateral mode to apply to the portfolio.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the collateral mode was updated successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">update_collateral_mode</span><span class="p">(</span><span class="n">collateral_mode</span><span class="o">=</span><span class="n">collateral_mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.update_collateral_mode_async">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.update_collateral_mode_async">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_collateral_mode_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collateral_mode</span><span class="p">:</span> <span class="n">CollateralMode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the portfolio collateral mode.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            collateral_mode (CollateralMode): The new collateral mode to apply to the portfolio.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the collateral mode was updated successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: If the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">update_collateral_mode_async</span><span class="p">(</span><span class="n">collateral_mode</span><span class="o">=</span><span class="n">collateral_mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.update_margin_mode">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.update_margin_mode">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">update_margin_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">margin_mode</span><span class="p">:</span> <span class="n">MarginMode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the margin mode for a specific product.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product_id (str): The identifier of the product to update.</span>
+<span class="sd">            margin_mode (MarginMode): The new margin mode to set for the product.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the margin mode was updated successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: Raised if the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">update_margin_mode</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">product_id</span><span class="p">,</span> <span class="n">margin_mode</span><span class="o">=</span><span class="n">margin_mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.update_margin_mode_async">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.update_margin_mode_async">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_margin_mode_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">margin_mode</span><span class="p">:</span> <span class="n">MarginMode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the margin mode for a specific product.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product_id (str): The identifier of the product to update.</span>
+<span class="sd">            margin_mode (MarginMode): The new margin mode to set for the product.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the margin mode was updated successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: Raised if the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">update_margin_mode_async</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">product_id</span><span class="p">,</span> <span class="n">margin_mode</span><span class="o">=</span><span class="n">margin_mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.update_leverage">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.update_leverage">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">update_leverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">leverage</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the leverage for a specific product.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product_id (str): The identifier of the product to update.</span>
+<span class="sd">            leverage (float): The new leverage to set for the product.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the leverage was updated successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: Raised if the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">update_leverage</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">product_id</span><span class="p">,</span> <span class="n">leverage</span><span class="o">=</span><span class="n">leverage</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.update_leverage_async">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.update_leverage_async">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_leverage_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">leverage</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the leverage for a specific product.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product_id (str): The identifier of the product to update.</span>
+<span class="sd">            leverage (float): The new leverage to set for the product.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the leverage was updated successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: Raised if the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">update_leverage_async</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">product_id</span><span class="p">,</span> <span class="n">leverage</span><span class="o">=</span><span class="n">leverage</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.modify_isolated_position_margin">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.modify_isolated_position_margin">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">def</span> <span class="nf">modify_isolated_position_margin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modifies the margin of a specific isolated position.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product_id (str): The identifier of the product to update.</span>
+<span class="sd">            amount (Decimal): The amount to adjust the margin, positive to increase, negative to decrease.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the margin was modified successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: Raised if the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">modify_isolated_position_margin</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">product_id</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BSXInstance.modify_isolated_position_margin_async">
+<a class="viewcode-back" href="../../api-reference.html#bsx_py.instance.BSXInstance.modify_isolated_position_margin_async">[docs]</a>
+    <span class="nd">@_refresh_api_key_if_needed</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">modify_isolated_position_margin_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modifies the margin of a specific isolated position.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product_id (str): The identifier of the product to update.</span>
+<span class="sd">            amount (Decimal): The amount to adjust the margin, positive to increase, negative to decrease.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the margin was modified successfully, False otherwise.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            BSXRequestException: Raised if the operation fails and the response status is not &quot;success&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_account_client</span><span class="o">.</span><span class="n">modify_isolated_position_margin_async</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">product_id</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="nf">_build_eip712_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>

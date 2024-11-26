@@ -87,19 +87,64 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.delete_user_api_key_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.delete_user_api_key_async()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_user_api_key"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_user_api_key()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.create_user_api_key_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.create_user_api_key_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.update_collateral_mode"><code class="docutils literal notranslate"><span class="pre">BSXInstance.update_collateral_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.update_collateral_mode_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.update_collateral_mode_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.update_margin_mode"><code class="docutils literal notranslate"><span class="pre">BSXInstance.update_margin_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.update_margin_mode_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.update_margin_mode_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.update_leverage"><code class="docutils literal notranslate"><span class="pre">BSXInstance.update_leverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.update_leverage_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.update_leverage_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.modify_isolated_position_margin"><code class="docutils literal notranslate"><span class="pre">BSXInstance.modify_isolated_position_margin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.instance.BSXInstance.modify_isolated_position_margin_async"><code class="docutils literal notranslate"><span class="pre">BSXInstance.modify_isolated_position_margin_async()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-bsx_py.common.types.account">bsx_py.common.types.account</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.CollateralMode"><code class="docutils literal notranslate"><span class="pre">CollateralMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.CollateralMode.MULTI_COLLATERAL"><code class="docutils literal notranslate"><span class="pre">CollateralMode.MULTI_COLLATERAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.CollateralMode.USDC_COLLATERAL"><code class="docutils literal notranslate"><span class="pre">CollateralMode.USDC_COLLATERAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.CollateralMode.from_str"><code class="docutils literal notranslate"><span class="pre">CollateralMode.from_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.MarginMode"><code class="docutils literal notranslate"><span class="pre">MarginMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.MarginMode.CROSS"><code class="docutils literal notranslate"><span class="pre">MarginMode.CROSS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.MarginMode.ISOLATED"><code class="docutils literal notranslate"><span class="pre">MarginMode.ISOLATED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.MarginMode.from_str"><code class="docutils literal notranslate"><span class="pre">MarginMode.from_str()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams"><code class="docutils literal notranslate"><span class="pre">WithdrawParams</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams.amount"><code class="docutils literal notranslate"><span class="pre">WithdrawParams.amount</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams.nonce"><code class="docutils literal notranslate"><span class="pre">WithdrawParams.nonce</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.WithdrawParams.__init__"><code class="docutils literal notranslate"><span class="pre">WithdrawParams.__init__()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance"><code class="docutils literal notranslate"><span class="pre">TokenBalance</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance.address"><code class="docutils literal notranslate"><span class="pre">TokenBalance.address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance.balance"><code class="docutils literal notranslate"><span class="pre">TokenBalance.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance.from_dict"><code class="docutils literal notranslate"><span class="pre">TokenBalance.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance.__init__"><code class="docutils literal notranslate"><span class="pre">TokenBalance.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel"><code class="docutils literal notranslate"><span class="pre">StopPriceLevel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel.price"><code class="docutils literal notranslate"><span class="pre">StopPriceLevel.price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel.size"><code class="docutils literal notranslate"><span class="pre">StopPriceLevel.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel.stop_price_option"><code class="docutils literal notranslate"><span class="pre">StopPriceLevel.stop_price_option</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel.from_dict"><code class="docutils literal notranslate"><span class="pre">StopPriceLevel.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel.__init__"><code class="docutils literal notranslate"><span class="pre">StopPriceLevel.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.StopPosition"><code class="docutils literal notranslate"><span class="pre">StopPosition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPosition.nearest_take_profit"><code class="docutils literal notranslate"><span class="pre">StopPosition.nearest_take_profit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPosition.nearest_stop_loss"><code class="docutils literal notranslate"><span class="pre">StopPosition.nearest_stop_loss</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPosition.from_dict"><code class="docutils literal notranslate"><span class="pre">StopPosition.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.StopPosition.__init__"><code class="docutils literal notranslate"><span class="pre">StopPosition.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.margin_use"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.margin_use</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.collateral_mode"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.collateral_mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.collateral_margin_balance"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.collateral_margin_balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.cross_margin_balance"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.cross_margin_balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.margin_usage"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.margin_usage</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.account_leverage"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.account_leverage</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.in_liquidation"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.in_liquidation</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.free_collateral"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.free_collateral</span></code></a></li>
@@ -110,7 +155,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.realized_pnl"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.realized_pnl</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.total_initial_margin"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.total_initial_margin</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.total_maintenance_margin"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.total_maintenance_margin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.token_balances"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.token_balances</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.has_pending_withdrawal"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.has_pending_withdrawal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.total_unrealized_pnl"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.total_unrealized_pnl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.total_collateral_value"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.total_collateral_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.margin_health"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.margin_health</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.has_pending_swap"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.has_pending_swap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.total_isolated_order_reserve"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.total_isolated_order_reserve</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.from_dict"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioSummary.__init__"><code class="docutils literal notranslate"><span class="pre">PortfolioSummary.__init__()</span></code></a></li>
 </ul>
@@ -118,6 +169,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.Position"><code class="docutils literal notranslate"><span class="pre">Position</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.product_index"><code class="docutils literal notranslate"><span class="pre">Position.product_index</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.product_id"><code class="docutils literal notranslate"><span class="pre">Position.product_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.margin_mode"><code class="docutils literal notranslate"><span class="pre">Position.margin_mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.margin_balance"><code class="docutils literal notranslate"><span class="pre">Position.margin_balance</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.net_size"><code class="docutils literal notranslate"><span class="pre">Position.net_size</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.avg_entry_price"><code class="docutils literal notranslate"><span class="pre">Position.avg_entry_price</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.initial_margin_requirement"><code class="docutils literal notranslate"><span class="pre">Position.initial_margin_requirement</span></code></a></li>
@@ -129,6 +182,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.unsettled_funding"><code class="docutils literal notranslate"><span class="pre">Position.unsettled_funding</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.funding_index"><code class="docutils literal notranslate"><span class="pre">Position.funding_index</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.quote_balance"><code class="docutils literal notranslate"><span class="pre">Position.quote_balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.stop_position"><code class="docutils literal notranslate"><span class="pre">Position.stop_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.index_price"><code class="docutils literal notranslate"><span class="pre">Position.index_price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.isolated_usdc_balance"><code class="docutils literal notranslate"><span class="pre">Position.isolated_usdc_balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.in_isolated_liquidation"><code class="docutils literal notranslate"><span class="pre">Position.in_isolated_liquidation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.free_isolated_usdc_balance"><code class="docutils literal notranslate"><span class="pre">Position.free_isolated_usdc_balance</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.from_dict"><code class="docutils literal notranslate"><span class="pre">Position.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Position.__init__"><code class="docutils literal notranslate"><span class="pre">Position.__init__()</span></code></a></li>
 </ul>
@@ -164,10 +222,19 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TradingStats.__init__"><code class="docutils literal notranslate"><span class="pre">TradingStats.__init__()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat"><code class="docutils literal notranslate"><span class="pre">TokenStat</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat.address"><code class="docutils literal notranslate"><span class="pre">TokenStat.address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat.total_deposit"><code class="docutils literal notranslate"><span class="pre">TokenStat.total_deposit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat.total_withdraw"><code class="docutils literal notranslate"><span class="pre">TokenStat.total_withdraw</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat.from_dict"><code class="docutils literal notranslate"><span class="pre">TokenStat.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat.__init__"><code class="docutils literal notranslate"><span class="pre">TokenStat.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats"><code class="docutils literal notranslate"><span class="pre">PortfolioStats</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.order_stats"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.order_stats</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.products"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.products</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.trading_stats"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.trading_stats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.tokens"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.tokens</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.total_deposit"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.total_deposit</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.total_withdraw"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.total_withdraw</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats.from_dict"><code class="docutils literal notranslate"><span class="pre">PortfolioStats.from_dict()</span></code></a></li>
@@ -179,6 +246,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.summary"><code class="docutils literal notranslate"><span class="pre">Portfolio.summary</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.positions"><code class="docutils literal notranslate"><span class="pre">Portfolio.positions</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.stats"><code class="docutils literal notranslate"><span class="pre">Portfolio.stats</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.maker_fee"><code class="docutils literal notranslate"><span class="pre">Portfolio.maker_fee</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.taker_fee"><code class="docutils literal notranslate"><span class="pre">Portfolio.taker_fee</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.from_dict"><code class="docutils literal notranslate"><span class="pre">Portfolio.from_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.account.Portfolio.__init__"><code class="docutils literal notranslate"><span class="pre">Portfolio.__init__()</span></code></a></li>
 </ul>
@@ -215,6 +284,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderType.MARKET"><code class="docutils literal notranslate"><span class="pre">OrderType.MARKET</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderType.STOP"><code class="docutils literal notranslate"><span class="pre">OrderType.STOP</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.OrderType.from_str"><code class="docutils literal notranslate"><span class="pre">OrderType.from_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.StopPriceOption"><code class="docutils literal notranslate"><span class="pre">StopPriceOption</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.StopPriceOption.LAST_TRADED_PRICE"><code class="docutils literal notranslate"><span class="pre">StopPriceOption.LAST_TRADED_PRICE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.StopPriceOption.MARK_PRICE"><code class="docutils literal notranslate"><span class="pre">StopPriceOption.MARK_PRICE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bsx_py.common.types.market.StopPriceOption.from_str"><code class="docutils literal notranslate"><span class="pre">StopPriceOption.from_str()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bsx_py.common.types.market.OrderStatus"><code class="docutils literal notranslate"><span class="pre">OrderStatus</span></code></a><ul>
@@ -1163,11 +1238,223 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.update_collateral_mode">
+<span class="sig-name descname"><span class="pre">update_collateral_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collateral_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.update_collateral_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.update_collateral_mode" title="Link to this definition"></a></dt>
+<dd><p>Updates the portfolio collateral mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>collateral_mode (CollateralMode): The new collateral mode to apply to the portfolio.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the collateral mode was updated successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.update_collateral_mode_async">
+<span class="sig-name descname"><span class="pre">update_collateral_mode_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collateral_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.update_collateral_mode_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.update_collateral_mode_async" title="Link to this definition"></a></dt>
+<dd><p>Updates the portfolio collateral mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>collateral_mode (CollateralMode): The new collateral mode to apply to the portfolio.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the collateral mode was updated successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: If the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.update_margin_mode">
+<span class="sig-name descname"><span class="pre">update_margin_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.update_margin_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.update_margin_mode" title="Link to this definition"></a></dt>
+<dd><p>Updates the margin mode for a specific product.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (str): The identifier of the product to update.
+margin_mode (MarginMode): The new margin mode to set for the product.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the margin mode was updated successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: Raised if the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.update_margin_mode_async">
+<span class="sig-name descname"><span class="pre">update_margin_mode_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.update_margin_mode_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.update_margin_mode_async" title="Link to this definition"></a></dt>
+<dd><p>Updates the margin mode for a specific product.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (str): The identifier of the product to update.
+margin_mode (MarginMode): The new margin mode to set for the product.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the margin mode was updated successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: Raised if the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.update_leverage">
+<span class="sig-name descname"><span class="pre">update_leverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leverage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.update_leverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.update_leverage" title="Link to this definition"></a></dt>
+<dd><p>Updates the leverage for a specific product.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (str): The identifier of the product to update.
+leverage (float): The new leverage to set for the product.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the leverage was updated successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: Raised if the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.update_leverage_async">
+<span class="sig-name descname"><span class="pre">update_leverage_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leverage</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.update_leverage_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.update_leverage_async" title="Link to this definition"></a></dt>
+<dd><p>Updates the leverage for a specific product.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (str): The identifier of the product to update.
+leverage (float): The new leverage to set for the product.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the leverage was updated successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: Raised if the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.modify_isolated_position_margin">
+<span class="sig-name descname"><span class="pre">modify_isolated_position_margin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.modify_isolated_position_margin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.modify_isolated_position_margin" title="Link to this definition"></a></dt>
+<dd><p>Modifies the margin of a specific isolated position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (str): The identifier of the product to update.
+amount (Decimal): The amount to adjust the margin, positive to increase, negative to decrease.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the margin was modified successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: Raised if the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.instance.BSXInstance.modify_isolated_position_margin_async">
+<span class="sig-name descname"><span class="pre">modify_isolated_position_margin_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/instance.html#BSXInstance.modify_isolated_position_margin_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.instance.BSXInstance.modify_isolated_position_margin_async" title="Link to this definition"></a></dt>
+<dd><p>Modifies the margin of a specific isolated position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (str): The identifier of the product to update.
+amount (Decimal): The amount to adjust the margin, positive to increase, negative to decrease.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the margin was modified successfully, False otherwise.</p>
+</dd>
+<dt>Raises:</dt><dd><p>BSXRequestException: Raised if the operation fails and the response status is not “success”.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
 <section id="module-bsx_py.common.types.account">
 <span id="bsx-py-common-types-account"></span><h2>bsx_py.common.types.account<a class="headerlink" href="#module-bsx_py.common.types.account" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.CollateralMode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">CollateralMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#CollateralMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.CollateralMode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.CollateralMode.MULTI_COLLATERAL">
+<span class="sig-name descname"><span class="pre">MULTI_COLLATERAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MULTI_COLLATERAL'</span></em><a class="headerlink" href="#bsx_py.common.types.account.CollateralMode.MULTI_COLLATERAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.CollateralMode.USDC_COLLATERAL">
+<span class="sig-name descname"><span class="pre">USDC_COLLATERAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'USDC_COLLATERAL'</span></em><a class="headerlink" href="#bsx_py.common.types.account.CollateralMode.USDC_COLLATERAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.CollateralMode.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#CollateralMode.from_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.CollateralMode.from_str" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.account.CollateralMode" title="bsx_py.common.types.account.CollateralMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollateralMode</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.MarginMode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">MarginMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#MarginMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.MarginMode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.MarginMode.CROSS">
+<span class="sig-name descname"><span class="pre">CROSS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CROSS'</span></em><a class="headerlink" href="#bsx_py.common.types.account.MarginMode.CROSS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.MarginMode.ISOLATED">
+<span class="sig-name descname"><span class="pre">ISOLATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ISOLATED'</span></em><a class="headerlink" href="#bsx_py.common.types.account.MarginMode.ISOLATED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.MarginMode.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#MarginMode.from_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.MarginMode.from_str" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.account.MarginMode" title="bsx_py.common.types.account.MarginMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarginMode</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.WithdrawParams">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">WithdrawParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#WithdrawParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.WithdrawParams" title="Link to this definition"></a></dt>
@@ -1197,12 +1484,125 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">PortfolioSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">margin_use</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account_leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free_collateral</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_account_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_notional</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usdc_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_usdc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_maintenance_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_pending_withdrawal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#PortfolioSummary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenBalance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">TokenBalance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#TokenBalance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.TokenBalance" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.margin_use">
-<span class="sig-name descname"><span class="pre">margin_use</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.margin_use" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenBalance.address">
+<span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.TokenBalance.address" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenBalance.balance">
+<span class="sig-name descname"><span class="pre">balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.TokenBalance.balance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenBalance.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#TokenBalance.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.TokenBalance.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance" title="bsx_py.common.types.account.TokenBalance"><code class="xref py py-class docutils literal notranslate"><span class="pre">TokenBalance</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenBalance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.TokenBalance.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPriceLevel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">StopPriceLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_price_option</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#StopPriceLevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.StopPriceLevel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPriceLevel.price">
+<span class="sig-name descname"><span class="pre">price</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.StopPriceLevel.price" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPriceLevel.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.StopPriceLevel.size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPriceLevel.stop_price_option">
+<span class="sig-name descname"><span class="pre">stop_price_option</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.market.StopPriceOption" title="bsx_py.common.types.market.StopPriceOption"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPriceOption</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.StopPriceLevel.stop_price_option" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPriceLevel.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#StopPriceLevel.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.StopPriceLevel.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel" title="bsx_py.common.types.account.StopPriceLevel"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPriceLevel</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPriceLevel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_price_option</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.StopPriceLevel.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPosition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">StopPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nearest_take_profit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nearest_stop_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#StopPosition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.StopPosition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPosition.nearest_take_profit">
+<span class="sig-name descname"><span class="pre">nearest_take_profit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel" title="bsx_py.common.types.account.StopPriceLevel"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPriceLevel</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.StopPosition.nearest_take_profit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPosition.nearest_stop_loss">
+<span class="sig-name descname"><span class="pre">nearest_stop_loss</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.StopPriceLevel" title="bsx_py.common.types.account.StopPriceLevel"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPriceLevel</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.StopPosition.nearest_stop_loss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPosition.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#StopPosition.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.StopPosition.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.account.StopPosition" title="bsx_py.common.types.account.StopPosition"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPosition</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.StopPosition.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nearest_take_profit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nearest_stop_loss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.StopPosition.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">PortfolioSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collateral_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collateral_margin_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_margin_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_usage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account_leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free_collateral</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_account_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_notional</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usdc_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_usdc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_maintenance_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token_balances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_pending_withdrawal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_unrealized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_collateral_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_health</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_pending_swap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_isolated_order_reserve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#PortfolioSummary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.collateral_mode">
+<span class="sig-name descname"><span class="pre">collateral_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.CollateralMode" title="bsx_py.common.types.account.CollateralMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollateralMode</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.collateral_mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.collateral_margin_balance">
+<span class="sig-name descname"><span class="pre">collateral_margin_balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.collateral_margin_balance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.cross_margin_balance">
+<span class="sig-name descname"><span class="pre">cross_margin_balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.cross_margin_balance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.margin_usage">
+<span class="sig-name descname"><span class="pre">margin_usage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.margin_usage" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1256,8 +1656,38 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.token_balances">
+<span class="sig-name descname"><span class="pre">token_balances</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.account.TokenBalance" title="bsx_py.common.types.account.TokenBalance"><code class="xref py py-class docutils literal notranslate"><span class="pre">TokenBalance</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.token_balances" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.has_pending_withdrawal">
 <span class="sig-name descname"><span class="pre">has_pending_withdrawal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.has_pending_withdrawal" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.total_unrealized_pnl">
+<span class="sig-name descname"><span class="pre">total_unrealized_pnl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.total_unrealized_pnl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.total_collateral_value">
+<span class="sig-name descname"><span class="pre">total_collateral_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.total_collateral_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.margin_health">
+<span class="sig-name descname"><span class="pre">margin_health</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.margin_health" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.has_pending_swap">
+<span class="sig-name descname"><span class="pre">has_pending_swap</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.has_pending_swap" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.total_isolated_order_reserve">
+<span class="sig-name descname"><span class="pre">total_isolated_order_reserve</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.total_isolated_order_reserve" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1272,14 +1702,14 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioSummary.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">margin_use</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account_leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free_collateral</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_account_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_notional</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usdc_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_usdc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_maintenance_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_pending_withdrawal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collateral_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collateral_margin_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_margin_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_usage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account_leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free_collateral</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_account_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_notional</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usdc_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_usdc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_initial_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_maintenance_margin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token_balances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_pending_withdrawal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_unrealized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_collateral_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_health</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_pending_swap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_isolated_order_reserve</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.PortfolioSummary.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Position">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">Position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_entry_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintenance_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">liquidation_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unrealized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_funding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funding_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_balance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#Position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.Position" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">Position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_entry_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintenance_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">liquidation_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unrealized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_funding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funding_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isolated_usdc_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_isolated_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free_isolated_usdc_balance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#Position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.Position" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Position.product_index">
@@ -1289,6 +1719,16 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Position.product_id">
 <span class="sig-name descname"><span class="pre">product_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.product_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.margin_mode">
+<span class="sig-name descname"><span class="pre">margin_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.MarginMode" title="bsx_py.common.types.account.MarginMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarginMode</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.Position.margin_mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.margin_balance">
+<span class="sig-name descname"><span class="pre">margin_balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.margin_balance" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1346,6 +1786,31 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <span class="sig-name descname"><span class="pre">quote_balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.quote_balance" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.stop_position">
+<span class="sig-name descname"><span class="pre">stop_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.StopPosition" title="bsx_py.common.types.account.StopPosition"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPosition</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.Position.stop_position" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.index_price">
+<span class="sig-name descname"><span class="pre">index_price</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.index_price" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.isolated_usdc_balance">
+<span class="sig-name descname"><span class="pre">isolated_usdc_balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.isolated_usdc_balance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.in_isolated_liquidation">
+<span class="sig-name descname"><span class="pre">in_isolated_liquidation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.in_isolated_liquidation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Position.free_isolated_usdc_balance">
+<span class="sig-name descname"><span class="pre">free_isolated_usdc_balance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Position.free_isolated_usdc_balance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Position.from_dict">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#Position.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.Position.from_dict" title="Link to this definition"></a></dt>
@@ -1358,7 +1823,7 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Position.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_entry_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintenance_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">liquidation_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unrealized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_funding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funding_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_balance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.Position.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_entry_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintenance_margin_requirement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">liquidation_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unrealized_pnl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsettled_funding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funding_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isolated_usdc_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_isolated_liquidation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free_isolated_usdc_balance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.Position.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1503,8 +1968,44 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenStat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">TokenStat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_deposit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_withdraw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#TokenStat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.TokenStat" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenStat.address">
+<span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.TokenStat.address" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenStat.total_deposit">
+<span class="sig-name descname"><span class="pre">total_deposit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.TokenStat.total_deposit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenStat.total_withdraw">
+<span class="sig-name descname"><span class="pre">total_withdraw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.TokenStat.total_withdraw" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenStat.from_dict">
+<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#TokenStat.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.TokenStat.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.account.TokenStat" title="bsx_py.common.types.account.TokenStat"><code class="xref py py-class docutils literal notranslate"><span class="pre">TokenStat</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.TokenStat.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_deposit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_withdraw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.TokenStat.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioStats">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">PortfolioStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">products</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trading_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_deposit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_withdraw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#PortfolioStats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.PortfolioStats" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">PortfolioStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">products</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trading_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_deposit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_withdraw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#PortfolioStats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.PortfolioStats" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioStats.order_stats">
@@ -1519,6 +2020,11 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioStats.trading_stats">
 <span class="sig-name descname"><span class="pre">trading_stats</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.TradingStats" title="bsx_py.common.types.account.TradingStats"><code class="xref py py-class docutils literal notranslate"><span class="pre">TradingStats</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioStats.trading_stats" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioStats.tokens">
+<span class="sig-name descname"><span class="pre">tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><a class="reference internal" href="#bsx_py.common.types.account.TokenStat" title="bsx_py.common.types.account.TokenStat"><code class="xref py py-class docutils literal notranslate"><span class="pre">TokenStat</span></code></a><span class="pre">]</span></em><a class="headerlink" href="#bsx_py.common.types.account.PortfolioStats.tokens" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1543,14 +2049,14 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.PortfolioStats.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">products</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trading_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_deposit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_withdraw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.PortfolioStats.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">products</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trading_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_deposit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_withdraw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.PortfolioStats.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Portfolio">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">Portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#Portfolio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.Portfolio" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.account.</span></span><span class="sig-name descname"><span class="pre">Portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maker_fee</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taker_fee</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#Portfolio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.Portfolio" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Portfolio.account">
@@ -1572,6 +2078,16 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <span class="sig-name descname"><span class="pre">stats</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bsx_py.common.types.account.PortfolioStats" title="bsx_py.common.types.account.PortfolioStats"><code class="xref py py-class docutils literal notranslate"><span class="pre">PortfolioStats</span></code></a></em><a class="headerlink" href="#bsx_py.common.types.account.Portfolio.stats" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Portfolio.maker_fee">
+<span class="sig-name descname"><span class="pre">maker_fee</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Portfolio.maker_fee" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.account.Portfolio.taker_fee">
+<span class="sig-name descname"><span class="pre">taker_fee</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#bsx_py.common.types.account.Portfolio.taker_fee" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Portfolio.from_dict">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/account.html#Portfolio.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.account.Portfolio.from_dict" title="Link to this definition"></a></dt>
@@ -1579,7 +2095,7 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bsx_py.common.types.account.Portfolio.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.Portfolio.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maker_fee</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taker_fee</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bsx_py.common.types.account.Portfolio.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1722,6 +2238,33 @@ We currently only allow withdraw up to min(settled_usdc_balance, free_collateral
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.market.OrderType" title="bsx_py.common.types.market.OrderType"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderType</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.StopPriceOption">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bsx_py.common.types.market.</span></span><span class="sig-name descname"><span class="pre">StopPriceOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#StopPriceOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.StopPriceOption" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.StopPriceOption.LAST_TRADED_PRICE">
+<span class="sig-name descname"><span class="pre">LAST_TRADED_PRICE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LAST_TRADED_PRICE'</span></em><a class="headerlink" href="#bsx_py.common.types.market.StopPriceOption.LAST_TRADED_PRICE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.StopPriceOption.MARK_PRICE">
+<span class="sig-name descname"><span class="pre">MARK_PRICE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MARK_PRICE'</span></em><a class="headerlink" href="#bsx_py.common.types.market.StopPriceOption.MARK_PRICE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bsx_py.common.types.market.StopPriceOption.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bsx_py/common/types/market.html#StopPriceOption.from_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bsx_py.common.types.market.StopPriceOption.from_str" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#bsx_py.common.types.market.StopPriceOption" title="bsx_py.common.types.market.StopPriceOption"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopPriceOption</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>

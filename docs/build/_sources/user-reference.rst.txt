@@ -202,6 +202,39 @@ Below are supported APIs to interact with BSX Exchange
 
     >>> products = bsx_instance.get_products()
 
+- **Update portfolio collateral mode:**
+
+.. code-block:: python
+
+    >>> success = bsx_instance.update_collateral_mode(collateral_mode=CollateralMode.MULTI_COLLATERAL)
+
+- **Update position margin mode:**
+
+.. code-block:: python
+
+    >>> success = bsx_instance.update_margin_mode(
+            product_id="BTC-PERP",
+            margin_mode=MarginMode.ISOLATED
+        )
+
+- **Update position leverage:**
+
+.. code-block:: python
+
+    >>> success = bsx_instance.update_leverage(
+            product_id="BTC-PERP",
+            leverage=10
+        )
+
+- **Modify isolated position margin:**
+
+.. code-block:: python
+
+    >>> success = bsx_instance.modify_isolated_position_margin(
+            product_id="BTC-PERP",
+            amount=Decimal("333")
+        )
+
 Async APIs
 ------------
 Below are async APIs to interact with BSX Exchange
@@ -352,3 +385,35 @@ Below are async APIs to interact with BSX Exchange
 
     >>> products = await bsx_instance.get_products_async()
 
+- **Update portfolio collateral mode:**
+
+.. code-block:: python
+
+    >>> success = await bsx_instance.update_collateral_mode_async(collateral_mode=CollateralMode.MULTI_COLLATERAL)
+
+- **Update position margin mode:**
+
+.. code-block:: python
+
+    >>> success = await bsx_instance.update_margin_mode_async(
+            product_id="BTC-PERP",
+            margin_mode=MarginMode.ISOLATED
+        )
+
+- **Update position leverage:**
+
+.. code-block:: python
+
+    >>> success = await bsx_instance.update_leverage_async(
+            product_id="BTC-PERP",
+            leverage=10
+        )
+
+- **Modify isolated position margin:**
+
+.. code-block:: python
+
+    >>> success = await bsx_instance.modify_isolated_position_margin_async(
+            product_id="BTC-PERP",
+            amount=Decimal("333")
+        )

@@ -280,6 +280,39 @@ You can use <a class="reference external" href="api-reference.html#bsx_py.typed_
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">products</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_products</span><span class="p">()</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><strong>Update portfolio collateral mode:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">update_collateral_mode</span><span class="p">(</span><span class="n">collateral_mode</span><span class="o">=</span><span class="n">CollateralMode</span><span class="o">.</span><span class="n">MULTI_COLLATERAL</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Update position margin mode:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">update_margin_mode</span><span class="p">(</span>
+<span class="go">        product_id=&quot;BTC-PERP&quot;,</span>
+<span class="go">        margin_mode=MarginMode.ISOLATED</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Update position leverage:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">update_leverage</span><span class="p">(</span>
+<span class="go">        product_id=&quot;BTC-PERP&quot;,</span>
+<span class="go">        leverage=10</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Modify isolated position margin:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">modify_isolated_position_margin</span><span class="p">(</span>
+<span class="go">        product_id=&quot;BTC-PERP&quot;,</span>
+<span class="go">        amount=Decimal(&quot;333&quot;)</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
 </section>
 <section id="async-apis">
 <h2>Async APIs<a class="headerlink" href="#async-apis" title="Link to this heading"></a></h2>
@@ -428,6 +461,39 @@ You can use <a class="reference external" href="api-reference.html#bsx_py.typed_
 <li><p><strong>Get all markets:</strong></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">products</span> <span class="o">=</span> <span class="k">await</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">get_products_async</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Update portfolio collateral mode:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">update_collateral_mode_async</span><span class="p">(</span><span class="n">collateral_mode</span><span class="o">=</span><span class="n">CollateralMode</span><span class="o">.</span><span class="n">MULTI_COLLATERAL</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Update position margin mode:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">update_margin_mode_async</span><span class="p">(</span>
+<span class="go">        product_id=&quot;BTC-PERP&quot;,</span>
+<span class="go">        margin_mode=MarginMode.ISOLATED</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Update position leverage:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">update_leverage_async</span><span class="p">(</span>
+<span class="go">        product_id=&quot;BTC-PERP&quot;,</span>
+<span class="go">        leverage=10</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Modify isolated position margin:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">bsx_instance</span><span class="o">.</span><span class="n">modify_isolated_position_margin_async</span><span class="p">(</span>
+<span class="go">        product_id=&quot;BTC-PERP&quot;,</span>
+<span class="go">        amount=Decimal(&quot;333&quot;)</span>
+<span class="go">    )</span>
 </pre></div>
 </div>
 </section>

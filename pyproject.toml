@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bsx-sdk-py"
-version = "0.0.1beta18"
+version = "0.0.1beta19"
 description = ""
 authors = ["bsx-engineering <dev@bsx.exchange>"]
 readme = "README.md"

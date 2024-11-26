@@ -23,7 +23,7 @@ class CollateralMode(str, Enum):
         return None
 
 
-class MarginMode(Enum):
+class MarginMode(str, Enum):
     CROSS = "CROSS"
     ISOLATED = "ISOLATED"
 

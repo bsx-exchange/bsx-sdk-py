@@ -7,7 +7,7 @@ from bsx_py.client.rest.account.client import AccountClient
 from bsx_py.client.rest.market.client import MarketClient
 from bsx_py.common.exception import UnauthenticatedException, NotSupportOperationException, \
     WalletPrivateNotProvidedException
-from bsx_py.common.types.account import CollateralMode, WithdrawParams, Portfolio, GetAPIKeysResponse, APIKey
+from bsx_py.common.types.account import CollateralMode, MarginMode, WithdrawParams, Portfolio, GetAPIKeysResponse, APIKey
 from bsx_py.common.types.market import *
 from bsx_py.helper import AccountManager
 from bsx_py.helper.chain_info import get_chain_config
@@ -633,6 +633,40 @@ class BSXInstance:
             BSXRequestException: If the operation fails and the response status is not "success".
         """
         return await self._account_client.update_collateral_mode_async(collateral_mode=collateral_mode)
+
+    @_refresh_api_key_if_needed
+    def update_margin_mode(self, product_id: str, margin_mode: MarginMode) -> bool:
+        """
+        Updates the margin mode for a specific product.
+
+        Args:
+            product_id (str): The identifier of the product to update.
+            margin_mode (MarginMode): The new margin mode to set for the product.
+
+        Returns:
+            bool: True if the margin mode was updated successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: Raised if the operation fails and the response status is not "success".
+        """
+        return self._account_client.update_margin_mode(product_id=product_id, margin_mode=margin_mode)
+
+    @_refresh_api_key_if_needed
+    async def update_margin_mode_async(self, product_id: str, margin_mode: MarginMode) -> bool:
+        """
+        Updates the margin mode for a specific product.
+
+        Args:
+            product_id (str): The identifier of the product to update.
+            margin_mode (MarginMode): The new margin mode to set for the product.
+
+        Returns:
+            bool: True if the margin mode was updated successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: Raised if the operation fails and the response status is not "success".
+        """
+        return await self._account_client.update_margin_mode_async(product_id=product_id, margin_mode=margin_mode)
 
     def _build_eip712_domain(self, config):
         return make_domain(

@@ -131,3 +131,17 @@ class AccountClient(AuthRequiredClient):
             return resp["success"]
         else:
             raise Exception(json.dumps(resp))
+
+    def update_margin_mode(self, product_id: str, margin_mode: MarginMode) -> bool:
+        resp = self.post("/margin-mode", body={"product_id": product_id, "margin_mode": margin_mode})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))
+
+    async def update_margin_mode_async(self, product_id: str, margin_mode: MarginMode) -> bool:
+        resp = await self.post_async("/margin-mode", body={"product_id": product_id, "margin_mode": margin_mode})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))

@@ -668,6 +668,40 @@ class BSXInstance:
         """
         return await self._account_client.update_margin_mode_async(product_id=product_id, margin_mode=margin_mode)
 
+    @_refresh_api_key_if_needed
+    def update_leverage(self, product_id: str, leverage: float) -> bool:
+        """
+        Updates the leverage for a specific product.
+
+        Args:
+            product_id (str): The identifier of the product to update.
+            leverage (float): The new leverage to set for the product.
+
+        Returns:
+            bool: True if the leverage was updated successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: Raised if the operation fails and the response status is not "success".
+        """
+        return self._account_client.update_leverage(product_id=product_id, leverage=leverage)
+
+    @_refresh_api_key_if_needed
+    async def update_leverage_async(self, product_id: str, leverage: float) -> bool:
+        """
+        Updates the leverage for a specific product.
+
+        Args:
+            product_id (str): The identifier of the product to update.
+            leverage (float): The new leverage to set for the product.
+
+        Returns:
+            bool: True if the leverage was updated successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: Raised if the operation fails and the response status is not "success".
+        """
+        return await self._account_client.update_leverage_async(product_id=product_id, leverage=leverage)
+
     def _build_eip712_domain(self, config):
         return make_domain(
             name=config["name"],

@@ -145,3 +145,17 @@ class AccountClient(AuthRequiredClient):
             return resp["success"]
         else:
             raise Exception(json.dumps(resp))
+
+    def update_leverage(self, product_id: str, leverage: float) -> bool:
+        resp = self.post("/leverage", body={"product_id": product_id, "leverage": leverage})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))
+
+    async def update_leverage_async(self, product_id: str, leverage: float) -> bool:
+        resp = await self.post_async("/leverage", body={"product_id": product_id, "leverage": leverage})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))

@@ -117,3 +117,17 @@ class AccountClient(AuthRequiredClient):
             return APIKey.from_dict(resp["api_key"])
         else:
             raise Exception("API key not found in response. Actual response: " + json.dumps(resp))
+
+    def update_collateral_mode(self, collateral_mode: CollateralMode) -> bool:
+        resp = self.post("/collateral-mode", body={"collateral_mode": collateral_mode})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))
+
+    async def update_collateral_mode_async(self, collateral_mode: CollateralMode) -> bool:
+        resp = await self.post_async("/collateral-mode", body={"collateral_mode": collateral_mode})
+        if "success" in resp:
+            return resp["success"]
+        else:
+            raise Exception(json.dumps(resp))

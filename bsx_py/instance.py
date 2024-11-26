@@ -7,7 +7,7 @@ from bsx_py.client.rest.account.client import AccountClient
 from bsx_py.client.rest.market.client import MarketClient
 from bsx_py.common.exception import UnauthenticatedException, NotSupportOperationException, \
     WalletPrivateNotProvidedException
-from bsx_py.common.types.account import WithdrawParams, Portfolio, GetAPIKeysResponse, APIKey
+from bsx_py.common.types.account import CollateralMode, WithdrawParams, Portfolio, GetAPIKeysResponse, APIKey
 from bsx_py.common.types.market import *
 from bsx_py.helper import AccountManager
 from bsx_py.helper.chain_info import get_chain_config
@@ -602,6 +602,37 @@ class BSXInstance:
         """
         return await self._account_client.create_user_api_key_async(name)
 
+    @_refresh_api_key_if_needed
+    def update_collateral_mode(self, collateral_mode: CollateralMode) -> bool:
+        """
+        Updates the portfolio collateral mode.
+
+        Args:
+            collateral_mode (CollateralMode): The new collateral mode to apply to the portfolio.
+
+        Returns:
+            bool: True if the collateral mode was updated successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: If the operation fails and the response status is not "success".
+        """
+        return self._account_client.update_collateral_mode(collateral_mode=collateral_mode)
+
+    @_refresh_api_key_if_needed
+    async def update_collateral_mode_async(self, collateral_mode: CollateralMode) -> bool:
+        """
+        Updates the portfolio collateral mode.
+
+        Args:
+            collateral_mode (CollateralMode): The new collateral mode to apply to the portfolio.
+
+        Returns:
+            bool: True if the collateral mode was updated successfully, False otherwise.
+
+        Raises:
+            BSXRequestException: If the operation fails and the response status is not "success".
+        """
+        return await self._account_client.update_collateral_mode_async(collateral_mode=collateral_mode)
 
     def _build_eip712_domain(self, config):
         return make_domain(

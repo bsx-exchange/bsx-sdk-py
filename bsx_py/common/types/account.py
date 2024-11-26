@@ -7,7 +7,7 @@ import pandas
 from bsx_py.common.types.market import StopPriceOption
 
 
-class CollateralMode(Enum):
+class CollateralMode(str, Enum):
     MULTI_COLLATERAL = "MULTI_COLLATERAL"
     USDC_COLLATERAL = "USDC_COLLATERAL"
 
